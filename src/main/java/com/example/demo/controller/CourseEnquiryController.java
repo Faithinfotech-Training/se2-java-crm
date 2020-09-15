@@ -18,7 +18,7 @@ import com.example.demo.service.CourseEnquiryService;
 
 @RestController
 @RequestMapping("/api/enquiry")
-public class CourseEnquiryRestAPI {
+public class CourseEnquiryController {
 
 	// courseEnquiryService to access functions
 	@Autowired
