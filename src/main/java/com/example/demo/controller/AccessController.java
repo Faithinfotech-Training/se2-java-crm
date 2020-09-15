@@ -20,7 +20,7 @@ public class AccessController {
 		this.accessService = accessService;
 	}
 
-	@GetMapping("/qualification")
+	@GetMapping("/qualification_")
 	public List<Access> findAllAccesss() {
 		return accessService.findAllAccess();
 	}
