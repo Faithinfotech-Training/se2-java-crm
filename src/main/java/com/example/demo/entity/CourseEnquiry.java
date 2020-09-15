@@ -30,11 +30,9 @@ public class CourseEnquiry {
 	private Customer customerId;
 
 	//Course Id of the course the enquiry is about
-	//To be added after course table is added
-	//@ManyToMany
-	//@JoinColumn(name="courseid")
-	@Column
-	private Integer courseId;
+	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Course.class)
+	@JoinColumn(name="course_id")
+	private Course courseId;
 
 	// Date when the enquiry is registered by the user
 	@Column
@@ -50,7 +48,7 @@ public class CourseEnquiry {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CourseEnquiry(Integer registrationId, Customer customerId, Integer courseId, Date enquiryDate,
+	public CourseEnquiry(Integer registrationId, Customer customerId, Course courseId, Date enquiryDate,
 			EnquiryStatus enquiryStatus) {
 		super();
 		this.registrationId = registrationId;
@@ -76,11 +74,11 @@ public class CourseEnquiry {
 		this.customerId = customerId;
 	}
 
-	public Integer getCourseId() {
+	public Course getCourseId() {
 		return courseId;
 	}
 
-	public void setCourseId(Integer courseId) {
+	public void setCourseId(Course courseId) {
 		this.courseId = courseId;
 	}
 
