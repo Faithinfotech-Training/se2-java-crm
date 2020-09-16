@@ -27,7 +27,8 @@ public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
 	public void saveCourseEnquiry(CourseEnquiry courseEnquiry) {
 		// Save course enquiry
 		System.out.println("hello");
-		entityManager.persist(courseEnquiry);
+		courseEnquiry.setRegistrationId(0);
+		entityManager.merge(courseEnquiry);
 	}
 
 	@Override

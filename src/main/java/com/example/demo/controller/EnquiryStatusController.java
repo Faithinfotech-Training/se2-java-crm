@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -56,6 +57,13 @@ public class EnquiryStatusController {
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 			
+	//Update the enquiry status
+	 @PutMapping("/status")
+	 public ResponseEntity updateEnquiryStatus(@RequestBody EnquiryStatus enquiryStatus) {
+		 enquiryStatusService.updateEnquiryStatus(enquiryStatus);
+		 return ResponseEntity.ok().build();
+	 }
+	 
 	// Delete the enquiry status
 	@DeleteMapping("/status/{statusId}")
 	public ResponseEntity<Object> deleteById(@PathVariable("statusId") int id ) {

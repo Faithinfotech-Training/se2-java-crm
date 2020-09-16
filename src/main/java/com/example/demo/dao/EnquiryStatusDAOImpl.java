@@ -24,7 +24,8 @@ public class EnquiryStatusDAOImpl implements EnquiryStatusDAO {
 	@Override
 	public void saveEnquiryStatus(EnquiryStatus enquiryStatus) {
 		// Save the enquiry status
-		entityManager.persist(enquiryStatus);
+		enquiryStatus.setStatusId(0);
+		entityManager.merge(enquiryStatus);
 	}
 
 	@Override
