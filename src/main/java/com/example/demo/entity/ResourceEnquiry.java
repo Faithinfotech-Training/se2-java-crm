@@ -8,9 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -37,9 +34,9 @@ public class ResourceEnquiry {
 	@JoinColumn(name = "resourceId")
 	private Resources resources;
 
-	
-	@Column(nullable = false, length = 50)
-	private String status;
+	@OneToOne
+	@JoinColumn(name="statusId")
+	private ResourceEnquiryStatus status;
 
 	
 	@Column
@@ -56,22 +53,26 @@ public class ResourceEnquiry {
 
 	
 	
-	
-// Parameterised Constructor
-	public ResourceEnquiry(Integer resourceEnquiryId, Customer customer, Resources resources, String status,
-			Date enquiryDate) {
-	
-		super();
-		this.resourceEnquiryId = resourceEnquiryId;
-		this.customer = customer;
-		this.resources = resources;
-		this.status = status;
-		this.enquiryDate = enquiryDate;
-	}
 
 	
 	
 	
+public ResourceEnquiry(Integer resourceEnquiryId, Customer customer, Resources resources, ResourceEnquiryStatus status,
+		Date enquiryDate) {
+	super();
+	this.resourceEnquiryId = resourceEnquiryId;
+	this.customer = customer;
+	this.resources = resources;
+	this.status = status;
+	this.enquiryDate = enquiryDate;
+}
+
+
+
+
+
+
+
 // Getters and Setters
 	public Integer getResourceEnquiryId() {
 	
@@ -104,16 +105,23 @@ public class ResourceEnquiry {
 	}
 
 	
-	public String getStatus() {
+	
+
+	
+	public ResourceEnquiryStatus getStatus() {
 		return status;
 	}
 
-	
-	public void setStatus(String status) {
+
+
+
+	public void setStatus(ResourceEnquiryStatus status) {
 		this.status = status;
 	}
 
-	
+
+
+
 	public Date getEnquiryDate() {
 		return enquiryDate;
 	}

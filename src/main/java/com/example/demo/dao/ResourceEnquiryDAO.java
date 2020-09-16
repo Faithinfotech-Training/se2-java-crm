@@ -20,6 +20,11 @@ public interface ResourceEnquiryDAO  {
 	
 	//method to delete a specific enquiry
 	ResourceEnquiry deleteByResourceEnquiryId(int resourceEnquiryId);
+
+//	Filter ResourceEnquiry by status
+	List<ResourceEnquiry> findAllResourceEnquiryByStatus(int status);
+
+	List<ResourceEnquiry> findAllResourceEnquiryByResourceType(int rescourceType);
 	
 	
 }
