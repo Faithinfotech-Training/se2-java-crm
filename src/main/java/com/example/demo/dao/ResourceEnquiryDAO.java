@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.ResourceEnquiry;
 
-@Repository
+
 public interface ResourceEnquiryDAO  {
     //method to get all resource enquiries
 	List<ResourceEnquiry> findAll();
