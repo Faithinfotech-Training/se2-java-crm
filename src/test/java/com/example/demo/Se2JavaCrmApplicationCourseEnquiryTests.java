@@ -17,7 +17,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.demo.dao.CourseEnquiryDAO;
-import com.example.demo.entity.AccessL;
 import com.example.demo.entity.Course;
 import com.example.demo.entity.CourseEnquiry;
 import com.example.demo.entity.Customer;
@@ -38,16 +37,11 @@ class Se2JavaCrmApplicationCourseEnquiryTests {
 
 	@Test
 	public void saveCourseEnquiryTest() {
-
-		Integer theId=new Integer(1);
 		String dobString="1998-01-30";  
 		Date DOB=Date.valueOf(dobString);
-
 		String enquiryDateString="2020-01-30";  
 		Date enquiryDate=Date.valueOf(enquiryDateString);
-
 		Customer customer = new Customer(1, "Ronit", "ronit@gmail.com", "1234567890", DOB, "Btech", 90, "Website");
-		AccessL accessL = new AccessL();
 		Course course = new Course();
 		EnquiryStatus enquiryStatus = new EnquiryStatus(1, "Called");
 		CourseEnquiry courseEnquiry = new CourseEnquiry(1, customer, course, enquiryDate, enquiryStatus);
@@ -57,14 +51,10 @@ class Se2JavaCrmApplicationCourseEnquiryTests {
 
 	@Test
 	public void findAllCourseEnquiryTest() {
-
-		Integer theId=new Integer(1);
 		String dobString="1998-01-30";  
 		Date DOB=Date.valueOf(dobString);
-
 		String enquiryDateString="2020-01-30";  
 		Date enquiryDate=Date.valueOf(enquiryDateString);
-
 		Customer customer = new Customer(1, "Ronit", "ronit@gmail.com", "1234567890", DOB, "Btech", 90, "Website");
 		EnquiryStatus enquiryStatus = new EnquiryStatus(1, "Called");
 		Course course = new Course();
@@ -79,8 +69,6 @@ class Se2JavaCrmApplicationCourseEnquiryTests {
 	@Test
 	public void findByIdCourseEnquiryTest() {
 		Integer theId=new Integer(1);
-		String dobString="1998-01-30";  
-		Date DOB=Date.valueOf(dobString);
 		String enquiryDateString="2020-01-30";  
 		Date enquiryDate=Date.valueOf(enquiryDateString);
 		Customer customer = new Customer();
