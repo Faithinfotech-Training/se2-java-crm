@@ -15,6 +15,6 @@ public interface ManageResEnquiryUpdateService {
 	/*
 	 * Return all the Resource Enquiries of the given type.
 	 */
-	public List<ResourceEnquiry> findAllResourceEnquiry(String resourceEnquiryStatus);
+	public List<ResourceEnquiry> findAllResourceEnquiry(Integer resourceEnquiryStatus);
 	
 }

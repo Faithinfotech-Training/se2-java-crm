@@ -30,8 +30,8 @@ public class ManageResEnquiryUpdateController {
 	}
 	
 	//return list of enquiries of parameterised type
-	@GetMapping("/resource/{resourceType}")
-	public ResponseEntity findAllResourceEnquiry(@PathVariable("resourceType") String resourceEnquiryStatus) {
+	@GetMapping("/resource/status/{resourceType}")
+	public ResponseEntity findAllResourceEnquiry(@PathVariable("resourceType") Integer resourceEnquiryStatus) {
 		List<ResourceEnquiry> listOfResourceEnquiries = manageResEnquiryUpdateService.findAllResourceEnquiry(resourceEnquiryStatus);
 		if(listOfResourceEnquiries == null)
 			return ResponseEntity.noContent().build();

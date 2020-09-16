@@ -29,7 +29,7 @@ public class ManageResEnquiryUpdateServiceImp implements ManageResEnquiryUpdateS
 
 	@Override
 	@Transactional
-	public List<ResourceEnquiry> findAllResourceEnquiry(String resourceEnquiryStatus) {
+	public List<ResourceEnquiry> findAllResourceEnquiry(Integer resourceEnquiryStatus) {
 		// return list of resource enquiries with the type of resource enquiry status
 		return manageResEnquiryUpdateDAO.findAllResourceEnquiry(resourceEnquiryStatus);
 	}
