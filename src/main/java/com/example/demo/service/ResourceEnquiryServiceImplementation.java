@@ -79,4 +79,20 @@ public class ResourceEnquiryServiceImplementation implements ResourceEnquiryServ
 		}
 	}
 
+
+
+	@Override
+	public List<ResourceEnquiry> findAllResourceEnquiryByStatus(int status) {
+		// TODO Auto-generated method stub
+		return resourceEnquiryDAOImplementation.findAllResourceEnquiryByStatus(status);
+	}
+
+
+
+	@Override
+	public List<ResourceEnquiry> findAllResourceEnquiryByResourceType(int resourceType) {
+		// TODO Auto-generated method stub
+		return resourceEnquiryDAOImplementation.findAllResourceEnquiryByResourceType(resourceType);
+	}
+
 }

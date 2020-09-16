@@ -1,6 +1,7 @@
 //DAO Layer of Resource Enquiry
 package com.example.demo.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +17,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.ResourceEnquiry;
+import com.example.demo.entity.ResourceType;
 import com.example.demo.entity.Resources;
 
 
@@ -80,6 +82,43 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 		ResourceEnquiry dbResources = entityManager.merge(resourceEnquiry);
 		resourceEnquiry.setResourceEnquiryId(dbResources.getResourceEnquiryId());
 	}
+
+	
+	
+//	Filter to find resource enquiry by status
+	@Override
+    public List<ResourceEnquiry> findAllResourceEnquiryByStatus(int status) {
+
+        // Create a query
+        Query myQuery = entityManager.createQuery("from ResourceEnquiry where status = " + status);
+
+        // Extract the results
+        List<ResourceEnquiry> courseEnquiries = myQuery.getResultList();
+
+        // Return the course enquiries list filter by status
+        return courseEnquiries;
+    }
+	
+//	Filter to find resource enquiry by status
+	@Override
+    public List<ResourceEnquiry> findAllResourceEnquiryByResourceType(int resourceType) {
+
+        // Create a query
+//		String query = "Select resource_enquiry.* from resource_enquiry join resources on resource_enquiry.RESOURCE_ID=resources.RESOURCE_ID where resources.resource_type_id=1";
+		Query myQuery = entityManager.createQuery("from ResourceEnquiry");
+		List<ResourceEnquiry> resourceEnquiries = myQuery.getResultList();
+		List<ResourceEnquiry> filterByResourceTypeEnquiries = new ArrayList<ResourceEnquiry>();
+		for(ResourceEnquiry re: resourceEnquiries) {
+			
+			ResourceType resourcesType = re.getResource().getResourceType();
+			if(resourcesType.getResourceTypeId()==resourceType) {
+				filterByResourceTypeEnquiries.add(re);
+			}
+			
+		}
+        // Return the course enquiries list filter by status
+        return filterByResourceTypeEnquiries;
+    }
 
 
 

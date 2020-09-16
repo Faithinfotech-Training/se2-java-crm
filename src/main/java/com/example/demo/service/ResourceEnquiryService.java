@@ -18,5 +18,7 @@ public interface ResourceEnquiryService {
 	
 	public void deleteByResourceEnquiryId(int resourceEnquiryId);
 	
+	public List<ResourceEnquiry> findAllResourceEnquiryByStatus(int status);
 	
+	public List<ResourceEnquiry> findAllResourceEnquiryByResourceType(int resourceType);
 }
