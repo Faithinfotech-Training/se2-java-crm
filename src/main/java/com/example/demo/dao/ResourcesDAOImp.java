@@ -44,7 +44,7 @@ public class ResourcesDAOImp implements ResourcesDAO {
 	public void saveResources(Resources resources) {
 		// TODO Auto-generated method stub
 		  //create a save query
-        entityManager.persist(resources);
+        entityManager.merge(resources);
 	}
 
 	@Override

@@ -33,12 +33,13 @@ public class Course {
 	@Column(nullable = false , length = 50)
 	private String duration;
 	
-	@Column(nullable = false , length = 50)
-	private String domain;
+	@ManyToOne
+	@JoinColumn(name = "domainId")
+	private Domain domain;
 
 	@ManyToOne
 	@JoinColumn(name = "accessId")
-	private AccessL accessL;
+	private Access access;
 
 	@ManyToOne
 	@JoinColumn(name = "statusId")
@@ -48,8 +49,8 @@ public class Course {
 	@JoinColumn(name = "qualificationId")
 	private Qualification qualification;
 
-//	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//	@JoinTable(name = "course_qualification",
+//	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+//	@JoinTable(name = "Course_Qualification",
 //		joinColumns = { @JoinColumn(name = "course_id")},
 //		inverseJoinColumns = { @JoinColumn (name = "qualification_id")})
 //	private Set<Qualification> qualifications = new HashSet<>();
@@ -59,7 +60,7 @@ public class Course {
 	}
 
 	public Course(String courseName, String description, int fees, int scoreCriteria, int ageCriteria, String duration,
-			String domain, AccessL accessL, Status status, Qualification qualification) {
+			Domain domain, Access access, Status status, Qualification qualification) {
 		super();
 		this.courseName = courseName;
 		this.description = description;
@@ -68,10 +69,11 @@ public class Course {
 		this.ageCriteria = ageCriteria;
 		this.duration = duration;
 		this.domain = domain;
-		this.accessL = accessL;
+		this.access = access;
 		this.status = status;
 		this.qualification = qualification;
 	}
+
 
 	public int getCourseId() {
 		return courseId;
@@ -129,44 +131,55 @@ public class Course {
 		this.duration = duration;
 	}
 
-	public String getDomain() {
+	public Domain getDomain() {
 		return domain;
 	}
 
-	public void setDomain(String domain) {
+	public void setDomain(Domain domain) {
 		this.domain = domain;
 	}
 
-	public AccessL getAccessId() {
-		return accessL;
+	public Access getAccess() {
+		return access;
 	}
 
-	public void setAccessId(AccessL accessL) {
-		this.accessL = accessL;
+	public void setAccess(Access access) {
+		this.access = access;
 	}
 
-	public Status getStatusId() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatusId(Status status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 
-	public Qualification  getQualificationId() {
+	public Qualification getQualification() {
 		return qualification;
 	}
 
-	public void setQualificationId(Qualification qualification) {
+	public void setQualification(Qualification qualification) {
 		this.qualification = qualification;
 	}
+
+//	public Set<Qualification> getQualifications() {
+//		return qualifications;
+//	}
+//
+//	public void setQualifications(Set<Qualification> qualifications) {
+//		this.qualifications = qualifications;
+//	}
 
 	@Override
 	public String toString() {
 		return "Course [courseId=" + courseId + ", courseName=" + courseName + ", description=" + description
 				+ ", fees=" + fees + ", scoreCriteria=" + scoreCriteria + ", ageCriteria=" + ageCriteria + ", duration="
-				+ duration + ", domain=" + domain + ", access=" + accessL + ", status=" + status
-				+ ", qualification=" + qualification + "]";
+				+ duration + ", domain=" + domain + ", access=" + access + ", status=" + status + ", qualification="
+				+ qualification + "]";
 	}
+
+	
+
 
 }

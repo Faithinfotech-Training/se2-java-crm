@@ -1,10 +1,16 @@
 package com.example.demo.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Qualification {
@@ -19,10 +25,9 @@ public class Qualification {
 	@Column(nullable = false , length = 5)
 	private String percentage;
 
-//	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "courses")
+//	@ManyToMany(mappedBy = "courses", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER )
 //	private Set<Course> courses = new HashSet<>();
-	
-
+	  
 	public Qualification() {
 		super();
 	}
