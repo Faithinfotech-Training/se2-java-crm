@@ -71,6 +71,7 @@ public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
 		return courseEnquiry;
 	}
 	
+	
 	@Override
 	public List<CourseEnquiry> findAllCourseEnquiryByStatus(int enquiryStatus) {
 		
@@ -83,4 +84,6 @@ public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
 		// Return the course enquiries list filter by status
 		return courseEnquiries;
 	}
+	
+	
 }
