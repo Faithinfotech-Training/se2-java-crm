@@ -20,6 +20,7 @@ public class AccessController {
 		this.accessService = accessService;
 	}
 
+	//list of all access
 	@GetMapping("/access")
 	public List<Access> findAllAccesss() {
 		return accessService.findAllAccess();

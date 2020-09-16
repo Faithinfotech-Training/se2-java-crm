@@ -11,7 +11,7 @@ import com.example.demo.dao.AccessDAO;
 
 @Service
 public class AccessServiceImp implements AccessService {
-
+	// Access DAO Instance
 	private AccessDAO accessDAO;
 	
 	@Autowired
@@ -22,6 +22,7 @@ public class AccessServiceImp implements AccessService {
 	@Override
 	@Transactional
 	public List<Access> findAllAccess() {
+		//get all access
 		return accessDAO.findAllAccess();
 	}
 	

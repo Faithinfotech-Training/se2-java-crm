@@ -27,13 +27,13 @@ public class DomainController {
 		this.domainService = domainService;
 	}
 
-
+	//get all domain
 	@GetMapping("/domain")
 	public List<Domain> findAllDomains() {
 		return domainService.findAllDomain();
 	}
 
-	
+	//get domain by id
 	@GetMapping("/domain/{domainId}")
 	public Domain getDomain(@PathVariable int domainId) {
 		Domain Domain = domainService.findDomainById(domainId);
@@ -43,6 +43,7 @@ public class DomainController {
 		return Domain;
 	}
 
+	//add domain
 	@PostMapping("/domain")
 	public Domain addDomain(@RequestBody Domain Domain) {
 		Domain.setDomainId(0);
@@ -50,12 +51,14 @@ public class DomainController {
 		return Domain;
 	}
 	
+	//edit domain
 	@PutMapping("/domain")
     public Domain updateDomain(@RequestBody Domain domain) {
 		domainService.save(domain);
         return domain;
     }
 	
+	//delete domian
 	@DeleteMapping("/domain/{domainId}")
 	public String deleteDomainById(@PathVariable int domainId) {
 		Domain Domain = domainService.findDomainById(domainId);

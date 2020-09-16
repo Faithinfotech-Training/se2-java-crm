@@ -11,7 +11,7 @@ import com.example.demo.entity.Domain;
 
 @Service
 public class DomainServiceImp implements DomainService {
-
+	//dao instance created
 	DomainDAO domainDAO;
 	
 	@Autowired
@@ -22,24 +22,28 @@ public class DomainServiceImp implements DomainService {
 	@Override
 	@Transactional
 	public List<Domain> findAllDomain() {
+		//get all domain
 		return domainDAO.findAllDomain();
 	}
 
 	@Override
 	@Transactional
 	public Domain findDomainById(int domainId) {
+		//get domain by id
 		return domainDAO.findDomainById(domainId);
 	}
 
 	@Override
 	@Transactional
 	public void save(Domain domain) {
+		//insert into domain
 		domainDAO.save(domain);
 	}
 
 	@Override
 	@Transactional
 	public void deleteDomainById(int domainId) {
+		//delete domain
 		domainDAO.deleteDomainById(domainId);
 	}
 

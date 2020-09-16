@@ -13,7 +13,6 @@ public interface StatusDAO {
 	public List<Status> findAllStatus();
 //  Find Status by id
 	public Status findStatusById(int theId);
-	
 //	Save status
 	public void saveStatus(Status status);
 //	Delete status
