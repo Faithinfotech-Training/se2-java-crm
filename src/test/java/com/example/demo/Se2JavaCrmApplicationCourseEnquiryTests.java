@@ -47,7 +47,6 @@ class Se2JavaCrmApplicationCourseEnquiryTests {
 		Date enquiryDate=Date.valueOf(enquiryDateString);
 
 		Customer customer = new Customer(1, "Ronit", "ronit@gmail.com", "1234567890", DOB, "Btech", 90, "Website");
-		Access accessL = new Access();
 		Course course = new Course();
 		EnquiryStatus enquiryStatus = new EnquiryStatus(1, "Called");
 		CourseEnquiry courseEnquiry = new CourseEnquiry(1, customer, course, enquiryDate, enquiryStatus);

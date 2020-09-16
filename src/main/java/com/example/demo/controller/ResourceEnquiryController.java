@@ -80,6 +80,28 @@ public class ResourceEnquiryController {
 		}
 
 		
-		
+/**
+ * 			Manager view controllers 
+ */
 
+/**		Filter by status
+ * 		1. Active
+ * 		2. Inactive
+**/
+		@GetMapping(value = "/resource/filter/status/{statusId}")
+		public List<ResourceEnquiry> findAllResourceEnquiriesByStatus(@PathVariable("statusId") Integer statusId) {
+			
+			List<ResourceEnquiry> enquiries = resourceEnquiryServiceImplementation.findAllResourceEnquiryByStatus(statusId);
+			return enquiries;
+		}
+		
+		/**		Filter by Resource Type
+		 * 		
+		**/
+				@GetMapping(value = "/resource/filter/resourcetype/{resourceType}")
+				public List<ResourceEnquiry> findAllResourceEnquiriesByResourceType(@PathVariable("resourceType") Integer resourceType) {
+					
+					List<ResourceEnquiry> enquiries = resourceEnquiryServiceImplementation.findAllResourceEnquiryByResourceType(resourceType);
+					return enquiries;
+				}
 }
