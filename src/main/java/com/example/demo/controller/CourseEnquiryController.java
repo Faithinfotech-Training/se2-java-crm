@@ -20,11 +20,11 @@ import com.example.demo.service.CourseEnquiryService;
 @RequestMapping("/api/enquiry")
 public class CourseEnquiryController {
 
-	// courseEnquiryService to access functions
+	// CourseEnquiryService to access functions
 	@Autowired
 	private CourseEnquiryService courseEnquiryService;
 	
-	// list all the course enquiries
+	// List all the course enquiries
 	@GetMapping("/course")
 	public ResponseEntity findAllCourseEnquiry()
 	{
@@ -34,7 +34,7 @@ public class CourseEnquiryController {
 		return ResponseEntity.ok(listOfCourseEnquiries);
 	}
 	
-	// find the course enquiry by id
+	// Find the course enquiry by id
 	@GetMapping("/course/{courseId}")
 	public ResponseEntity findByIdCourseEnquiry(@PathVariable("courseId") Integer courseId) {
 		CourseEnquiry courseEnquiry = courseEnquiryService.findCourseEnquiryById(courseId);
@@ -51,7 +51,7 @@ public class CourseEnquiryController {
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 			
-	// Delete the employee
+	// Delete the course enquiry
 	@DeleteMapping("/course/{courseEnquiryId}")
 	public ResponseEntity<Object> deleteCourseEnquiryById(@PathVariable("courseEnquiryId") int id ) {
 		CourseEnquiry courseEnquiry = courseEnquiryService.deleteCourseEnquiry(id);

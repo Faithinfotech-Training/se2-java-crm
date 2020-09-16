@@ -2,6 +2,7 @@ package com.example.demo.dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,7 +11,8 @@ import com.example.demo.entity.EnquiryStatus;
 
 @Repository
 public class EnquiryStatusDAOImpl implements EnquiryStatusDAO {
-
+	
+	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Autowired
@@ -21,8 +23,8 @@ public class EnquiryStatusDAOImpl implements EnquiryStatusDAO {
 
 	@Override
 	public void saveEnquiryStatus(EnquiryStatus enquiryStatus) {
-		// save the enquiry status
-		entityManager.merge(enquiryStatus);
+		// Save the enquiry status
+		entityManager.persist(enquiryStatus);
 	}
 
 	@Override

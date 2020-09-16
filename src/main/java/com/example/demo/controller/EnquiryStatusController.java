@@ -23,11 +23,11 @@ import com.example.demo.service.EnquiryStatusService;
 @RequestMapping("/api/enquiry")
 public class EnquiryStatusController {
 
-	// courseEnquiryService to access functions
+	// EnquiryStatusService to access functions
 	@Autowired
 	private EnquiryStatusService enquiryStatusService;
 	
-	// list all the enquiry statuses
+	// List all the enquiry statuses
 	@GetMapping("/status")
 	public ResponseEntity findAllEnuiryStatuses()
 	{
@@ -37,7 +37,9 @@ public class EnquiryStatusController {
 		return ResponseEntity.ok(listOfEnquiryStatuses);
 	}
 	
-	// find the enquiry status by id
+	/*
+	 * Returns the Enquiry Status of particular Id
+	 */
 	@GetMapping("/status/{statusId}")
 	public ResponseEntity findByIdStatusEnquiry(@PathVariable("statusId") Integer statusId) {
 		EnquiryStatus enquiryStatus = enquiryStatusService.findEnquiryStatusById(statusId);
@@ -47,14 +49,14 @@ public class EnquiryStatusController {
 	}
 	
 
-	// create an enquiry status
+	// Create an enquiry status
 	 @RequestMapping(value = "/status", method = RequestMethod.POST)
 	public ResponseEntity<String> saveEnquiryStatus(@RequestBody EnquiryStatus enquiryStatus) {
 		enquiryStatusService.saveEnquiryStatus(enquiryStatus);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 			
-	// delete the enquiry status
+	// Delete the enquiry status
 	@DeleteMapping("/status/{statusId}")
 	public ResponseEntity<Object> deleteById(@PathVariable("statusId") int id ) {
 		EnquiryStatus enquiryStatus = enquiryStatusService.deleteEnquiryStatus(id);
