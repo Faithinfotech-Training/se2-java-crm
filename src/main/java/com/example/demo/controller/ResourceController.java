@@ -51,21 +51,20 @@ public class ResourceController {
 
 	// add mapping for POST /resources - add new resource
 	@PostMapping("/resources")
-	public Resources addResource(@RequestBody Resources theResource) {
-		// also just in case they pass an id in JSON ... set id to 0
-		// this is to force a save of new item ... instead of update
-		theResource.setResourceId(0);
-		resourceService.saveResources(theResource);
-		return theResource;
-	}
+    public Resources addResource(@RequestBody Resources theResource) {
+        // also just in case they pass an id in JSON ... set id to 0
+        // this is to force a save of new item ... instead of update
+        theResource.setResourceId(0);
+        resourceService.saveResources(theResource);
+        return theResource;
+    }
 
-	// add mapping for PUT /resources - update existing resource
-	@PutMapping("/resources")
-	public Resources updateResource(@RequestBody Resources theResource) {
-		resourceService.saveResources(theResource);
-		return theResource;
-	}
-
+    // add mapping for PUT /resources - update existing resource
+    @PutMapping("/resources")
+    public Resources updateResource(@RequestBody Resources theResource) {
+        resourceService.saveResources(theResource);
+        return theResource;
+    }
 	// add mapping for DELETE /resources/{resourceId} - delete resource
 	@DeleteMapping("/resources/{resourceId}")
 	public String deleteResource(@PathVariable int resourceId) {
