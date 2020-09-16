@@ -17,6 +17,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.demo.dao.CourseEnquiryDAO;
+import com.example.demo.entity.Access;
 import com.example.demo.entity.Course;
 import com.example.demo.entity.CourseEnquiry;
 import com.example.demo.entity.Customer;

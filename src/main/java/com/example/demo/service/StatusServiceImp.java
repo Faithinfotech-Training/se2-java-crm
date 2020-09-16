@@ -17,7 +17,10 @@ public class StatusServiceImp implements StatusService {
 	@Autowired
 	private StatusDAO statusDAO;
 	
-	
+	//get all status
+		//get status by id
+		//create status
+		//delete status
 	public StatusServiceImp(StatusDAO statusDAO) {
 		super();
 		this.statusDAO = statusDAO;

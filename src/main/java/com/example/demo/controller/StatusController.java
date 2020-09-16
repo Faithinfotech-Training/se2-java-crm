@@ -15,6 +15,7 @@ public class StatusController {
 	@Autowired
 	StatusServiceImp statusServiceImp;
 	
+	//get all status
 	@GetMapping("/all")
 	List<Status> getStatus() {
 		return statusServiceImp.findAll();

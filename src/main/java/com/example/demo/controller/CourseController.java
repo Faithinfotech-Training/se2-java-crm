@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Course;
-import com.example.demo.entity.Domain;
 import com.example.demo.service.CourseService;
 
 @RestController
@@ -27,13 +26,13 @@ public class CourseController {
 		this.courseService = courseService;
 	}
 
-
+	//list of all courses
 	@GetMapping("/course")
 	public List<Course> findAllCourses() {
 		return courseService.findAllCourse();
 	}
 
-	
+	// Find the course by id
 	@GetMapping("/course/{courseId}")
 	public Course getCourse(@PathVariable int courseId) {
 		Course Course = courseService.findCourseById(courseId);
@@ -42,7 +41,8 @@ public class CourseController {
 		}
 		return Course;
 	}
-
+	
+	// Add course
 	@PostMapping("/course")
 	public Course addCourse(@RequestBody Course Course) {
 		Course.setCourseId(0);
@@ -50,12 +50,14 @@ public class CourseController {
 		return Course;
 	}
 
+	//Edit course
 	@PutMapping("/course")
     public Course updateDomain(@RequestBody Course course) {
 		courseService.save(course);
         return course;
     }
 	
+	//Delete course
 	@DeleteMapping("/course/{courseId}")
 	public String deleteCourseById(@PathVariable int courseId) {
 		Course Course = courseService.findCourseById(courseId);

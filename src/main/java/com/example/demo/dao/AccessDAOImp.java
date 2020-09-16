@@ -23,7 +23,7 @@ public class AccessDAOImp implements AccessDAO {
 	@Override
 	public List<Access> findAllAccess() {
 		// create query for find all access
-		Query query = entityManager.createQuery("from access");
+		Query query = entityManager.createQuery("from Access");
 		// save result to list of access
 		List<Access> access = query.getResultList();
 		// return access

@@ -58,4 +58,11 @@ public class CourseEnquiryServiceImpl implements CourseEnquiryService {
 		return courseEnquiryDAO.deleteCourseEnquiry(id);
 	}
 
+	@Override
+	@Transactional
+	public List<CourseEnquiry> findAllCourseEnquiryByStatus(int enquiryStatus) {
+		//find enquiry by status
+		return courseEnquiryDAO.findAllCourseEnquiryByStatus(enquiryStatus);
+	}
+
 }
