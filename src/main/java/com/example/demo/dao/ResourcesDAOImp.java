@@ -42,9 +42,12 @@ public class ResourcesDAOImp implements ResourcesDAO {
 	@Override
 	@Transactional
 	public void saveResources(Resources resources) {
-		// TODO Auto-generated method stub
-		  //create a save query
-        entityManager.persist(resources);
+		// TODO Auto-generated method stu
+        
+     // save or update the employee
+        Resources dbResources = entityManager.merge(resources);
+        // update with id from db ... so we can get generated id for save/insert
+        resources.setResourceId(dbResources.getResourceId());
 	}
 
 	@Override

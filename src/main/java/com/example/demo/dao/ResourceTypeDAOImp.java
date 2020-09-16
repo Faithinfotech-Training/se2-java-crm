@@ -44,7 +44,10 @@ public class ResourceTypeDAOImp implements ResourceTypeDAO {
 	public void saveResourceType(ResourceType resourceType) {
 		// TODO Auto-generated method stub
 		  //create a save query
-        entityManager.persist(resourceType);
+		   // save or update the Resource
+        ResourceType dbResources = entityManager.merge(resourceType);
+        // update with id from db ... so we can get generated id for save/insert
+        resourceType.setResourceTypeId(dbResources.getResourceTypeId());
 		
 	}
 

@@ -1,11 +1,15 @@
 package com.example.demo.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -17,7 +21,7 @@ public class Resources {
 	@Column(nullable=false,length=20)
 	private String resourceName;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="resourceTypeId")
 	private ResourceType resourceType;
 	
@@ -33,11 +37,11 @@ public class Resources {
 	
 //	Resources of Resource
 //	such as "Available" or "Not Available"
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="statusId")
 	Status status;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="accessId")
 	Access access;
 

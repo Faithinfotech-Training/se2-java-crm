@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.entity.Resources;
 import com.example.demo.entity.Status;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -43,7 +44,10 @@ public class StatusDAOImp implements StatusDAO {
 	@Override
 	public void saveStatus(Status status) {
 		// TODO Auto-generated method stub
-		 entityManager.persist(status);
+		   // save or update the Resource
+        Status dbStatus = entityManager.merge(status);
+        // update with id from db ... so we can get generated id for save/insert
+        status.setStatusId(dbStatus.getStatusId());
 		
 	}
 	
