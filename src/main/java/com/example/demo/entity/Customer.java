@@ -9,35 +9,41 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.validation.annotation.Validated;
-
 @Entity
-@Table
+@Table(name="customer")
 public class Customer {
 	
+	// Customer Id - primary key
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer customerId;
 	
+	// Customer Full Name
 	@Column(nullable=false, length=20)
 	private String customerName;
 
-	@Column(unique=true, nullable=false, length=25)
+	// Customer Email Id
+	@Column(unique=true, nullable=false, length=20)
 	private String customerEmailId;
 	
+	// Customer Phone number
 	@Column(nullable=false, length=10)
 	private String customerPhoneNumber;
 	
+	// Date of Birth(DOB) of customer
 	@Column(nullable=false)
 	private Date customerDOB;
 	
+	//Customer qualification
 	@Column(nullable=false, length=20)
 	private String customerQualification;
 	
+	// Customer Percentage obtained in the qualification
 	@Column(nullable=false)
-	private Integer percentage;
+	private Integer customerPercentage;
 	
-	@Column(nullable=false, length=30)
+	// lead Source/ reference
+	@Column(nullable=false, length=20)
 	private String leadSource;
 
 	public Customer() {
@@ -46,7 +52,7 @@ public class Customer {
 	}
 
 	public Customer(Integer customerId, String customerName, String customerEmailId, String customerPhoneNumber,
-			Date customerDOB, String customerQualification, Integer percentage, String leadSource) {
+			Date customerDOB, String customerQualification, Integer customerPercentage, String leadSource) {
 		super();
 		this.customerId = customerId;
 		this.customerName = customerName;
@@ -54,8 +60,17 @@ public class Customer {
 		this.customerPhoneNumber = customerPhoneNumber;
 		this.customerDOB = customerDOB;
 		this.customerQualification = customerQualification;
-		this.percentage = percentage;
+		this.customerPercentage = customerPercentage;
 		this.leadSource = leadSource;
+	}
+
+
+	public Integer getCustomerPercentage() {
+		return customerPercentage;
+	}
+
+	public void setCustomerPercentage(Integer customerPercentage) {
+		this.customerPercentage = customerPercentage;
 	}
 
 	public Integer getCustomerId() {
@@ -106,13 +121,6 @@ public class Customer {
 		this.customerQualification = customerQualification;
 	}
 
-	public Integer getPercentage() {
-		return percentage;
-	}
-
-	public void setPercentage(Integer percentage) {
-		this.percentage = percentage;
-	}
 
 	public String getLeadSource() {
 		return leadSource;
@@ -121,15 +129,14 @@ public class Customer {
 	public void setLeadSource(String leadSource) {
 		this.leadSource = leadSource;
 	}
+	
 
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", customerEmailId="
 				+ customerEmailId + ", customerPhoneNumber=" + customerPhoneNumber + ", customerDOB=" + customerDOB
-				+ ", customerQualification=" + customerQualification + ", percentage=" + percentage + ", leadSource="
-				+ leadSource + "]";
-	}
-	
-	
+				+ ", customerQualification=" + customerQualification + ", customerPercentage=" + customerPercentage
+				+ ", leadSource=" + leadSource + "]";
+	}	
 
 }
