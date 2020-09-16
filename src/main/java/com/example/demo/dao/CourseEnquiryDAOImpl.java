@@ -6,6 +6,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.CourseEnquiry;
@@ -83,4 +84,15 @@ public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
 		// Return the course enquiries list filter by status
 		return courseEnquiries;
 	}
+	// View sales pipeline
+	@Override
+	@Modifying
+	public List<CourseEnquiry> viewCourseSalesPipeline()
+	{
+		
+		Query query= entityManager.createQuery("from course_enquiry");
+		List<CourseEnquiry> enquiryList=query.getResultList();
+		return  enquiryList;
+	}
+
 }

@@ -14,6 +14,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.ResourceEnquiry;
@@ -120,6 +121,14 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
         return filterByResourceTypeEnquiries;
     }
 
-
+	@Override
+	@Modifying
+	public List<ResourceEnquiry> viewResourceSalesPipeline()
+	{
+		
+		Query query= entityManager.createQuery("from resource_enquiry");
+		List<ResourceEnquiry> enquiryList=query.getResultList();
+		return  enquiryList;
+	}
 
 }

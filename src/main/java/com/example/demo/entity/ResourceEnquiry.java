@@ -13,8 +13,8 @@ import javax.persistence.Table;
 
 
 
-@Entity
-@Table(name = "ResourceEnquiry")
+@Entity(name="resource_enquiry")
+@Table(name = "Resource_Enquiry")
 public class ResourceEnquiry {
 
 	
