@@ -14,7 +14,7 @@ import com.example.demo.entity.ResourceType;
 
 @Service
 public class ResourceTypeServiceImp implements ResourceTypeService {
-	@Autowired
+
 	private ResourceTypeDAO resourceTypeDAO;
 	
 	
