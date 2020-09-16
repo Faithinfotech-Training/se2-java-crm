@@ -66,4 +66,13 @@ public class CourseEnquiryController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		return ResponseEntity.ok(courseEnquiry);
 	}
+	
+	@GetMapping("/course/filter/{courseStatus}")
+	public ResponseEntity findByStatusCourseEnquiry(@PathVariable("courseStatus") Integer courseStatus) {
+		List<CourseEnquiry> courseEnquiry = courseEnquiryService.findAllCourseEnquiryByStatus(courseStatus);
+		if(courseStatus == null)
+			return ResponseEntity.notFound().build();
+		return ResponseEntity.ok(courseEnquiry);
+	}
+	
 }

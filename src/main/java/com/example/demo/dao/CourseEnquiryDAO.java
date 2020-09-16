@@ -20,4 +20,7 @@ public interface CourseEnquiryDAO {
 	
 	// Delete course enquiry By id
 	public CourseEnquiry deleteCourseEnquiry(Integer id);
+	
+	//list all course enquiry by Status
+	public List<CourseEnquiry> findAllCourseEnquiryByStatus(int enquiryStatus);
 }

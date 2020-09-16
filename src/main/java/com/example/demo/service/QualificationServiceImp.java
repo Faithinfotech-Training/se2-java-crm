@@ -11,7 +11,7 @@ import com.example.demo.entity.Qualification;
 
 @Service
 public class QualificationServiceImp implements QualificationService {
-
+	//dao instance created
 	QualificationDAO qualificationDAO;
 	
 	@Autowired
@@ -22,24 +22,28 @@ public class QualificationServiceImp implements QualificationService {
 	@Override
 	@Transactional
 	public List<Qualification> findAllQualification() {
+		//get all qualification
 		return qualificationDAO.findAllQualification();
 	}
 
 	@Override
 	@Transactional
 	public Qualification findQualificationById(int qualificationId) {
+		//get qualification by id		
 		return qualificationDAO.findQualificationById(qualificationId);
 	}
 
 	@Override
 	@Transactional
 	public void save(Qualification qualification) {
+		//save into qualification
 		qualificationDAO.save(qualification);
 	}
 
 	@Override
 	@Transactional
 	public void deleteQualificationById(int qualificationId) {
+		//delete from qualification
 		qualificationDAO.deleteQualificationById(qualificationId);
 	}
 

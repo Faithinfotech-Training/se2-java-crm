@@ -13,27 +13,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Qualification;
-import com.example.demo.entity.Resources;
 import com.example.demo.service.QualificationService;
 
 @RestController
 @RequestMapping("/api")
 public class QualificationController {
-	
+
 	private QualificationService qualificationService;
-	
+
 	@Autowired
 	public QualificationController(QualificationService qualificationService) {
 		this.qualificationService = qualificationService;
 	}
 
-
+	// get all qualification
 	@GetMapping("/qualification")
 	public List<Qualification> findAllQualifications() {
 		return qualificationService.findAllQualification();
 	}
 
-	
+	// get qualification by id
 	@GetMapping("/qualification/{qualificationId}")
 	public Qualification getQualification(@PathVariable int qualificationId) {
 		Qualification Qualification = qualificationService.findQualificationById(qualificationId);
@@ -43,6 +42,7 @@ public class QualificationController {
 		return Qualification;
 	}
 
+	// insert qualification
 	@PostMapping("/qualification")
 	public Qualification addQualification(@RequestBody Qualification qualification) {
 		qualification.setQualificationId(0);
@@ -50,12 +50,14 @@ public class QualificationController {
 		return qualification;
 	}
 
-	  @PutMapping("/qualification")
-	    public Qualification updateQualification(@RequestBody Qualification qualification) {
-		  qualificationService.save(qualification);
-	        return qualification;
-	    }
-	  
+	//edit qualifiaction
+	@PutMapping("/qualification")
+	public Qualification updateQualification(@RequestBody Qualification qualification) {
+		qualificationService.save(qualification);
+		return qualification;
+	}
+
+	//delete qualification
 	@DeleteMapping("/qualification/{qualificationId}")
 	public String deleteQualificationById(@PathVariable int qualificationId) {
 		Qualification Qualification = qualificationService.findQualificationById(qualificationId);

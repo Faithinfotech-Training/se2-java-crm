@@ -20,7 +20,7 @@ public class Domain {
 		super();
 	}
 
-	public Domain(String domainName, String percentage) {
+	public Domain(String domainName) {
 		super();
 		this.domainName = domainName;
 	}

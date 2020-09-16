@@ -11,7 +11,7 @@ import com.example.demo.entity.Course;
 
 @Service
 public class CourseServiceImp implements CourseService {
-
+	// Course DAO Instance
 	CourseDAO courseDAO;
 	
 	@Autowired
@@ -22,24 +22,28 @@ public class CourseServiceImp implements CourseService {
 	@Override
 	@Transactional
 	public List<Course> findAllCourse() {
+		//get all courses
 		return courseDAO.findAllCourse();
 	}
 
 	@Override
 	@Transactional
 	public Course findCourseById(int courseId) {
+		//get courses by id
 		return courseDAO.findCourseById(courseId);
 	}
 
 	@Override
 	@Transactional
 	public void save(Course course) {
+		//save a course
 		courseDAO.save(course);
 	}
 
 	@Override
 	@Transactional
 	public void deleteCourseById(int courseId) {
+		//delete course by id
 		courseDAO.deleteCourseById(courseId);
 	}
 

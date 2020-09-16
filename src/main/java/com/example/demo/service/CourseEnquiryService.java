@@ -23,7 +23,7 @@ public interface CourseEnquiryService {
 	// Delete course enquiry By id
 	public CourseEnquiry deleteCourseEnquiry(Integer id);
 
-
-
+	//get list of enquiries by status
+	public List<CourseEnquiry> findAllCourseEnquiryByStatus(int enquiryStatus);
 	
 }
