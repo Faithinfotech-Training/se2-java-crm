@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dao.ResourceEnquiryDAO;
 import com.example.demo.dao.ResourceEnquiryDAOImplementation;
 import com.example.demo.entity.ResourceEnquiry;
 
@@ -15,15 +16,15 @@ import com.example.demo.entity.ResourceEnquiry;
 @Service
 public class ResourceEnquiryServiceImplementation implements ResourceEnquiryService {
 
-	ResourceEnquiryDAOImplementation resourceEnquiryDAOImplementation;
+	ResourceEnquiryDAO resourceEnquiryDAO;
 
 
 	
 	@Autowired
-	public ResourceEnquiryServiceImplementation(ResourceEnquiryDAOImplementation resourceEnquiryDAOImplementation) {
+	public ResourceEnquiryServiceImplementation(ResourceEnquiryDAO resourceEnquiryDAO) {
 	
 		super();
-		this.resourceEnquiryDAOImplementation = resourceEnquiryDAOImplementation;
+		this.resourceEnquiryDAO = resourceEnquiryDAO;
 	}
 
 
@@ -32,7 +33,7 @@ public class ResourceEnquiryServiceImplementation implements ResourceEnquiryServ
 	@Override
 	public List<ResourceEnquiry> findAllResourceEnquiry() {
 
-		return resourceEnquiryDAOImplementation.findAll();
+		return resourceEnquiryDAO.findAll();
 	}	
 	
 	
@@ -41,7 +42,7 @@ public class ResourceEnquiryServiceImplementation implements ResourceEnquiryServ
 	@Override
 	public ResourceEnquiry findByResourceEnquiryId(int resourceEnquiryId) {
 
-		return resourceEnquiryDAOImplementation.getOne(resourceEnquiryId);
+		return resourceEnquiryDAO.getOne(resourceEnquiryId);
 	}
 
 
@@ -50,7 +51,7 @@ public class ResourceEnquiryServiceImplementation implements ResourceEnquiryServ
 	@Override
 	public void saveResourceEnquiry(ResourceEnquiry resourceEnquiry) {
 		
-		resourceEnquiryDAOImplementation.save(resourceEnquiry);
+		resourceEnquiryDAO.save(resourceEnquiry);
 
 	}
 
@@ -60,7 +61,7 @@ public class ResourceEnquiryServiceImplementation implements ResourceEnquiryServ
 	@Override
 	public void deleteByResourceEnquiryId(int resourceEnquiryId) {
 
-		resourceEnquiryDAOImplementation.deleteByResourceEnquiryId(resourceEnquiryId);
+		resourceEnquiryDAO.deleteByResourceEnquiryId(resourceEnquiryId);
 	}
 
 
@@ -69,14 +70,30 @@ public class ResourceEnquiryServiceImplementation implements ResourceEnquiryServ
 	@Override
 	public void updateResourceEnquiry(int resourceEnquiryId, ResourceEnquiry resourceEnquiry) {
 		
-		ResourceEnquiry enquiry = resourceEnquiryDAOImplementation.getOne(resourceEnquiryId);
+		ResourceEnquiry enquiry = resourceEnquiryDAO.getOne(resourceEnquiryId);
 		
 		if (enquiry.getResourceEnquiryId() != null) {
 			
 			enquiry.setStatus(resourceEnquiry.getStatus());
-			resourceEnquiryDAOImplementation.save(enquiry);
+			resourceEnquiryDAO.save(enquiry);
 		
 		}
+	}
+
+
+
+	@Override
+	public List<ResourceEnquiry> findAllResourceEnquiryByStatus(int status) {
+		// TODO Auto-generated method stub
+		return resourceEnquiryDAO.findAllResourceEnquiryByStatus(status);
+	}
+
+
+
+	@Override
+	public List<ResourceEnquiry> findAllResourceEnquiryByResourceType(int resourceType) {
+		// TODO Auto-generated method stub
+		return resourceEnquiryDAO.findAllResourceEnquiryByResourceType(resourceType);
 	}
 
 }

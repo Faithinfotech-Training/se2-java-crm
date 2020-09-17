@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.ResourceEnquiry;
 
-@Repository
+
 public interface ResourceEnquiryDAO  {
     //method to get all resource enquiries
 	List<ResourceEnquiry> findAll();
@@ -20,6 +20,11 @@ public interface ResourceEnquiryDAO  {
 	
 	//method to delete a specific enquiry
 	ResourceEnquiry deleteByResourceEnquiryId(int resourceEnquiryId);
+
+//	Filter ResourceEnquiry by status
+	List<ResourceEnquiry> findAllResourceEnquiryByStatus(int status);
+
+	List<ResourceEnquiry> findAllResourceEnquiryByResourceType(int rescourceType);
 	
 	
 }

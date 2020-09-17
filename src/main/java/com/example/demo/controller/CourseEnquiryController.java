@@ -34,7 +34,7 @@ public class CourseEnquiryController {
 			return ResponseEntity.noContent().build();
 		return ResponseEntity.ok(listOfCourseEnquiries);
 	}
-	
+
 	// Find the course enquiry by id
 	@GetMapping("/course/{courseId}")
 	public ResponseEntity findByIdCourseEnquiry(@PathVariable("courseId") Integer courseId) {
