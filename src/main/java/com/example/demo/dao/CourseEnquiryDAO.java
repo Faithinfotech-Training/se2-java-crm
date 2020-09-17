@@ -29,9 +29,7 @@ public interface CourseEnquiryDAO {
 	public List<CourseEnquiry> viewCourseTable();
 
 
-	public List<CourseEnquiry> viewCourseSalesPipeline();
-
-	public List<CourseEnquiry> viewCourseTable();
+	
 
 
 	

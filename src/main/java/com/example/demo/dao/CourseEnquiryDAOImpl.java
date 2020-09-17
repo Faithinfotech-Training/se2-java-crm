@@ -135,64 +135,8 @@ public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
 		return  enquiryList;
 	}
 
-
-	@Override
-	@Modifying
-	public List<CourseEnquiry> viewCourseTable() {
 	
-
-	// View sales pipeline Method
-	//Author: Trupti
 	
-	@Override
-	@Modifying
-	public List<CourseEnquiry> viewCourseSalesPipeline()
-	{
-		// Declaring  Total Number of Course Enquiries
-		int totalNumberOfEnquiries;
-int totalNumberOfEnquiries;
-		
-		//Decalring total number of status values;
-		
-		int totalNumberOfStatusValues=0;
-		
-		Query query= entityManager.createQuery("from course_enquiry");
-		
-		// Extract the result from database
-		List<CourseEnquiry> enquiryList=query.getResultList();
-		
-		// Create list of IDs of status
-		List<String> statusList=null;
-		
-		//Count value assignment
-		totalNumberOfEnquiries=enquiryList.size();
-		
-		System.out.println("Total Number of Course Enquiries:"+" "+totalNumberOfEnquiries);
-		
-		//Iterating over enquiries and checking their status values
-		
-		for(int i=0;i<totalNumberOfEnquiries;i++)
-		{
-			CourseEnquiry courseenquiry=enquiryList.get(i);
-			if(!(statusList.contains(courseenquiry.getEnquiryStatus().getStatusValue())))
-			{
-			statusList.add(courseenquiry.getEnquiryStatus().getStatusValue());
-			}
-		}
-		
-		//Count value assignment
-				totalNumberOfEnquiries=statusList.size();
-				
-		//Print all status values
-				for(int i=0;i<totalNumberOfEnquiries;i++)
-				{
-					System.out.println(statusList.get(i));
-				}
-				
-		System.out.println("Total Number of status Values:"+" "+totalNumberOfStatusValues);
-		
-		return  enquiryList;
-	}
 
 
 	@Override
