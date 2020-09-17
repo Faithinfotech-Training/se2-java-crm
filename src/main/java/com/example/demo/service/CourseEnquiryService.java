@@ -26,4 +26,6 @@ public interface CourseEnquiryService {
 	//get list of enquiries by status
 	public List<CourseEnquiry> findAllCourseEnquiryByStatus(int enquiryStatus);
 	
+	
+	
 }

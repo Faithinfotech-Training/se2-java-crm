@@ -73,6 +73,7 @@ public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
 		return courseEnquiry;
 	}
 	
+	
 	@Override
 	public List<CourseEnquiry> findAllCourseEnquiryByStatus(int enquiryStatus) {
 		
@@ -86,6 +87,7 @@ public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
 		return courseEnquiries;
 	}
 	
+
 	// View sales pipeline Method
 	//Author: Trupti
 	
@@ -186,5 +188,6 @@ int totalNumberOfEnquiries;
 		
 		return  enquiryList;
 	}
+
 
 }

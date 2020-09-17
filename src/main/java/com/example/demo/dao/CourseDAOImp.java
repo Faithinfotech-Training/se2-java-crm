@@ -49,9 +49,11 @@ public class CourseDAOImp implements CourseDAO {
 	@Override
 	public void deleteCourseById(int courseId) {
 		// delete query for course table
-		Query query = entityManager.createNativeQuery("DELETE FROM COURSE WHERE COURSE_ID = " + courseId);
+		Query query1 = entityManager.createNativeQuery("DELETE FROM COURSE WHERE COURSE_ID = " + courseId);
+		Query query2 = entityManager.createNativeQuery("DELETE FROM QUALIFICATION_COURSE WHERE COURSE_ID = " + courseId);
 		// execute delete query
-		query.executeUpdate();
+		query2.executeUpdate();
+		query1.executeUpdate();
 	}
 
 }

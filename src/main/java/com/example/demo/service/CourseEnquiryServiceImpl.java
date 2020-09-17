@@ -2,13 +2,16 @@ package com.example.demo.service;
 
 import java.util.List;
 
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.CourseEnquiryDAO;
+
 import com.example.demo.entity.CourseEnquiry;
+
 
 @Service
 public class CourseEnquiryServiceImpl implements CourseEnquiryService {
@@ -64,5 +67,6 @@ public class CourseEnquiryServiceImpl implements CourseEnquiryService {
 		//find enquiry by status
 		return courseEnquiryDAO.findAllCourseEnquiryByStatus(enquiryStatus);
 	}
-
+	
+	
 }
