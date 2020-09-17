@@ -24,6 +24,10 @@ public interface CourseEnquiryDAO {
 	//list all course enquiry by Status
 	public List<CourseEnquiry> findAllCourseEnquiryByStatus(int enquiryStatus);
 
+	public List<CourseEnquiry> viewCourseSalesPipeline();
+
+	public List<CourseEnquiry> viewCourseTable();
+
 
 	public List<CourseEnquiry> viewCourseSalesPipeline();
 
