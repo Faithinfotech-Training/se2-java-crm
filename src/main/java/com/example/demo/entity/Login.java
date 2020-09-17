@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+//  Login class to map to login table in database
+
 @Entity
 @Table(name="login")
 public class Login {
@@ -29,6 +31,7 @@ public class Login {
 	@JoinColumn(name="userid")
 	private Users user;
 
+	//default constructor
 	public Login()
 	{
 		

@@ -13,33 +13,29 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dao.LoginDAO;
 import com.example.demo.entity.CourseEnquiry;
 import com.example.demo.entity.Login;
-import com.example.demo.entity.ResourceEnquiry;
 import com.example.demo.service.LoginService;
-import com.example.demo.service.RSalespipeline;
 import com.example.demo.service.CSalespipelineService;
 
 @RestController
 @RequestMapping("/api")
 
-public class RSalespipelineController {
+public class CourseSalespipelineController {
 	
-			private RSalespipeline salespipelineService ;
+				private CSalespipelineService salespipelineService ;
 		
 		@Autowired
-		public  RSalespipelineController(RSalespipeline salespipelineService)
+		public  CourseSalespipelineController(CSalespipelineService salespipelineService)
 		{
 			this.salespipelineService=salespipelineService;
 		}
 		
 		
-		@RequestMapping(method=RequestMethod.GET,value="/stats/resource/salespipeline")
-		public List<ResourceEnquiry>viewSalespipeline()
+		@RequestMapping(method=RequestMethod.GET,value="/stats/course/salespipeline")
+		public List<CourseEnquiry> viewSalespipeline()
 		{
-			 System.out.println("SalesPipelineChart");
-		return salespipelineService.viewResourcesSalesPipeline();
-
-		} 
+			 System.out.println("SalesPipelineChart");	
+		 return salespipelineService.viewCourseSalesPipeline();
 		
-	
+		} 
 
 }

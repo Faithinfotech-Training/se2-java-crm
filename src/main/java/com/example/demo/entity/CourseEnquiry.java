@@ -35,7 +35,7 @@ public class CourseEnquiry {
 	private Course courseId;
 
 	// Date when the enquiry is registered by the user
-	@Column
+	@Column(name="enquirydate")
 	private Date enquiryDate;
 
 	// Status of the enquiry

@@ -20,11 +20,14 @@ import com.example.demo.entity.LoginInfo;
 import com.example.demo.service.LoginService;
 
 
+// Class to create login API
+
 @RestController
 @RequestMapping("/api")
 
 public class LoginController {
 	
+	// Login service
 	private LoginService loginService;
 	
 	@Autowired
@@ -33,13 +36,15 @@ public class LoginController {
 		this.loginService=loginService;
 	}
 	
-	@GetMapping("/")
+	//Just checking working of system
+	/*@GetMapping("/")
 	List<Login> getLogin() {
 		
 		
 		LoginDAO loginServiceImplementation;
 		return loginService.getL();
 	} 
+	*/
 	
 	@PostMapping(
 			  value = "/login", consumes = "application/json")
@@ -48,7 +53,6 @@ public class LoginController {
 	     String userName=logininfo.getUsername();
 	     String password=logininfo.getPassword();
 	     System.out.println(userName+password);
-		//int userid=login.getLoginId();
 		return loginService.login(userName,password);
 	}
 	

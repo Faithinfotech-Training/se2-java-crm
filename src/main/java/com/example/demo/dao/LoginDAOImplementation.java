@@ -27,18 +27,26 @@ public class LoginDAOImplementation implements LoginDAO {
 		this.entityManager = entityManager;
 	}
 	
+	//Method to check login credentials
+	
 	@Override
 	@Modifying
 	public String login(String username, String password) {
 		
-		System.out.println("Query successful");
+	// Query on database 
 		Query query = entityManager.createNativeQuery("SELECT  login.* FROM  Login WHERE username =?",Login.class);
-		System.out.println(username);
+	
 	      query.setParameter(1, username);
+	      
+	      // Extract result
+	      
 	      List<Login> loginList=  query.getResultList(); 
+	      
+	      //Check if username is unique and exist in database
+	      
 	      if(loginList.size()==1)
 	      {
-	    	  System.out.println("1 result");
+	    	  
 	    	  Login login=loginList.get(0);
 	    	  int userId=login.getUser().getUserid();
 	    	  System.out.println(userId);
@@ -48,15 +56,23 @@ public class LoginDAOImplementation implements LoginDAO {
 		     List< Users> usersList= query.getResultList();
 		     Users users=usersList.get(0);
 		     System.out.println(users);
+		     
+		     //  Check if user is manager
+		     
 		      if(login.getPassword().equals(password) && users.getRole().getRolename().equals("Manager"))
 				{
 				return "Successful login of manager";
 				}
 				
+		      // Check if user is admin
+		      
 				else if(login.getPassword().equals(password) && users.getRole().getRolename().equals("Admin"))
 				{
 					return "Successful login of admin";
 				}
+		      
+		      // Check for failure
+		      
 				else
 				{
 					return "Not successful,try again";

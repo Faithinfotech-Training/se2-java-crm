@@ -27,6 +27,10 @@ public interface ResourceEnquiryDAO  {
 	List<ResourceEnquiry> findAllResourceEnquiryByResourceType(int rescourceType);
 
 	List<ResourceEnquiry> viewResourceSalesPipeline();
+
+	
+
+	List<ResourceEnquiry> viewResourceTable();
 	
 	
 }
