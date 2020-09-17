@@ -1,12 +1,23 @@
 package com.example.demo.entity;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Course {
@@ -45,9 +56,9 @@ public class Course {
 	@JoinColumn(name = "statusId")
 	private Status status;
 
-	@ManyToOne
-	@JoinColumn(name = "qualificationId")
-	private Qualification qualification;
+//	@ManyToOne
+//	@JoinColumn(name = "qualificationId")
+//	private Qualification qualification;
 
 //	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 //	@JoinTable(name = "Course_Qualification",
@@ -55,12 +66,21 @@ public class Course {
 //		inverseJoinColumns = { @JoinColumn (name = "qualification_id")})
 //	private Set<Qualification> qualifications = new HashSet<>();
 
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
+	@JoinTable(name = "qualification_course", joinColumns = {
+			@JoinColumn(name = "course_id") }, inverseJoinColumns = { @JoinColumn(name = "qualification_id") })
+	private Set<Qualification> qualifications = new HashSet<>();
+	
+//	@ManyToMany(mappedBy = "courses")
+//	//@JsonManagedReference
+//	private Set<Qualification> qualifications = new HashSet<>();
+	
 	public Course() {
 		super();
 	}
 
 	public Course(String courseName, String description, int fees, int scoreCriteria, int ageCriteria, String duration,
-			Domain domain, Access access, Status status, Qualification qualification) {
+			Domain domain, Access access, Status status, Set<Qualification> qualifications) {
 		super();
 		this.courseName = courseName;
 		this.description = description;
@@ -71,9 +91,8 @@ public class Course {
 		this.domain = domain;
 		this.access = access;
 		this.status = status;
-		this.qualification = qualification;
+		this.qualifications = qualifications;
 	}
-
 
 	public int getCourseId() {
 		return courseId;
@@ -155,31 +174,13 @@ public class Course {
 		this.status = status;
 	}
 
-	public Qualification getQualification() {
-		return qualification;
+	public Set<Qualification> getQualifications() {
+		return qualifications;
 	}
 
-	public void setQualification(Qualification qualification) {
-		this.qualification = qualification;
+	public void setQualifications(Set<Qualification> qualifications) {
+		this.qualifications = qualifications;
 	}
-
-//	public Set<Qualification> getQualifications() {
-//		return qualifications;
-//	}
-//
-//	public void setQualifications(Set<Qualification> qualifications) {
-//		this.qualifications = qualifications;
-//	}
-
-	@Override
-	public String toString() {
-		return "Course [courseId=" + courseId + ", courseName=" + courseName + ", description=" + description
-				+ ", fees=" + fees + ", scoreCriteria=" + scoreCriteria + ", ageCriteria=" + ageCriteria + ", duration="
-				+ duration + ", domain=" + domain + ", access=" + access + ", status=" + status + ", qualification="
-				+ qualification + "]";
-	}
-
-	
 
 
 }
