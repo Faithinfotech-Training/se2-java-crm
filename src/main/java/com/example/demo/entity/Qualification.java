@@ -32,7 +32,7 @@ public class Qualification {
 //	@ManyToMany(mappedBy = "courses", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER )
 //	private Set<Course> courses = new HashSet<>();
 			
-	@ManyToMany(cascade = { CascadeType.MERGE})
+	@ManyToMany(cascade = { CascadeType.PERSIST})
 	@JoinTable(name = "qualification_course", joinColumns = {
 			@JoinColumn(name = "qualification_id") }, 
 			inverseJoinColumns = { @JoinColumn(name = "course_id") })

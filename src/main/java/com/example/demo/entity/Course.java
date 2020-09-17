@@ -66,7 +66,7 @@ public class Course {
 //		inverseJoinColumns = { @JoinColumn (name = "qualification_id")})
 //	private Set<Qualification> qualifications = new HashSet<>();
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
 	@JoinTable(name = "qualification_course", joinColumns = {
 			@JoinColumn(name = "course_id") }, inverseJoinColumns = { @JoinColumn(name = "qualification_id") })
 	private Set<Qualification> qualifications = new HashSet<>();
