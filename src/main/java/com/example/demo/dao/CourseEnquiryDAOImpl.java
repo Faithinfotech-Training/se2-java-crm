@@ -6,9 +6,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.CourseEnquiry;
+import com.example.demo.entity.EnquiryStatus;
 
 @Repository
 public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
@@ -84,6 +86,106 @@ public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
 		// Return the course enquiries list filter by status
 		return courseEnquiries;
 	}
+	@Override
+	@Modifying
+	public List<CourseEnquiry> viewCourseSalesPipeline()
+	{
+		// Declaring  Total Number of Course Enquiries
+		int totalNumberOfEnquiries;
+		
+		//Decalring total number of status values;
+		
+		int totalNumberOfStatusValues=0;
+		
+		Query query= entityManager.createQuery("from course_enquiry");
+		
+		// Extract the result from database
+		List<CourseEnquiry> enquiryList=query.getResultList();
+		
+		// Create list of IDs of status
+		List<String> statusList=null;
+		
+		//Count value assignment
+		totalNumberOfEnquiries=enquiryList.size();
+		
+		System.out.println("Total Number of Course Enquiries:"+" "+totalNumberOfEnquiries);
+		
+		//Iterating over enquiries and checking their status values
+		
+		for(int i=0;i<totalNumberOfEnquiries;i++)
+		{
+			CourseEnquiry courseenquiry=enquiryList.get(i);
+			if(!(statusList.contains(courseenquiry.getEnquiryStatus().getStatusValue())))
+			{
+			statusList.add(courseenquiry.getEnquiryStatus().getStatusValue());
+			}
+		}
+		
+		//Count value assignment
+				totalNumberOfEnquiries=statusList.size();
+				
+		//Print all status values
+				for(int i=0;i<totalNumberOfEnquiries;i++)
+				{
+					System.out.println(statusList.get(i));
+				}
+				
+		System.out.println("Total Number of status Values:"+" "+totalNumberOfStatusValues);
+		
+		return  enquiryList;
+	}
+
 	
 	
+
+
+	@Override
+	@Modifying
+	public List<CourseEnquiry> viewCourseTable() {
+	
+int totalNumberOfEnquiries;
+		
+		//Decalring total number of status values;
+		
+		int totalNumberOfStatusValues=0;
+		
+		Query query= entityManager.createQuery("from course_enquiry");
+		
+		// Extract the result from database
+		List<CourseEnquiry> enquiryList=query.getResultList();
+		
+		// Create list of IDs of status
+		List<String> statusList=null;
+		
+		//Count value assignment
+		totalNumberOfEnquiries=enquiryList.size();
+		
+		System.out.println("Total Number of Course Enquiries:"+" "+totalNumberOfEnquiries);
+		
+		//Iterating over enquiries and checking their status values
+		
+		for(int i=0;i<totalNumberOfEnquiries;i++)
+		{
+			CourseEnquiry courseenquiry=enquiryList.get(i);
+			if(!(statusList.contains(courseenquiry.getEnquiryStatus().getStatusValue())))
+			{
+			statusList.add(courseenquiry.getEnquiryStatus().getStatusValue());
+			}
+		}
+		
+		//Count value assignment
+				totalNumberOfEnquiries=statusList.size();
+				
+		//Print all status values
+				for(int i=0;i<totalNumberOfEnquiries;i++)
+				{
+					System.out.println(statusList.get(i));
+				}
+				
+		System.out.println("Total Number of status Values:"+" "+totalNumberOfStatusValues);
+		
+		return  enquiryList;
+	}
+
+
 }

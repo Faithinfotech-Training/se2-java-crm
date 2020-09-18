@@ -6,6 +6,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -24,8 +25,6 @@ import com.example.demo.entity.Customer;
 import com.example.demo.entity.EnquiryStatus;
 import com.example.demo.service.CourseEnquiryService;
 
-
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class Se2JavaCrmApplicationCourseEnquiryTests {
@@ -35,43 +34,51 @@ class Se2JavaCrmApplicationCourseEnquiryTests {
 	@MockBean
 	private CourseEnquiryDAO courseEnquiryDAO;
 
-
 	@Test
 	public void saveCourseEnquiryTest() {
-		String dobString="1998-01-30";  
-		Date DOB=Date.valueOf(dobString);
-		String enquiryDateString="2020-01-30";  
-		Date enquiryDate=Date.valueOf(enquiryDateString);
+
+		new Integer(1);
+		String dobString = "1998-01-30";
+		Date DOB = Date.valueOf(dobString);
+
+		String enquiryDateString = "2020-01-30";
+		Date enquiryDate = Date.valueOf(enquiryDateString);
+
 		Customer customer = new Customer(1, "Ronit", "ronit@gmail.com", "1234567890", DOB, "Btech", 90, "Website");
+		new Access();
 		Course course = new Course();
 		EnquiryStatus enquiryStatus = new EnquiryStatus(1, "Called");
 		CourseEnquiry courseEnquiry = new CourseEnquiry(1, customer, course, enquiryDate, enquiryStatus);
 		courseEnquiryDAO.saveCourseEnquiry(courseEnquiry);
-		verify(courseEnquiryDAO,times(1)).saveCourseEnquiry(courseEnquiry);
+		verify(courseEnquiryDAO, times(1)).saveCourseEnquiry(courseEnquiry);
 	}
 
 	@Test
 	public void findAllCourseEnquiryTest() {
-		String dobString="1998-01-30";  
-		Date DOB=Date.valueOf(dobString);
-		String enquiryDateString="2020-01-30";  
-		Date enquiryDate=Date.valueOf(enquiryDateString);
+
+		new Integer(1);
+		String dobString = "1998-01-30";
+		Date DOB = Date.valueOf(dobString);
+
+		String enquiryDateString = "2020-01-30";
+		Date enquiryDate = Date.valueOf(enquiryDateString);
+
 		Customer customer = new Customer(1, "Ronit", "ronit@gmail.com", "1234567890", DOB, "Btech", 90, "Website");
 		EnquiryStatus enquiryStatus = new EnquiryStatus(1, "Called");
 		Course course = new Course();
 		CourseEnquiry courseEnquiry = new CourseEnquiry(1, customer, course, enquiryDate, enquiryStatus);
-		when(courseEnquiryDAO.findAllCourseEnquiry()).thenReturn(Stream
-				.of(courseEnquiry)
-				.collect(Collectors.toList()));
+		when(courseEnquiryDAO.findAllCourseEnquiry()).thenReturn(Stream.of(courseEnquiry).collect(Collectors.toList()));
 		assertEquals(1, courseEnquiryService.findAllCourseEnquiry().size());
 
 	}
 
 	@Test
 	public void findByIdCourseEnquiryTest() {
-		Integer theId=new Integer(1);
-		String enquiryDateString="2020-01-30";  
-		Date enquiryDate=Date.valueOf(enquiryDateString);
+		Integer theId = new Integer(1);
+		String dobString = "1998-01-30";
+		Date.valueOf(dobString);
+		String enquiryDateString = "2020-01-30";
+		Date enquiryDate = Date.valueOf(enquiryDateString);
 		Customer customer = new Customer();
 		EnquiryStatus enquiryStatus = new EnquiryStatus(1, "Called");
 		Course course = new Course();
@@ -81,5 +88,20 @@ class Se2JavaCrmApplicationCourseEnquiryTests {
 		assertEquals(new Integer(0), courseEnquiryService.findCourseEnquiryById(theId).getRegistrationId());
 	}
 
+	// Check if findAllCourseEnquiryByStatus works
+	@Test
+	public void findAllCourseEnquiryByStatusTest() {
+		Integer theId = new Integer(1);
+		String dobString = "1998-01-30";
+		Date.valueOf(dobString);
+		String enquiryDateString = "2020-01-30";
+		Date enquiryDate = Date.valueOf(enquiryDateString);
+		Customer customer = new Customer();
+		EnquiryStatus enquiryStatus = new EnquiryStatus(1, "Called");
+		Course course = new Course();
+		CourseEnquiry courseEnquiry = new CourseEnquiry(0, customer, course, enquiryDate, enquiryStatus);
+		when(courseEnquiryDAO.findAllCourseEnquiryByStatus(theId)).thenReturn(Stream.of(courseEnquiry).collect(Collectors.toList()));
+		assertEquals(1, courseEnquiryService.findAllCourseEnquiryByStatus(theId).size());
+	}
 
 }

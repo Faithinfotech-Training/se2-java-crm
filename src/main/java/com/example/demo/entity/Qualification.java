@@ -10,7 +10,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Qualification {
@@ -27,14 +31,28 @@ public class Qualification {
 
 //	@ManyToMany(mappedBy = "courses", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER )
 //	private Set<Course> courses = new HashSet<>();
-	  
+			
+	@ManyToMany(cascade = { CascadeType.PERSIST})
+	@JoinTable(name = "qualification_course", joinColumns = {
+			@JoinColumn(name = "qualification_id") }, 
+			inverseJoinColumns = { @JoinColumn(name = "course_id") })
+	@JsonBackReference
+	private Set<Course> courses = new HashSet<>();
+	
 	public Qualification() {
 		super();
 	}
 
+	public Set<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
+	}
+
 	public Qualification(String qualificationName, String percentage) {
 		super();
-	//	this.qualificationId = qualificationId;
 		this.qualificationName = qualificationName;
 		this.percentage = percentage;
 	}
@@ -63,18 +81,13 @@ public class Qualification {
 		this.percentage = percentage;
 	}
 
-//	public Set<Course> getCourses() {
-//		return courses;
-//	}
-//
-//	public void setCourses(Set<Course> courses) {
-//		this.courses = courses;
-//	}
-
 	@Override
 	public String toString() {
 		return "Qualification [qualificationId=" + qualificationId + ", qualificationName=" + qualificationName
-				+ ", percentage=" + percentage +  "]";
+				+ ", percentage=" + percentage + ", courses=" + courses + "]";
 	}
+
+
+	
 
 }

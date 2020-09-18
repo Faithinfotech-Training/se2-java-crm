@@ -14,8 +14,10 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.entity.CourseEnquiry;
 import com.example.demo.entity.ResourceEnquiry;
 import com.example.demo.entity.ResourceType;
 import com.example.demo.entity.Resources;
@@ -125,9 +127,100 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
         return filterByResourceTypeEnquiries;
     }
 
+	@Override
+	@Modifying
+	public List<ResourceEnquiry> viewResourceSalesPipeline()
+	{
+		
+		Query query= entityManager.createQuery("from resource_enquiry");
+		List<ResourceEnquiry> enquiryList=query.getResultList();
+		
+int totalNumberOfEnquiries;
+		
+		//Decalring total number of status values;
+		
+		int totalNumberOfStatusValues=0;
+		
+		// Create list of IDs of status
+		List<String> statusList=null;
+		
+		//Count value assignment
+		totalNumberOfEnquiries=enquiryList.size();
+		
+		System.out.println("Total Number of Resource Enquiries:"+" "+totalNumberOfEnquiries);
+		
+		//Iterating over enquiries and checking their status values
+		
+		for(int i=0;i<totalNumberOfEnquiries;i++)
+		{
+			ResourceEnquiry resourceenquiry=enquiryList.get(i);
+			if(!(statusList.contains(resourceenquiry.getStatus().getStatusValue())))
+			{
+			statusList.add(resourceenquiry.getStatus().getStatusValue());
+			}
+		}
+		
+		//Count value assignment
+				totalNumberOfEnquiries=statusList.size();
+				
+		//Print all status values
+				for(int i=0;i<totalNumberOfEnquiries;i++)
+				{
+					System.out.println(statusList.get(i));
+				}
+				
+		System.out.println("Total Number of status Values:"+" "+totalNumberOfStatusValues);
+		
+		return  enquiryList;
+	}
 
 
 
+
+	@Override
+	public List<ResourceEnquiry> viewResourceTable() {
+		
+		Query query= entityManager.createQuery("from resource_enquiry");
+		List<ResourceEnquiry> enquiryList=query.getResultList();
+		
+int totalNumberOfEnquiries;
+		
+		//Decalring total number of status values;
+		
+		int totalNumberOfStatusValues=0;
+		
+		// Create list of IDs of status
+		List<String> statusList=null;
+		
+		//Count value assignment
+		totalNumberOfEnquiries=enquiryList.size();
+		
+		System.out.println("Total Number of Resource Enquiries:"+" "+totalNumberOfEnquiries);
+		
+		//Iterating over enquiries and checking their status values
+		
+		for(int i=0;i<totalNumberOfEnquiries;i++)
+		{
+			ResourceEnquiry resourceenquiry=enquiryList.get(i);
+			if(!(statusList.contains(resourceenquiry.getStatus().getStatusValue())))
+			{
+			statusList.add(resourceenquiry.getStatus().getStatusValue());
+			}
+		}
+		
+		//Count value assignment
+				totalNumberOfEnquiries=statusList.size();
+				
+		//Print all status values
+				for(int i=0;i<totalNumberOfEnquiries;i++)
+				{
+					System.out.println(statusList.get(i));
+				}
+				
+		System.out.println("Total Number of status Values:"+" "+totalNumberOfStatusValues);
+		
+		return  enquiryList;
+	}
 
 
 }

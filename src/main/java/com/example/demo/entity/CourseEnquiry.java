@@ -15,8 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="courseenquiry")
+@Entity(name="course_enquiry")
+@Table(name="course_enquiry")
 public class CourseEnquiry {
 
 	// Registration Id is a primary key unique for each course enquiry
@@ -35,7 +35,7 @@ public class CourseEnquiry {
 	private Course courseId;
 
 	// Date when the enquiry is registered by the user
-	@Column
+	@Column(name="enquirydate")
 	private Date enquiryDate;
 
 	// Status of the enquiry
