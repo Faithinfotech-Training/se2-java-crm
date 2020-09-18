@@ -2,12 +2,16 @@
 package com.example.demo.entity;
 
 import java.sql.Date;
+
+import javax.annotation.Resource;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,21 +25,21 @@ public class ResourceEnquiry {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(nullable = false)
+	
 	private Integer resourceEnquiryId;
 
 	
-	@OneToOne
+	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Customer.class)
 	@JoinColumn(name = "customerId")
-	private Customer customer;
+	private Customer customerId;
 
 	
-	@OneToOne
+	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Resources.class)
 	@JoinColumn(name = "resourceId")
-	private Resources resources;
+	private Resources resourcesId;
 
-	@OneToOne
-	@JoinColumn(name="statusId")
+	@ManyToOne
+	@JoinColumn(name="status_id")
 	private ResourceEnquiryStatus status;
 
 	
@@ -52,21 +56,17 @@ public class ResourceEnquiry {
 	}
 
 	
-	
 
-	
-	
-	
-public ResourceEnquiry(Integer resourceEnquiryId, Customer customer, Resources resources, ResourceEnquiryStatus status,
-		Date enquiryDate) {
+
+public ResourceEnquiry(Integer resourceEnquiryId, Customer customerId, Resources resourcesId,
+		ResourceEnquiryStatus status, Date enquiryDate) {
 	super();
 	this.resourceEnquiryId = resourceEnquiryId;
-	this.customer = customer;
-	this.resources = resources;
+	this.customerId = customerId;
+	this.resourcesId = resourcesId;
 	this.status = status;
 	this.enquiryDate = enquiryDate;
 }
-
 
 
 
@@ -85,29 +85,54 @@ public ResourceEnquiry(Integer resourceEnquiryId, Customer customer, Resources r
 	}
 
 	
-	public Customer getCustomer() {
-		return customer;
+
+	
+
+	
+	public Customer getCustomerId() {
+		return customerId;
 	}
 
-	
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+
+
+
+
+
+
+
+	public void setCustomerId(Customer customerId) {
+		this.customerId = customerId;
 	}
 
-	
-	public Resources getResource() {
-		return resources;
+
+
+
+
+
+
+
+	public Resources getResourcesId() {
+		return resourcesId;
 	}
 
-	
-	public void setResource(Resources resource) {
-		this.resources = resource;
+
+
+
+
+
+
+
+	public void setResourcesId(Resources resourcesId) {
+		this.resourcesId = resourcesId;
 	}
 
-	
-	
 
-	
+
+
+
+
+
+
 	public ResourceEnquiryStatus getStatus() {
 		return status;
 	}
@@ -131,13 +156,22 @@ public ResourceEnquiry(Integer resourceEnquiryId, Customer customer, Resources r
 		this.enquiryDate = enquiryDate;
 	}
 
-	
-	
-//To String Method
+
+
+
+
+	//To String Method
+
+
 	@Override
 	public String toString() {
-		return "ResourceEnquiry [resourceEnquiryId=" + resourceEnquiryId + ", customer=" + customer + ", resource="
-				+ resources + ", status=" + status + ", enquiryDate=" + enquiryDate + "]";
+		return "ResourceEnquiry [resourceEnquiryId=" + resourceEnquiryId + ", customerId=" + customerId
+				+ ", resourcesId=" + resourcesId + ", status=" + status + ", enquiryDate=" + enquiryDate + "]";
 	}
+
+	
+	
+
+
 
 }

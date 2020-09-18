@@ -54,11 +54,16 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 		return resourceEnquiry;
 	}
 
-	
+	@Override
+	public boolean update(ResourceEnquiry resourceEnquiry) {
+		entityManager.merge(resourceEnquiry);
+		return false;
+	}
+
 	
 	// Method to delete a specific resource
 	@Override
-	@Transactional
+	
 	public ResourceEnquiry deleteByResourceEnquiryId(int resourceEnquiryId) {
 
 		ResourceEnquiry resourceEnquiry = (ResourceEnquiry) entityManager.find(ResourceEnquiry.class,
@@ -79,8 +84,8 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 	@Transactional
 	public void save(ResourceEnquiry resourceEnquiry) {
 
-		ResourceEnquiry dbResources = entityManager.merge(resourceEnquiry);
-		resourceEnquiry.setResourceEnquiryId(dbResources.getResourceEnquiryId());
+		resourceEnquiry.setResourceEnquiryId(0);
+		entityManager.merge(resourceEnquiry);
 	}
 
 	
@@ -110,7 +115,7 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 		List<ResourceEnquiry> filterByResourceTypeEnquiries = new ArrayList<ResourceEnquiry>();
 		for(ResourceEnquiry re: resourceEnquiries) {
 			
-			ResourceType resourcesType = re.getResource().getResourceType();
+			ResourceType resourcesType = re.getResourcesId().getResourceType();
 			if(resourcesType.getResourceTypeId()==resourceType) {
 				filterByResourceTypeEnquiries.add(re);
 			}
@@ -119,6 +124,9 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
         // Return the course enquiries list filter by status
         return filterByResourceTypeEnquiries;
     }
+
+
+
 
 
 

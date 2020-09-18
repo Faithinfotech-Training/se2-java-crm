@@ -15,7 +15,7 @@ public class ResourceEnquiryStatus {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer statusId;
 	
-	@Column(nullable=false, length=20)
+	@Column(length=20)
 	private String statusValue;
 
 	

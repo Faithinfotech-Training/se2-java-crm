@@ -25,6 +25,8 @@ public interface ResourceEnquiryDAO  {
 	List<ResourceEnquiry> findAllResourceEnquiryByStatus(int status);
 
 	List<ResourceEnquiry> findAllResourceEnquiryByResourceType(int rescourceType);
+
+	public boolean update(ResourceEnquiry resourceEnquiry);
 	
 	
 }
