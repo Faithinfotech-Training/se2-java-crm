@@ -27,7 +27,7 @@ public interface ResourceEnquiryDAO  {
 	List<ResourceEnquiry> findAllResourceEnquiryByResourceType(int rescourceType);
 
 
-	public boolean update(ResourceEnquiry resourceEnquiry);
+	public String update(ResourceEnquiry resourceEnquiry);
 	List<ResourceEnquiry> viewResourceSalesPipeline();
 
 	

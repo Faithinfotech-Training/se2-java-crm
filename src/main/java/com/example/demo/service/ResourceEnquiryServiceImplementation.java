@@ -21,27 +21,27 @@ public class ResourceEnquiryServiceImplementation implements ResourceEnquiryServ
 	ResourceEnquiryDAO resourceEnquiryDAO;
 
 
-	
+
 	@Autowired
 	public ResourceEnquiryServiceImplementation(ResourceEnquiryDAO resourceEnquiryDAO) {
-	
+
 		super();
 		this.resourceEnquiryDAO = resourceEnquiryDAO;
 	}
 
 
-	
-// Method for getting all the resource enquiries
+
+	// Method for getting all the resource enquiries
 	@Override
 	@Transactional
 	public List<ResourceEnquiry> findAllResourceEnquiry() {
 
 		return resourceEnquiryDAO.findAll();
 	}	
-	
-	
 
-// Method for getting a specific resource enquiry by using Resource Enquiry ID
+
+
+	// Method for getting a specific resource enquiry by using Resource Enquiry ID
 	@Override
 	@Transactional
 	public ResourceEnquiry findByResourceEnquiryId(int resourceEnquiryId) {
@@ -50,8 +50,8 @@ public class ResourceEnquiryServiceImplementation implements ResourceEnquiryServ
 	}
 
 
-	
-// Method to save Resource Enquiry
+
+	// Method to save Resource Enquiry
 	@Override
 	@Transactional
 	public void saveResourceEnquiry(ResourceEnquiry resourceEnquiry) {
@@ -61,8 +61,8 @@ public class ResourceEnquiryServiceImplementation implements ResourceEnquiryServ
 	}
 
 
-	
-// Method to delete a resource Enquiry for given Resource Enquiry Id
+
+	// Method to delete a resource Enquiry for given Resource Enquiry Id
 	@Override
 	@Transactional
 	public void deleteByResourceEnquiryId(int resourceEnquiryId) {
@@ -71,15 +71,13 @@ public class ResourceEnquiryServiceImplementation implements ResourceEnquiryServ
 	}
 
 
-	
-// Method to update the status of specific resource Enquiry.
+
+	// Method to update the status of specific resource Enquiry.
 	@Override
 	@Transactional
-	public void updateResourceEnquiry( ResourceEnquiry resourceEnquiry) {
+	public String updateResourceEnquiry(ResourceEnquiry resourceEnquiry) {
+		return resourceEnquiryDAO.update(resourceEnquiry);
 
-			resourceEnquiryDAO.update(resourceEnquiry);
-		
-		
 	}
 
 

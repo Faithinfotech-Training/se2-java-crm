@@ -25,7 +25,6 @@ public class ResourceEnquiry {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	
 	private Integer resourceEnquiryId;
 
 	

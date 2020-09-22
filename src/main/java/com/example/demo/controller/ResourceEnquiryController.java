@@ -62,11 +62,10 @@ public class ResourceEnquiryController {
 		
 //This method updates the exisiting Resource Enquiry by using the Resource Enquiry ID and replaces the data with the data given in request body
 		@PutMapping(value="/resource")
-		public ResourceEnquiry updateResourceEnquiryStatus(@RequestBody ResourceEnquiry resourceEnquiry)
+		public String updateResourceEnquiryStatus(@RequestBody ResourceEnquiry resourceEnquiry)
 		{
-			
-			resourceEnquiryServiceImplementation.updateResourceEnquiry(resourceEnquiry);
-			return resourceEnquiry;
+			String result = resourceEnquiryServiceImplementation.updateResourceEnquiry(resourceEnquiry);
+			return result;
 		}
 		
 		

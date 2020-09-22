@@ -37,7 +37,7 @@ public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
 	public List<CourseEnquiry> findAllCourseEnquiry() {
 		
 		// Create a query
-		Query myQuery = entityManager.createQuery("from CourseEnquiry");
+		Query myQuery = entityManager.createQuery("from course_enquiry");
 		
 		// Extract the results
 		List<CourseEnquiry> courseEnquiries = myQuery.getResultList();
