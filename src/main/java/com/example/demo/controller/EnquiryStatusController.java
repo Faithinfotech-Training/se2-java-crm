@@ -29,7 +29,7 @@ public class EnquiryStatusController {
 	private EnquiryStatusService enquiryStatusService;
 	
 	// List all the enquiry statuses
-	@GetMapping("/status")
+	@GetMapping("/coursestatus")
 	public ResponseEntity findAllEnuiryStatuses()
 	{
 		List<EnquiryStatus> listOfEnquiryStatuses = enquiryStatusService.findAllEnquiryStatus(); 
@@ -41,7 +41,7 @@ public class EnquiryStatusController {
 	/*
 	 * Returns the Enquiry Status of particular Id
 	 */
-	@GetMapping("/status/{statusId}")
+	@GetMapping("/coursestatus/{statusId}")
 	public ResponseEntity findByIdStatusEnquiry(@PathVariable("statusId") Integer statusId) {
 		EnquiryStatus enquiryStatus = enquiryStatusService.findEnquiryStatusById(statusId);
 		if(enquiryStatus == null)
@@ -51,21 +51,21 @@ public class EnquiryStatusController {
 	
 
 	// Create an enquiry status
-	 @RequestMapping(value = "/status", method = RequestMethod.POST)
+	 @RequestMapping(value = "/coursestatus", method = RequestMethod.POST)
 	public ResponseEntity<String> saveEnquiryStatus(@RequestBody EnquiryStatus enquiryStatus) {
 		enquiryStatusService.saveEnquiryStatus(enquiryStatus);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 			
 	//Update the enquiry status
-	 @PutMapping("/status")
+	 @PutMapping("/coursestatus")
 	 public ResponseEntity updateEnquiryStatus(@RequestBody EnquiryStatus enquiryStatus) {
 		 enquiryStatusService.updateEnquiryStatus(enquiryStatus);
 		 return ResponseEntity.ok().build();
 	 }
 	 
 	// Delete the enquiry status
-	@DeleteMapping("/status/{statusId}")
+	@DeleteMapping("/coursestatus/{statusId}")
 	public ResponseEntity<Object> deleteById(@PathVariable("statusId") int id ) {
 		EnquiryStatus enquiryStatus = enquiryStatusService.deleteEnquiryStatus(id);
 		if(enquiryStatus == null)

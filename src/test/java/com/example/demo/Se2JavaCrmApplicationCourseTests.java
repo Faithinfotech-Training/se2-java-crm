@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+import java.awt.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -22,8 +23,6 @@ import com.example.demo.entity.Qualification;
 import com.example.demo.entity.Status;
 import com.example.demo.service.CourseService;
 
-
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class Se2JavaCrmApplicationCourseTests {
@@ -37,55 +36,58 @@ class Se2JavaCrmApplicationCourseTests {
 	public void injectedServicesAreNotNull() {
 		assertThat(courseService).isNotNull();
 	}
-	
-	//Check if saveCourse works
+
+	// Check if saveCourse works
 	@Test
 	public void saveCourseTest() {
-		
-		Status status = new Status(1,"Active");
-		Access access = new Access(1,"Private");
-		Domain domain = new Domain("Java");
-		Qualification qualification = new Qualification("BE","60");
-		
-		Course courses = new Course("Basic JAVA", "OOPS of Java", 499, 700, 25, "30", domain, access, status, qualification);
+
+		// Status status = new Status(1,"Active");
+		// Access access = new Access(1,"Private");
+		// Domain domain = new Domain("Java");
+		// Qualification qualification = new Qualification("BE","60");
+		// Course courses = new Course("Basic JAVA", "OOPS of Java", 499, 700, 25, "30",
+		// domain, access, status, qualification);
+
+		Course courses = new Course();
 		when(coursesDAO.findAllCourse()).thenReturn(Stream.of(courses).collect(Collectors.toList()));
-		
+
 		assertEquals(1, courseService.findAllCourse().size());
 	}
 
-	//Check if findAllCourse works
+	// Check if findAllCourse works
 	@Test
 	public void findAllCourseTest() {
-		
-		Status status = new Status(1,"Active");
-		Access access = new Access(1,"Private");
-		Domain domain = new Domain("Java");
-		Qualification qualification = new Qualification("BE","60");
-		
-		Course courses = new Course("Basic JAVA", "OOPS of Java", 499, 700, 25, "30", domain, access, status, qualification);
+
+		// Status status = new Status(1,"Active");
+		// Access access = new Access(1,"Private");
+		// Domain domain = new Domain("Java");
+		// Qualification qualification = new Qualification("BE","60");
+		// Course courses = new Course("Basic JAVA", "OOPS of Java", 499, 700, 25, "30",
+		// domain, access, status, qualification);
+
+		Course courses = new Course();
 		when(coursesDAO.findAllCourse()).thenReturn(Stream.of(courses).collect(Collectors.toList()));
-		
+
 		assertEquals(1, courseService.findAllCourse().size());
-		
-		
+
 	}
-	
-	
-	//Check if findCourseById works
+
+	// Check if findCourseById works
 	@Test
 	public void findAllCourseByIdTest() {
-		
-		Status status = new Status(1,"Active");
-		Access access = new Access(1,"Private");
-		Domain domain = new Domain("Java");
-		Qualification qualification = new Qualification("BE","60");
-		
-		Course courses = new Course("Basic JAVA", "OOPS of Java", 499, 700, 25, "30", domain, access, status, qualification);
+
+		// Status status = new Status(1,"Active");
+		// Access access = new Access(1,"Private");
+		// Domain domain = new Domain("Java");
+		// Qualification qualification = new Qualification("BE","60");
+		// Course courses = new Course("Basic JAVA", "OOPS of Java", 499, 700, 25, "30",
+		// domain, access, status, qualification);
+
+		Course courses = new Course();
 		when(coursesDAO.findCourseById(1)).thenReturn(courses);
 
 		assertEquals(new Integer(20), courseService.findCourseById(1).getCourseName());
-		
-		
+
 	}
 
 }
