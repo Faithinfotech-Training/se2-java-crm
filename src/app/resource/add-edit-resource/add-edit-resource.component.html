@@ -1,0 +1,210 @@
+<div class="modal-body">
+
+    <form #form="ngForm" (submit)="onSubmit(form)">
+
+        <!-- Resource Name -->
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Resource Name</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="resourceName" name="resourceName" #resourceName="ngModel"
+                    [(ngModel)]="resourceService.formData.resourceName" class="form-control" required minlength="4">
+
+
+                <!-- Validation -->
+
+                <div *ngIf="resourceName.invalid && (resourceName.dirty || resourceName.touched)"
+                    class="alert alert-danger mt-1">
+
+                    <div *ngIf="resourceName.errors.required">
+                        Resource Name is required.
+                    </div>
+                    <div *ngIf="resourceName.errors.minlength">
+                        Resource Name must be at least 4 characters long.
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Resource Description -->
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Resource Description</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="resourceDescription" id="resourceDescription"
+                    #resourceDescription="ngModel" [(ngModel)]="resourceService.formData.resourceDescription" required
+                    minlength="10">
+
+
+
+                <!-- Validation -->
+
+                <div *ngIf="resourceDescription.invalid && (resourceDescription.dirty || resourceDescription.touched)"
+                    class="alert alert-danger mt-1">
+
+                    <div *ngIf="resourceDescription.errors.required">
+                        Resource Description is required.
+                    </div>
+                    <div *ngIf="resourceDescription.errors.minlength">
+                        Resource Description must be at least 10 characters long.
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+        <!-- Capacity -->
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Capacity</label>
+            <div class="col-sm-8">
+                <input min="1" oninput="this.value = Math.abs(this.value)" type="number" class="form-control" id="Capacity" name="capacity" #capacity="ngModel"
+                    [(ngModel)]="resourceService.formData.capacity" >
+
+                <!-- Validation -->
+
+                <div *ngIf="capacity.invalid && (capacity.dirty || capacity.touched)" class="alert alert-danger mt-1">
+
+                    <div *ngIf="capacity.errors.required">
+                        Capacity in numerical format is required.
+                    </div>
+                    <div *ngIf="capacity.errors.pattern">
+                        Capacity must be greater than 0.
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Fees -->
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Fees</label>
+            <div class="col-sm-8">
+                <input type="number" class="form-control" name="fees" id="Fees" #fees="ngModel"
+                    [(ngModel)]="resourceService.formData.fees" required min="1" oninput="this.value = Math.abs(this.value)">
+
+
+                <!-- Validation -->
+
+                <div *ngIf="fees.invalid && (fees.dirty || fees.touched)" class="alert alert-danger mt-1">
+
+                    <div *ngIf="fees.errors.required">
+                        Fees in numerical format is required.
+                    </div>
+                    <div *ngIf="fees.errors.pattern">
+                       Pattern error
+                    </div>
+                    <div *ngIf="fees.errors.min">
+                        Min error
+                     </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Status -->
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Status</label>
+            <div class="col-sm-8">
+                <select type="text" name="status" class="form-control" id="Status" #status="ngModel"
+                    [(ngModel)]="resourceService.formData.status" required>
+
+                        <option *ngIf="resourceService.formData.status" selected disabled [ngValue]="resourceService.formData.status">
+                            {{resourceService.formData.status.statusType}}</option>
+
+                  
+                    <option *ngFor="let status of StatusTypeList" [ngValue]="status">
+                        {{status.statusType}}
+                    </option>
+
+
+
+                </select>
+
+                <!-- Validation -->
+
+                <div *ngIf="status.invalid && (status.dirty || status.touched)" class="alert alert-danger mt-1">
+
+                    <div *ngIf="status.errors.required">
+                        Status is required.
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Access -->
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Access</label>
+            <div class="col-sm-8">
+                <select type="text" name="access" class="form-control" id="Access" #access="ngModel"
+                    [(ngModel)]="resourceService.formData.access" required>
+
+                        <option *ngIf="resourceService.formData.access" selected disabled [ngValue]="resourceService.formData.access">
+                            {{resourceService.formData.access.accessType}}</option>
+                   
+
+                    <option *ngFor="let access of AccessTypeList" [ngValue]="access">
+                        {{access.accessType}}
+                    </option>
+                </select>
+
+                <!-- Validation -->
+
+                <div *ngIf="access.invalid && (access.dirty || access.touched)" class="alert alert-danger mt-1">
+
+                    <div *ngIf="access.errors.required">
+                        Access is required.
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Resource Type -->
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Resource Type</label>
+            <div class="col-sm-8">
+                <select type="text" name="resourceType" class="form-control" id="ResourceType" #resourceType="ngModel"
+                    [(ngModel)]="resourceService.formData.resourceType" required>
+                
+
+                       
+                        <option *ngIf="resourceService.formData.resourceType" disabled [ngValue]="resourceService.formData.resourceType">
+                            {{resourceService.formData.resourceType.resourceTypeString}}</option>
+
+                   
+
+
+                    <option *ngFor="let resourceType of ResourceTypeList" [ngValue]="resourceType">
+                        {{resourceType.resourceTypeString}}
+                    </option>
+                </select>
+
+
+                <!-- Validation -->
+
+                <div *ngIf="resourceType.invalid && (resourceType.dirty || resourceType.touched)"
+                    class="alert alert-danger mt-1">
+
+                    <div *ngIf="resourceType.errors.required">
+                        ResourceType is required.
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <button class="btn btn-block btn-success mt-5" type="submit" [disabled]="form.invalid">Submit</button>
+        </div>
+
+    </form>
+
+</div>
