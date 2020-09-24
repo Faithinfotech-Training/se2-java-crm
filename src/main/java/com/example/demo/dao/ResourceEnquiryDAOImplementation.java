@@ -167,8 +167,8 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 		int totalNumberOfStatusValues=0;
 
 		// Create list of IDs of status
-		List<String> statusList=null;
-
+		List<String> statusList=new ArrayList<String>();
+		
 		//Count value assignment
 		totalNumberOfEnquiries=enquiryList.size();
 
@@ -186,14 +186,14 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 		}
 
 		//Count value assignment
-		totalNumberOfEnquiries=statusList.size();
-
+				totalNumberOfStatusValues=statusList.size();
+				
 		//Print all status values
-		for(int i=0;i<totalNumberOfEnquiries;i++)
-		{
-			System.out.println(statusList.get(i));
-		}
-
+				for(int i=0;i<totalNumberOfStatusValues;i++)
+				{
+					System.out.println(statusList.get(i));
+				}
+				
 		System.out.println("Total Number of status Values:"+" "+totalNumberOfStatusValues);
 
 		return  enquiryList;
@@ -204,7 +204,6 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 
 	@Override
 	public List<ResourceEnquiry> viewResourceTable() {
-
 		Query query= entityManager.createQuery("from resource_enquiry");
 		List<ResourceEnquiry> enquiryList=query.getResultList();
 
@@ -215,8 +214,8 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 		int totalNumberOfStatusValues=0;
 
 		// Create list of IDs of status
-		List<String> statusList=null;
-
+		List<String> statusList=new ArrayList<String>();
+		
 		//Count value assignment
 		totalNumberOfEnquiries=enquiryList.size();
 
@@ -234,14 +233,14 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 		}
 
 		//Count value assignment
-		totalNumberOfEnquiries=statusList.size();
-
+				totalNumberOfStatusValues=statusList.size();
+				
 		//Print all status values
-		for(int i=0;i<totalNumberOfEnquiries;i++)
-		{
-			System.out.println(statusList.get(i));
-		}
-
+				for(int i=0;i<totalNumberOfStatusValues;i++)
+				{
+					System.out.println(statusList.get(i));
+				}
+				
 		System.out.println("Total Number of status Values:"+" "+totalNumberOfStatusValues);
 
 		return  enquiryList;

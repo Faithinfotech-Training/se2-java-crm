@@ -1,5 +1,6 @@
 package com.example.demo.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -103,7 +104,7 @@ public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
 		List<CourseEnquiry> enquiryList=query.getResultList();
 		
 		// Create list of IDs of status
-		List<String> statusList=null;
+		List<String> statusList=new ArrayList<String>();
 		
 		//Count value assignment
 		totalNumberOfEnquiries=enquiryList.size();
@@ -115,18 +116,28 @@ public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
 		for(int i=0;i<totalNumberOfEnquiries;i++)
 		{
 			CourseEnquiry courseenquiry=enquiryList.get(i);
-			if(!(statusList.contains(courseenquiry.getEnquiryStatus().getStatusValue())))
+			System.out.println(courseenquiry);
+			if(statusList==null)
+			{
+				
+				String status=courseenquiry.getEnquiryStatus().getStatusValue();
+				statusList.add(status);
+	
+			}
+			else if(!(statusList.contains(courseenquiry.getEnquiryStatus().getStatusValue())))
 			{
 			statusList.add(courseenquiry.getEnquiryStatus().getStatusValue());
 			}
 		}
 		
+		   
 		//Count value assignment
-				totalNumberOfEnquiries=statusList.size();
+				totalNumberOfStatusValues=statusList.size();
 				
 		//Print all status values
-				for(int i=0;i<totalNumberOfEnquiries;i++)
+			for(int i=0;i<totalNumberOfStatusValues;i++)
 				{
+				    
 					System.out.println(statusList.get(i));
 				}
 				
@@ -155,7 +166,7 @@ int totalNumberOfEnquiries;
 		List<CourseEnquiry> enquiryList=query.getResultList();
 		
 		// Create list of IDs of status
-		List<String> statusList=null;
+		List<String> statusList=new ArrayList<String>();
 		
 		//Count value assignment
 		totalNumberOfEnquiries=enquiryList.size();
@@ -167,18 +178,28 @@ int totalNumberOfEnquiries;
 		for(int i=0;i<totalNumberOfEnquiries;i++)
 		{
 			CourseEnquiry courseenquiry=enquiryList.get(i);
-			if(!(statusList.contains(courseenquiry.getEnquiryStatus().getStatusValue())))
+			System.out.println(courseenquiry);
+			if(statusList==null)
+			{
+				
+				String status=courseenquiry.getEnquiryStatus().getStatusValue();
+				statusList.add(status);
+	
+			}
+			else if(!(statusList.contains(courseenquiry.getEnquiryStatus().getStatusValue())))
 			{
 			statusList.add(courseenquiry.getEnquiryStatus().getStatusValue());
 			}
 		}
 		
+		   
 		//Count value assignment
-				totalNumberOfEnquiries=statusList.size();
+				totalNumberOfStatusValues=statusList.size();
 				
 		//Print all status values
-				for(int i=0;i<totalNumberOfEnquiries;i++)
+			for(int i=0;i<totalNumberOfStatusValues;i++)
 				{
+				    
 					System.out.println(statusList.get(i));
 				}
 				
