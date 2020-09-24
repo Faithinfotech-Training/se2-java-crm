@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "se2-angular-crm"
+    }
+  },
+  "defaultProject": "se2-angular-crm",
+  "cli": {
+    "analytics": false
+  }
 }
