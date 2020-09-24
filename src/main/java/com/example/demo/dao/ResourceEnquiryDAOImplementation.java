@@ -137,7 +137,7 @@ int totalNumberOfEnquiries;
 		int totalNumberOfStatusValues=0;
 		
 		// Create list of IDs of status
-		List<String> statusList=null;
+		List<String> statusList=new ArrayList<String>();
 		
 		//Count value assignment
 		totalNumberOfEnquiries=enquiryList.size();
@@ -156,10 +156,10 @@ int totalNumberOfEnquiries;
 		}
 		
 		//Count value assignment
-				totalNumberOfEnquiries=statusList.size();
+				totalNumberOfStatusValues=statusList.size();
 				
 		//Print all status values
-				for(int i=0;i<totalNumberOfEnquiries;i++)
+				for(int i=0;i<totalNumberOfStatusValues;i++)
 				{
 					System.out.println(statusList.get(i));
 				}
@@ -173,7 +173,6 @@ int totalNumberOfEnquiries;
 
 	@Override
 	public List<ResourceEnquiry> viewResourceTable() {
-		
 		Query query= entityManager.createQuery("from resource_enquiry");
 		List<ResourceEnquiry> enquiryList=query.getResultList();
 		
@@ -184,7 +183,7 @@ int totalNumberOfEnquiries;
 		int totalNumberOfStatusValues=0;
 		
 		// Create list of IDs of status
-		List<String> statusList=null;
+		List<String> statusList=new ArrayList<String>();
 		
 		//Count value assignment
 		totalNumberOfEnquiries=enquiryList.size();
@@ -203,10 +202,10 @@ int totalNumberOfEnquiries;
 		}
 		
 		//Count value assignment
-				totalNumberOfEnquiries=statusList.size();
+				totalNumberOfStatusValues=statusList.size();
 				
 		//Print all status values
-				for(int i=0;i<totalNumberOfEnquiries;i++)
+				for(int i=0;i<totalNumberOfStatusValues;i++)
 				{
 					System.out.println(statusList.get(i));
 				}

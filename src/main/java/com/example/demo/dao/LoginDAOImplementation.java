@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.entity.Login;
+import com.example.demo.entity.LoginResponse;
 import com.example.demo.entity.Users;
 
 
@@ -31,8 +32,9 @@ public class LoginDAOImplementation implements LoginDAO {
 	
 	@Override
 	@Modifying
-	public String login(String username, String password) {
+	public LoginResponse login(String username, String password) {
 		
+		LoginResponse loginResponse=new LoginResponse();
 	// Query on database 
 		Query query = entityManager.createNativeQuery("SELECT  login.* FROM  Login WHERE username =?",Login.class);
 	
@@ -61,24 +63,25 @@ public class LoginDAOImplementation implements LoginDAO {
 		     
 		      if(login.getPassword().equals(password) && users.getRole().getRolename().equals("Manager"))
 				{
-				return "Successful login of manager";
+		    	  loginResponse.setSuccess(true);
+		    	  loginResponse.setRole("manager");
+				return loginResponse;
 				}
 				
 		      // Check if user is admin
 		      
 				else if(login.getPassword().equals(password) && users.getRole().getRolename().equals("Admin"))
 				{
-					return "Successful login of admin";
+					 loginResponse.setSuccess(true);
+			    	  loginResponse.setRole("admin");
+					return loginResponse;
 				}
 		      
 		      // Check for failure
 		      
-				else
-				{
-					return "Not successful,try again";
-				}
+				
 	      }
-		return "Not successful";
+		return loginResponse;
 	      
 	      
 		
