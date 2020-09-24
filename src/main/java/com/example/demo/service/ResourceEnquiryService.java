@@ -14,7 +14,7 @@ public interface ResourceEnquiryService {
 	
 	public void saveResourceEnquiry(ResourceEnquiry resourceEnquiry);
 	
-	public void updateResourceEnquiry(int resourceEnquiryId, ResourceEnquiry resourceEnquiry);
+	public String updateResourceEnquiry(ResourceEnquiry resourceEnquiry);
 	
 	public void deleteByResourceEnquiryId(int resourceEnquiryId);
 	

@@ -26,11 +26,14 @@ public interface ResourceEnquiryDAO  {
 
 	List<ResourceEnquiry> findAllResourceEnquiryByResourceType(int rescourceType);
 
+
+	public String update(ResourceEnquiry resourceEnquiry);
 	List<ResourceEnquiry> viewResourceSalesPipeline();
 
 	
 
 	List<ResourceEnquiry> viewResourceTable();
+
 	
 	
 }

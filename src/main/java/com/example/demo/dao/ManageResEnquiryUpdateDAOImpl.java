@@ -26,7 +26,7 @@ public class ManageResEnquiryUpdateDAOImpl implements ManageResEnquiryUpdateDAO 
 	@Override
 	public List<ResourceEnquiry> findAllSortedResourceEnquiry() {
 		// create a query 
-		Query query = entityManager.createQuery("from ResourceEnquiry order by enquiry_date");
+		Query query = entityManager.createQuery("from resource_enquiry order by enquiry_date");
 		List<ResourceEnquiry> resourceEnquiries = query.getResultList();
 		return resourceEnquiries;
 	
@@ -39,7 +39,7 @@ public class ManageResEnquiryUpdateDAOImpl implements ManageResEnquiryUpdateDAO 
 		
 		// create a query 
 		System.out.println(resourceEnquiryStatus.toString());
-		Query query = entityManager.createQuery("from ResourceEnquiry where status_id = " + resourceEnquiryStatus.toString());
+		Query query = entityManager.createQuery("from resource_enquiry where status_id = " + resourceEnquiryStatus.toString());
 		List<ResourceEnquiry> resourceEnquiries = query.getResultList();
 		return resourceEnquiries;
 	

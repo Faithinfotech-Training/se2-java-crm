@@ -52,7 +52,7 @@ public class ResourceEnquiryController {
 		@PostMapping(value = "/resource")
 		public ResourceEnquiry saveResourceEnquiry(@RequestBody ResourceEnquiry resourceEnquiry) {
 		
-			resourceEnquiry.setResourceEnquiryId(0);
+			
 			resourceEnquiryServiceImplementation.saveResourceEnquiry(resourceEnquiry);
 			return resourceEnquiry;
 
@@ -61,12 +61,11 @@ public class ResourceEnquiryController {
 		
 		
 //This method updates the exisiting Resource Enquiry by using the Resource Enquiry ID and replaces the data with the data given in request body
-		@PutMapping(value="/resource/{enquiryid}")
-		public ResourceEnquiry updateResourceEnquiryStatus(@PathVariable Integer enquiryid,@RequestBody ResourceEnquiry resourceEnquiry)
+		@PutMapping(value="/resource")
+		public String updateResourceEnquiryStatus(@RequestBody ResourceEnquiry resourceEnquiry)
 		{
-			
-			resourceEnquiryServiceImplementation.updateResourceEnquiry(enquiryid, resourceEnquiry);
-			return resourceEnquiry;
+			String result = resourceEnquiryServiceImplementation.updateResourceEnquiry(resourceEnquiry);
+			return result;
 		}
 		
 		
