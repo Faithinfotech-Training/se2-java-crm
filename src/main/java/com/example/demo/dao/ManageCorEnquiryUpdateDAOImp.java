@@ -25,7 +25,7 @@ public class ManageCorEnquiryUpdateDAOImp implements ManageCorEnquiryUpdateDAO {
 
 	@Override
 	public List<CourseEnquiry> findAllSortedCourseEnquiry() {
-		Query query = entityManager.createQuery("from CourseEnquiry order by enquiry_date");
+		Query query = entityManager.createQuery("from course_enquiry order by enquirydate");
 		List<CourseEnquiry> courseEnquiries = query.getResultList();
 		return courseEnquiries;
 
@@ -34,7 +34,7 @@ public class ManageCorEnquiryUpdateDAOImp implements ManageCorEnquiryUpdateDAO {
 	@Override
 	public List<CourseEnquiry> findAllCourseEnquiry(Integer EnquiryStatus) {
 		System.out.println(EnquiryStatus.toString());
-		Query query = entityManager.createQuery("from CourseEnquiry where status_id = " + EnquiryStatus.toString());
+		Query query = entityManager.createQuery("from course_enquiry where status_id = " + EnquiryStatus.toString());
 		List<CourseEnquiry> courseEnquiries = query.getResultList();
 		return courseEnquiries;
 	}
