@@ -11,12 +11,18 @@ import { AddEditResourceComponent } from './resource/add-edit-resource/add-edit-
 import { FormsModule } from '@angular/forms';
 import {  ToastrModule } from "ngx-toastr";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CourseComponent } from './course/course.component';
+import { AddEditCourseComponent } from './course/add-edit-course/add-edit-course.component';
+import { ViewCourseComponent } from './course/view-course/view-course.component';
 @NgModule({
   declarations: [
     AppComponent,
     ResourceComponent,
     ViewResourcesComponent,
     AddEditResourceComponent,
+    CourseComponent,
+    AddEditCourseComponent,
+    ViewCourseComponent,
     
   ],
   imports: [
