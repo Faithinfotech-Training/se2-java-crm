@@ -10,8 +10,8 @@ import { ManagerComponent } from './manager/manager.component';
 import { AuthGaurdService } from './services/auth-guard.service';
 
 const routes: Routes = [
-  {path:'resource',component:ResourceComponent},
-  {path:'course',component:CourseComponent},
+  {path:'admin/resource',component:ResourceComponent},
+  {path:'admin/course',component:CourseComponent},
   {path:'home',component:HomepageComponent},
   {path:'aboutus',component:AboutUsComponent},
   {path:'admin',component:AdminComponent,canActivate:[AuthGaurdService]},
