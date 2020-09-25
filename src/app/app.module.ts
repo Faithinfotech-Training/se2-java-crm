@@ -14,6 +14,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CourseComponent } from './course/course.component';
 import { AddEditCourseComponent } from './course/add-edit-course/add-edit-course.component';
 import { ViewCourseComponent } from './course/view-course/view-course.component';
+import { HomePageNavComponent } from './navbar/home-page-nav/home-page-nav.component';
+import { HomepageComponent } from './homepages/homepage/homepage.component';
+import { AboutUsComponent } from './homepages/about-us/about-us.component';
+import { LoginComponent } from './login/login.component';
+import { LoginServiceService } from './services/login-service.service';
+import { AdminComponent } from './admin/admin.component';
+import { ManagerComponent } from './manager/manager.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +30,12 @@ import { ViewCourseComponent } from './course/view-course/view-course.component'
     CourseComponent,
     AddEditCourseComponent,
     ViewCourseComponent,
+    HomePageNavComponent,
+    HomepageComponent,
+    AboutUsComponent,
+    LoginComponent,
+    AdminComponent,
+    ManagerComponent
     
   ],
   imports: [
@@ -33,6 +46,7 @@ import { ViewCourseComponent } from './course/view-course/view-course.component'
     ModalModule.forRoot(),
     FormsModule,
     ToastrModule.forRoot(),
+
   ],
   providers: [],
   bootstrap: [AppComponent]
