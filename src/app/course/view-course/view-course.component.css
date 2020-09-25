@@ -1,0 +1,26 @@
+body {
+    background-color: #e3eaf3;
+  }
+  
+  .resource-block {
+    margin-top: 100px;
+  }
+  .light-green{
+      background-color:#67BA2F;
+      color:white;
+      
+  }
+  .action-buttons {
+    display: flex;
+    justify-content: end;
+    margin:10px;
+  }
+  
+  .table td.fit, 
+  .table th.fit {
+      white-space: nowrap;
+      width: 1%;
+  }
+  .form-block{
+    padding:40px;
+  }
