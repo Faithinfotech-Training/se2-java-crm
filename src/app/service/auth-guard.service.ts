@@ -10,6 +10,8 @@ export class AuthGaurdService implements CanActivate {
   constructor(private router: Router,
     private authService: LoginServiceService) { }
 
+// This method checks if the link can be activated based on the status of the user if he is logged in or not.
+
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     console.log("Request is getting processed in authservice")
     if (this.authService.isUserLoggedIn())

@@ -15,17 +15,25 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
     
   }
+
+  // Logout of admin
+
   logOut() {
-    this.toastrService.success('Success','Logged out successfully');
+
     console.log("Check");
+
+    //Remove the user from session 
     sessionStorage.removeItem('username');
-    
+
+// Toast message for successful log out
+this.toastrService.success('Success','Logged out successfully');
+
+    //Adding delay of 500ms
     setTimeout(() => 
 {
     this.router.navigate(['login']);
 },
-6000);
-   // this.router.navigate(['login']);
+800);
    
   }
 

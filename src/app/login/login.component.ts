@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
 
-  constructor( public service:LoginServiceService,private router:Router) { }
+  constructor( public service:LoginServiceService,private router:Router,private toastrService:ToastrService) { }
   username:string;
   password:string;
   invalidLogin = false
@@ -26,6 +26,8 @@ showErrorMessage:boolean;
   apiResponse:LoginresponseModule;
   val:any;
  
+// This method will check the username and password
+
 
  checkLogin()
   {
@@ -36,6 +38,9 @@ showErrorMessage:boolean;
       username:this.username,
       password:this.password
     }
+
+    // Getting the data from spring REST API
+
     this.service.login(this.val).subscribe((res:LoginresponseModule)=>
     {
       console.log("check")
@@ -52,24 +57,54 @@ showErrorMessage:boolean;
           this.showErrorMessage=true;
           this.router.navigate(['login'])
        }
+
+    // Checking if manager or admin
        else 
        {
            if(this.role=="manager")
            {
              console.log("Manager");
+
+             //Updating the session value
         sessionStorage.setItem('username',this.username)
-        this.router.navigate(['manager'])
+        
+
+         // Toast message for successful log in
+    this.toastrService.success('Success','Logged in successfully as '+this.username);
+
+    // Navigate to the manager dashboard page
+    setTimeout(() => 
+    {
+        this.router.navigate(['manager']);
+    },
+    800);
+
         this.invalidLogin = false
-    //    return true;
+  
            }
+
            else if(this.role=="admin")
            {
             console.log("Admin");
+
+           // Updating the session value
             sessionStorage.setItem('username',this.username)
-            this.router.navigate(['admin'])
+
+
+         // Toast message for successful log in
+         this.toastrService.success('Success','Logged in successfully as '+this.username);
+
+            // Navigate to the admin dashboard page
+         
+            setTimeout(() => 
+            {
+                this.router.navigate(['admin']);
+            },
+            800);
+
             this.invalidLogin = false
-     //  return true;
-          //  this.router.navigate(['localhost:4200/admin']);
+   
+         
            }
        }
     })

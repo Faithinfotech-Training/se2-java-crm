@@ -1,3 +1,6 @@
+// Service class to use for login
+
+
 import { Injectable } from '@angular/core';
 //import { Http2ServerRequest } from 'http2';
 import {HttpClient} from "@angular/common/http";
@@ -12,28 +15,28 @@ import { LoginresponseModule } from '../login/loginresponse/loginresponse.module
 export class LoginServiceService {
   response:any;
   apiResponse:string;
- // public headers = new Headers({ 'Content-Type': 'application/text' });
+
   constructor(private http:HttpClient)
   { 
         
   }
   readonly APIUrl="http://localhost:8000/api";
 
+// Login method  to connect with the backend
+
    login(val:any):Observable<LoginresponseModule>
    {
      console.log(val);
-    //this.response=this.http.post(this.APIUrl+'/login',val);
-    //console.log(this.response);
-  
+   
        return this.http.post<LoginresponseModule>(this.APIUrl+'/login',val);
    }
+
+   // checking if the user is logged in 
+
    isUserLoggedIn() {
     let user = sessionStorage.getItem('username')
     console.log(!(user === null))
     return !(user === null)
   }
 
-  logOut() {
-    sessionStorage.removeItem('username')
-  }
 }

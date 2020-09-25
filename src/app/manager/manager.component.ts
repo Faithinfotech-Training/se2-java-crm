@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-manager',
@@ -8,14 +9,25 @@ import { Router } from '@angular/router';
 })
 export class ManagerComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private toastrService:ToastrService) { }
 
   ngOnInit(): void {
   }
-   logOut()
-   {
+   
+   logOut() {
+
+    //Toast message for successful log out
+   
     console.log("Check");
-    sessionStorage.removeItem('username')
+    sessionStorage.removeItem('username');
+    this.toastrService.success('Success','Logged out successfully');
+    
+    //Adding delay
+    setTimeout(() => 
+{
     this.router.navigate(['login']);
-   }
+},
+800);
+   
+  }
 }
