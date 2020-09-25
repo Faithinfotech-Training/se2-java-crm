@@ -17,7 +17,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { UpdateCourseEnquiryComponent } from './course-enquiry/update-course-enquiry/update-course-enquiry.component';
 import { ShowCourseEnquiryComponent } from './course-enquiry/show-course-enquiry/show-course-enquiry.component';
 import { AddCourseEnquiryComponent } from './course-enquiry/add-course-enquiry/add-course-enquiry.component'
-
+import { HomePageNavComponent } from './navbar/home-page-nav/home-page-nav.component';
+import { HomepageComponent } from './homepages/homepage/homepage.component';
+import { AboutUsComponent } from './homepages/about-us/about-us.component';
+import { LoginComponent } from './login/login.component';
+import { LoginServiceService } from './services/login-service.service';
+import { AdminComponent } from './admin/admin.component';
+import { ManagerComponent } from './manager/manager.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +36,13 @@ import { AddCourseEnquiryComponent } from './course-enquiry/add-course-enquiry/a
     CourseEnquiryComponent,
     UpdateCourseEnquiryComponent,
     ShowCourseEnquiryComponent,
-    AddCourseEnquiryComponent
+    AddCourseEnquiryComponent,
+    HomePageNavComponent,
+    HomepageComponent,
+    AboutUsComponent,
+    LoginComponent,
+    AdminComponent,
+    ManagerComponent
     
   ],
   imports: [
