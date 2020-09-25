@@ -1,0 +1,38 @@
+<h3> Course Enquiry List</h3>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th> Course Enquiry Id</th>
+            <th> Course Name</th>
+            <th> Customer Id </th>
+            <th> Customer Name </th>
+            <th> Customer Qualification </th>
+            <th> Enquiry Date</th>
+            <th> Enquiry Status</th>
+            <th> Update</th>
+            <th> Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of CourseEnquiryList" >
+            <td>{{dataItem.registrationId}}</td>
+            <td>{{dataItem.courseId.courseName}}</td>
+            <td>{{dataItem.customerId.customerId}}</td>
+            <td>{{dataItem.customerId.customerName}}</td>
+            <td>{{dataItem.customerId.customerQualification}}</td>
+            
+            <td>{{dataItem.enquiryDate}}</td>
+            <td> 
+                <select (change)="ChangeOption($event.target.value)">
+                    <option  selected disabled>
+                        {{dataItem.enquiryStatus.statusValue}}</option>
+                    <option *ngFor="let CenquiryStatus of CourseEnquiryStatusList" [value]="CenquiryStatus.statusValue" >
+                         {{CenquiryStatus.statusValue}}           
+                    </option>
+                </select>
+            </td>
+            <td> <button class="btn btn-primary" (click)="onClickUpdate(dataItem)">Update</button></td>    
+            <td> <button class="btn btn-primary" (click)="onClickDelete(dataItem)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
