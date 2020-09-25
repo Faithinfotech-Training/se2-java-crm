@@ -1,0 +1,91 @@
+<div class="modal-body">
+
+    <form #form="ngForm" (submit)="onSubmit(form)">
+        <!-- Status -->
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Resource</label>
+            <div class="col-sm-8">
+                <select type="text" name="resource" class="form-control" id="resource" #resource="ngModel"
+                    [(ngModel)]="resourceEnquiryService.formData.resourceId" required>
+
+                        <option *ngIf="resourceEnquiryService.formData.resourceId" selected disabled [ngValue]="resourceEnquiryService.formData.resourceId">
+                            {{resourceEnquiryService.formData.resourceId.resourceName}}</option>
+
+                  
+                    <option *ngFor="let resource of resourceList" [ngValue]="resource">
+                        {{resource.resourceName}}
+                    </option>
+
+
+
+                </select>
+
+                <!-- Validation -->
+
+                <div *ngIf="resource.invalid && (resource.dirty || resource.touched)" class="alert alert-danger mt-1">
+
+                    <div *ngIf="resource.errors.required">
+                        Resource is required.
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+<!--Customer Id-->
+ <div class="form-group row">
+    <label class="col-sm-4 col-form-label">Customer Id</label>
+    <div class="col-sm-8">
+        <input type="text" class="form-control" id="customerId" name="customerId" #customerId="ngModel"
+            [(ngModel)]="resourceEnquiryService.formData.customerId" class="form-control" required>
+
+        
+        <!-- Validation  -->
+            <div *ngIf="customerId.errors?.required">
+                Customer Id is required.
+            </div>
+
+        </div>
+    </div>
+   
+
+       
+       
+        <!-- Status -->
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Status</label>
+            <div class="col-sm-8">
+                <select type="text" name="statusId" class="form-control" id="StatusId" #statusId="ngModel"
+                    [(ngModel)]="resourceEnquiryService.formData.statusId" required>
+
+                        <option *ngIf="resourceEnquiryService.formData.statusId" selected disabled [ngValue]="resourceEnquiryService.formData.statusId">
+                            {{resourceEnquiryService.formData.statusId.statusValue}}</option>
+
+                  
+                    <option *ngFor="let statusId of StatusTypeList" [ngValue]="statusId">
+                        {{statusId.statusValue}}
+                    </option>
+
+
+
+                </select>
+
+                <!-- Validation -->
+
+                <div *ngIf="statusId.invalid && (statusId.dirty || statusId.touched)" class="alert alert-danger mt-1">
+
+                    <div *ngIf="statusId.errors.required">
+                        Status is required.
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <button class="btn btn-block btn-success mt-5" type="submit" [disabled]="form.invalid">Submit</button>
+        </div>
+
+    </form>
+
+</div>
