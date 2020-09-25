@@ -51,7 +51,10 @@ import { ManagerComponent } from './manager/manager.component';
     HttpClientModule,
     ModalModule.forRoot(),
     FormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(/*{
+      timeOut: 200,
+      positionClass: 'toast-bottom-right'
+    }*/)
   ],
   providers: [LoginServiceService],
   bootstrap: [AppComponent]
