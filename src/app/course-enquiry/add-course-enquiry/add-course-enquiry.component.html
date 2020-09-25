@@ -1,0 +1,50 @@
+<h2> Add Course Enquiry</h2>
+<form #form="ngForm" (submit)="onSubmit(form)">
+    <div class="form-group">
+        <label >Customer Name</label>
+        <input type="text" name="customerId.customerName"
+        #customerId.customerName="ngModel" [(ngModel)]="service.form.customerId.customerName"
+        class="form-control" placeholder="Ronit Jorvekar" required/>    
+    </div>
+    
+    <div class="form-group">
+        <label >Customer Email Id</label>
+        <input type="text" name="customerId.customerEmailId"  #customerId.customerEmailId="ngModel"
+         [(ngModel)]="service.form.customerId.customerEmailId" class="form-control" 
+         placeholder="ronitjorvekar@gmail.com" required/>
+    </div>
+    <div class="form-group">
+        <label >Customer Phone Number</label>
+        <input type="text" name="customerId.customerPhoneNumber"  #customerId.customerPhoneNumber="ngModel" 
+        [(ngModel)]="service.form.customerId.customerPhoneNumber" class="form-control"
+        placeholder="9876543210" required/>
+    </div>
+    <div class="form-group">
+        <label >Customer Qualification</label>
+        <input type="text" name="customerId.customerQualification"  #customerId.customerQualification="ngModel"
+         [(ngModel)]="service.form.customerId.customerQualification" class="form-control"
+         placeholder="B.Tech" required/>
+    </div>
+    <div class="form-group">
+        <label >Customer Percentage</label>
+        <input type="text" name="customerId.customerPercentage"  #customerId.customerPercentage="ngModel"
+         [(ngModel)]="service.form.customerId.customerPercentage" class="form-control"
+         placeholder="76" required/>
+    </div>
+    
+    <div class="form-group">
+        <label >Customer DOB</label>
+        <input type="date" name="customerId.customerDOB"  #customerId.customerDOB="ngModel"
+         [(ngModel)]="service.form.customerId.customerDOB" class="form-control" required/>
+    </div>
+    
+    <div class="form-group">
+        <label >Lead Source</label>
+        <input type="text" name="customerId.leadSource"  #customerId.leadSource="ngModel"
+         [(ngModel)]="service.form.customerId.leadSource" class="form-control"
+         placeholder="Website" required/>
+    </div>
+    <div class="form-group">
+        <button class="btn  btn-primary" type="submit">Submit</button>
+    </div>
+</form>

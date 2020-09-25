@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { LoginServiceService} from 'src/app/service/login-service.service';
+=======
+import { LoginServiceService} from 'src/app/services/login-service.service';
+>>>>>>> af44d106ca46a6170c38f5426f258b455271b896
 import { LoginresponseModule } from './loginresponse/loginresponse.module';
 import {Router} from '@angular/router';
 
