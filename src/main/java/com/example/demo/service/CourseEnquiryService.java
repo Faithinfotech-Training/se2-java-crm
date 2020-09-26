@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.example.demo.entity.CourseEnquiry;
@@ -25,6 +26,9 @@ public interface CourseEnquiryService {
 
 	//get list of enquiries by status
 	public List<CourseEnquiry> findAllCourseEnquiryByStatus(int enquiryStatus);
+	
+	//get list of enquiries by date
+	List<CourseEnquiry> findAllCourseEnquiryByDate(Date startDate, Date endDate);
 	
 	
 	

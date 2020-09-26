@@ -1,5 +1,6 @@
 package com.example.demo.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.example.demo.entity.CourseEnquiry;
@@ -27,6 +28,9 @@ public interface CourseEnquiryDAO {
 	public List<CourseEnquiry> viewCourseSalesPipeline();
 
 	public List<CourseEnquiry> viewCourseTable();
+
+	//list all course enquiry by dates
+	List<CourseEnquiry> findAllCourseEnquiryByDate(Date startDate, Date endDate);
 
 
 	

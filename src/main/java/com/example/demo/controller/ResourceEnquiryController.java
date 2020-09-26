@@ -17,7 +17,7 @@ import com.example.demo.entity.ResourceEnquiry;
 import com.example.demo.service.ResourceEnquiryServiceImplementation;
 
 
-
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/api/enquiry")
 public class ResourceEnquiryController {

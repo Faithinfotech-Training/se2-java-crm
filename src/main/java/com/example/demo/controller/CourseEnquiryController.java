@@ -67,10 +67,18 @@ public class CourseEnquiryController {
 		return ResponseEntity.ok(courseEnquiry);
 	}
 	
-	@GetMapping("/course/filter/{courseStatus}")
+	@GetMapping("/course/filter/status/{courseStatus}")
 	public ResponseEntity findByStatusCourseEnquiry(@PathVariable("courseStatus") Integer courseStatus) {
 		List<CourseEnquiry> courseEnquiry = courseEnquiryService.findAllCourseEnquiryByStatus(courseStatus);
 		if(courseStatus == null)
+			return ResponseEntity.notFound().build();
+		return ResponseEntity.ok(courseEnquiry);
+	}
+	
+	@GetMapping("/course/filter/date/{startDate}/{endDate}")
+	public ResponseEntity findByDateCourseEnquiry(@PathVariable("startDate") Date startDate,@PathVariable("endDate") Date endDate) {
+		List<CourseEnquiry> courseEnquiry = courseEnquiryService.findAllCourseEnquiryByDate(startDate, endDate);
+		if(startDate == null || endDate == null )
 			return ResponseEntity.notFound().build();
 		return ResponseEntity.ok(courseEnquiry);
 	}

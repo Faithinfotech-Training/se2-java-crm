@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.sql.Date;
 import java.util.List;
 
 
@@ -68,5 +69,11 @@ public class CourseEnquiryServiceImpl implements CourseEnquiryService {
 		return courseEnquiryDAO.findAllCourseEnquiryByStatus(enquiryStatus);
 	}
 	
+	@Override
+	@Transactional
+	public List<CourseEnquiry> findAllCourseEnquiryByDate(Date startDate,Date endDate) {
+		//find enquiry by dATE
+		return courseEnquiryDAO.findAllCourseEnquiryByDate(startDate, endDate);
+	}
 	
 }

@@ -21,7 +21,7 @@ import com.example.demo.service.LoginService;
 
 
 // Class to create login API
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 

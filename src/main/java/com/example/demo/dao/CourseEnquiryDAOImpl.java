@@ -1,5 +1,6 @@
 package com.example.demo.dao;
 
+import java.sql.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,14 +18,13 @@ public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	@Autowired
 	public CourseEnquiryDAOImpl(EntityManager entityManager) {
 		super();
 		this.entityManager = entityManager;
 	}
-	
-	
+
 	@Override
 	public void saveCourseEnquiry(CourseEnquiry courseEnquiry) {
 		// Save course enquiry
@@ -35,13 +35,13 @@ public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
 
 	@Override
 	public List<CourseEnquiry> findAllCourseEnquiry() {
-		
+
 		// Create a query
 		Query myQuery = entityManager.createQuery("from CourseEnquiry");
-		
+
 		// Extract the results
 		List<CourseEnquiry> courseEnquiries = myQuery.getResultList();
-		
+
 		// Return the course enquiries list
 		return courseEnquiries;
 	}
@@ -72,120 +72,121 @@ public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
 		}
 		return courseEnquiry;
 	}
-	
-	
+
 	@Override
 	public List<CourseEnquiry> findAllCourseEnquiryByStatus(int enquiryStatus) {
-		
+
 		// Create a query
-		Query myQuery = entityManager.createQuery("from CourseEnquiry where enquiryStatus = " + enquiryStatus);
-		
+		Query myQuery = entityManager.createQuery("from Course_Enquiry where Status_id = " + enquiryStatus);
+
 		// Extract the results
 		List<CourseEnquiry> courseEnquiries = myQuery.getResultList();
-		
 		// Return the course enquiries list filter by status
 		return courseEnquiries;
 	}
+	
+	@Override
+	public List<CourseEnquiry> findAllCourseEnquiryByDate(Date startDate,Date endDate) {
+
+		// Create a query
+		Query myQuery = entityManager.createQuery("from COURSE_ENQUIRY where ENQUIRYDATE between " + startDate +" and " + endDate );
+
+		// Extract the results
+		List<CourseEnquiry> courseEnquiries = myQuery.getResultList();
+
+		// Return the course enquiries list filter by status
+		return courseEnquiries;
+	}
+	
+
 	@Override
 	@Modifying
-	public List<CourseEnquiry> viewCourseSalesPipeline()
-	{
-		// Declaring  Total Number of Course Enquiries
+	public List<CourseEnquiry> viewCourseSalesPipeline() {
+		// Declaring Total Number of Course Enquiries
 		int totalNumberOfEnquiries;
-		
-		//Decalring total number of status values;
-		
-		int totalNumberOfStatusValues=0;
-		
-		Query query= entityManager.createQuery("from course_enquiry");
-		
+
+		// Decalring total number of status values;
+
+		int totalNumberOfStatusValues = 0;
+
+		Query query = entityManager.createQuery("from course_enquiry");
+
 		// Extract the result from database
-		List<CourseEnquiry> enquiryList=query.getResultList();
-		
+		List<CourseEnquiry> enquiryList = query.getResultList();
+
 		// Create list of IDs of status
-		List<String> statusList=null;
-		
-		//Count value assignment
-		totalNumberOfEnquiries=enquiryList.size();
-		
-		System.out.println("Total Number of Course Enquiries:"+" "+totalNumberOfEnquiries);
-		
-		//Iterating over enquiries and checking their status values
-		
-		for(int i=0;i<totalNumberOfEnquiries;i++)
-		{
-			CourseEnquiry courseenquiry=enquiryList.get(i);
-			if(!(statusList.contains(courseenquiry.getEnquiryStatus().getStatusValue())))
-			{
-			statusList.add(courseenquiry.getEnquiryStatus().getStatusValue());
+		List<String> statusList = null;
+
+		// Count value assignment
+		totalNumberOfEnquiries = enquiryList.size();
+
+		System.out.println("Total Number of Course Enquiries:" + " " + totalNumberOfEnquiries);
+
+		// Iterating over enquiries and checking their status values
+
+		for (int i = 0; i < totalNumberOfEnquiries; i++) {
+			CourseEnquiry courseenquiry = enquiryList.get(i);
+			if (!(statusList.contains(courseenquiry.getEnquiryStatus().getStatusValue()))) {
+				statusList.add(courseenquiry.getEnquiryStatus().getStatusValue());
 			}
 		}
-		
-		//Count value assignment
-				totalNumberOfEnquiries=statusList.size();
-				
-		//Print all status values
-				for(int i=0;i<totalNumberOfEnquiries;i++)
-				{
-					System.out.println(statusList.get(i));
-				}
-				
-		System.out.println("Total Number of status Values:"+" "+totalNumberOfStatusValues);
-		
-		return  enquiryList;
+
+		// Count value assignment
+		totalNumberOfEnquiries = statusList.size();
+
+		// Print all status values
+		for (int i = 0; i < totalNumberOfEnquiries; i++) {
+			System.out.println(statusList.get(i));
+		}
+
+		System.out.println("Total Number of status Values:" + " " + totalNumberOfStatusValues);
+
+		return enquiryList;
 	}
-
-	
-	
-
 
 	@Override
 	@Modifying
 	public List<CourseEnquiry> viewCourseTable() {
-	
-int totalNumberOfEnquiries;
-		
-		//Decalring total number of status values;
-		
-		int totalNumberOfStatusValues=0;
-		
-		Query query= entityManager.createQuery("from course_enquiry");
-		
+
+		int totalNumberOfEnquiries;
+
+		// Decalring total number of status values;
+
+		int totalNumberOfStatusValues = 0;
+
+		Query query = entityManager.createQuery("from course_enquiry");
+
 		// Extract the result from database
-		List<CourseEnquiry> enquiryList=query.getResultList();
-		
+		List<CourseEnquiry> enquiryList = query.getResultList();
+
 		// Create list of IDs of status
-		List<String> statusList=null;
-		
-		//Count value assignment
-		totalNumberOfEnquiries=enquiryList.size();
-		
-		System.out.println("Total Number of Course Enquiries:"+" "+totalNumberOfEnquiries);
-		
-		//Iterating over enquiries and checking their status values
-		
-		for(int i=0;i<totalNumberOfEnquiries;i++)
-		{
-			CourseEnquiry courseenquiry=enquiryList.get(i);
-			if(!(statusList.contains(courseenquiry.getEnquiryStatus().getStatusValue())))
-			{
-			statusList.add(courseenquiry.getEnquiryStatus().getStatusValue());
+		List<String> statusList = null;
+
+		// Count value assignment
+		totalNumberOfEnquiries = enquiryList.size();
+
+		System.out.println("Total Number of Course Enquiries:" + " " + totalNumberOfEnquiries);
+
+		// Iterating over enquiries and checking their status values
+
+		for (int i = 0; i < totalNumberOfEnquiries; i++) {
+			CourseEnquiry courseenquiry = enquiryList.get(i);
+			if (!(statusList.contains(courseenquiry.getEnquiryStatus().getStatusValue()))) {
+				statusList.add(courseenquiry.getEnquiryStatus().getStatusValue());
 			}
 		}
-		
-		//Count value assignment
-				totalNumberOfEnquiries=statusList.size();
-				
-		//Print all status values
-				for(int i=0;i<totalNumberOfEnquiries;i++)
-				{
-					System.out.println(statusList.get(i));
-				}
-				
-		System.out.println("Total Number of status Values:"+" "+totalNumberOfStatusValues);
-		
-		return  enquiryList;
-	}
 
+		// Count value assignment
+		totalNumberOfEnquiries = statusList.size();
+
+		// Print all status values
+		for (int i = 0; i < totalNumberOfEnquiries; i++) {
+			System.out.println(statusList.get(i));
+		}
+
+		System.out.println("Total Number of status Values:" + " " + totalNumberOfStatusValues);
+
+		return enquiryList;
+	}
 
 }
