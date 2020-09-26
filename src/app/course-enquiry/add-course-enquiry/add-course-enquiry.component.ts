@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators } from '@angular/forms';
 import { NgForm } from '@angular/forms';
-import { CourseEnquiry } from 'src/app/course-enquiry.model';
-import { ResourceEnquiryServiceService } from 'src/app/resource-enquiry-service.service';
+import { ToastrService } from 'ngx-toastr';
+import { CourseEnquiry } from 'src/app/models/course-enquiry.model';
+import { CourseEnquiryService } from 'src/app/services/course-enquiry.service';
+import { CourseService } from 'src/app/services/course.service';
 
 @Component({
   selector: 'app-add-course-enquiry',
@@ -11,96 +14,85 @@ import { ResourceEnquiryServiceService } from 'src/app/resource-enquiry-service.
 export class AddCourseEnquiryComponent implements OnInit {
 
   courseEnquiry:CourseEnquiry;
+  courseList:any;
+  enquiryStatus:any;
+  enquiryStatusList:any;
   course:any;
-  constructor(public service:ResourceEnquiryServiceService) { }
+  constructor(public service:CourseEnquiryService,
+              private toastrService:ToastrService,
+              private courseService:CourseService) { }
 
   ngOnInit(): void {
-    this.resetForm();
-    this.course = {
-      courseId: 1,
-      courseName: "Java masterclass",
-      description: "DETIALS",
-      fees: 1000,
-      scoreCriteria: 70,
-      ageCriteria: 20,
-      duration: "20",
-      domain: {
-          domainId: 1,
-          domainName: "Java"
-      }
-  }
+    this.enquiryStatus = {
+         statusId:1,
+         statusValue:'Received'
+      };  
+    this.refreshCourseEnquiryStatusList();  
+    this.getCourseList();
+
 }
+  refreshCourseEnquiryStatusList(){
+    this.service.getCourseEnquiryStatusList().subscribe(res=>{
+      this.enquiryStatusList = res;
+    });
+  }
+  getCourseList(){
+    this.courseService.getCourse().subscribe(data=>{
+      this.courseList = data;
+    });
+  }
   resetForm(form?:NgForm){
     if(form!=null)
     {
+      console.log("Form reset");
       form.resetForm();
     }
-    this.service.form={
-      courseId: {
-        courseId: 1,
-        courseName: "Java masterclass",
-        description: "DETIALS",
-        fees: 1000,
-        scoreCriteria: 70,
-        ageCriteria: 20,
-        duration: "20",
-        domain: {
-            domainId: 1,
-            domainName: "Java"
-        },
-        access: {
-            accessId: 1,
-            accessType: "Public"
-        },
-        status: {
-            statusId: 1,
-            statusType: "Active"
-        },
-        qualifications: []
-    },
-      customerId:{
-        customerName:'',
-        customerEmailId:'',
-        customerPercentage:'',
-        customerDOB:'',
-        customerPhoneNumber:'',
-        customerQualification:'',
-        leadSource:''
-      },
-      enquiryDate:'',
-      enquiryStatus:'',
-
-    };
+  }
+  log(txt:any)
+  {
+    console.log(txt);
   }
   onSubmit(form:NgForm){
-   this.insertCourseEnquiry(form);
+    console.log(form.value);
+    let formObject:any = form.value;
+    console.log(formObject);
+    form.value.registrationId = this.service.form.registrationId; 
+   if(this.service.form.registrationId!=null) 
+    {
+      form.value.enquiryStatus = this.service.form.enquiryStatus;
+      form.value.customerId.customerId = this.service.form.customerId.customerId;
+      this.updateCourseEnquiry(form);
+    }
+    else{
+      form.value.enquiryStatus = this.enquiryStatus;
+      this.insertCourseEnquiry(form);
+    
+    }
+  }
+  
+  updateCourseEnquiry(form:NgForm){
+    console.log("UpdateCourseEnquiry", form.value);
+    this.service.updateCourseEnquiry(form.value).subscribe(res=>{
+      let ResponceObj:any = res;
+      console.log(ResponceObj);
+      this.toastrService.success('Success','Course Enquiry Updated Successfully');
+      this.resetForm(form);
+      this.service.getCourseEnquiryList().subscribe(res=>{
+        this.service.CourseEnquiryList = res;
+      });
+    });
   }
 
   insertCourseEnquiry(form:NgForm){
     console.log(form.value);
-    console.log(form.value["customerId.customerName"]);
-    this.courseEnquiry = {
-        courseId: this.course,
-        customerId:{
-          customerName:form.value["customerId.customerName"],
-          customerEmailId:form.value["customerId.customerEmailId"],
-          customerPhoneNumber:form.value["customerId.customerPhoneNumber"],
-          customerPercentage:form.value["customerId.customerPercentage"],
-          customerDOB:form.value["customerId.customerDOB"],
-          customerQualification:form.value["customerId.customerQualification"],
-          leadSource:form.value["customerId.leadSource"]
-        },
-        enquiryStatus:{
-          statusId:1,
-          statusValue:'Received'
-        },
-        enquiryDate: new Date().toISOString().slice(0, 10).replace('T', ' ')
-    };
-    console.log(this.courseEnquiry);
-    this.service.addCourseEnquiry(this.courseEnquiry).subscribe(res=>{
-      alert('Insertion Successful');
+    this.service.addCourseEnquiry(form.value).subscribe(res=>{
+      let ResponceObj:any = res;
+      console.log(ResponceObj);
+      this.toastrService.success('Success','Course Enquiry Inserted Successfully');
       this.resetForm(form);
+      this.service.getCourseEnquiryList().subscribe(res=>{
+        this.service.CourseEnquiryList = res;
+      });
     });
   }
-
 }
