@@ -18,6 +18,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.CourseEnquiry;
+import com.example.demo.entity.Customer;
 import com.example.demo.entity.ResourceEnquiry;
 import com.example.demo.entity.ResourceType;
 import com.example.demo.entity.Resources;
@@ -61,7 +62,7 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 		// Get the status of enquiry from db
 		ResourceEnquiry resourceEnquiryFromDb = entityManager.find(ResourceEnquiry.class, resourceEnquiry.getResourceEnquiryId());
 		// If status is received then it can be updated to Interested or Not Interested
-		if(resourceEnquiryFromDb.getStatus().getStatusValue().equalsIgnoreCase("Received") && (resourceEnquiry.getStatus().getStatusValue().equalsIgnoreCase("Interested") || resourceEnquiry.getStatus().getStatusValue().equalsIgnoreCase("Not Interested")))
+		/*if(resourceEnquiryFromDb.getStatus().getStatusValue().equalsIgnoreCase("Received") && (resourceEnquiry.getStatus().getStatusValue().equalsIgnoreCase("Interested") || resourceEnquiry.getStatus().getStatusValue().equalsIgnoreCase("Not Interested")))
 		{
 			System.out.println("Heello");
 			entityManager.merge(resourceEnquiry);
@@ -83,7 +84,8 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 					+ "to " + resourceEnquiry.getStatus().getStatusValue()
 					+ ".\nCorrect Sequence of Updation: Received -> Interested/Not Interested ->"
 					+ " Accepted/Rejected -> Rented";
-		}
+		}*/
+		entityManager.merge(resourceEnquiry);
 		return "Updated Successfully.";
 	}
 
@@ -92,10 +94,11 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 	@Override
 
 	public ResourceEnquiry deleteByResourceEnquiryId(int resourceEnquiryId) {
-
+		
 		ResourceEnquiry resourceEnquiry = (ResourceEnquiry) entityManager.find(ResourceEnquiry.class,
 				resourceEnquiryId);
-
+		Customer customer = resourceEnquiry.getCustomerId();
+		entityManager.remove(customer);
 		if (entityManager.contains(resourceEnquiry)) {
 			entityManager.remove(resourceEnquiry);
 		} else {

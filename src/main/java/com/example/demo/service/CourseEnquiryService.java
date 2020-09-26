@@ -18,7 +18,7 @@ public interface CourseEnquiryService {
 
 	
 	// Update course enquiry by id
-	public boolean updateCourseEnquiry(CourseEnquiry courseEnquiry);
+	public String updateCourseEnquiry(CourseEnquiry courseEnquiry);
 	
 	// Delete course enquiry By id
 	public CourseEnquiry deleteCourseEnquiry(Integer id);

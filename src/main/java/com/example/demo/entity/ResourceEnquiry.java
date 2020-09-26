@@ -28,12 +28,12 @@ public class ResourceEnquiry {
 	private Integer resourceEnquiryId;
 
 	
-	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Customer.class)
+	@ManyToOne
 	@JoinColumn(name = "customerId")
 	private Customer customerId;
 
 	
-	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Resources.class)
+	@ManyToOne
 	@JoinColumn(name = "resourceId")
 	private Resources resourcesId;
 
