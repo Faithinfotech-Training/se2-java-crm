@@ -35,6 +35,12 @@ public interface ResourceEnquiryDAO  {
 
 	List<ResourceEnquiryStatusDTO> viewResourceTable();
 
+	List<ResourceEnquiry> findAllResourceEnquiryByDateAndStatus(String startDate, String endDate, int status);
+
+	List<ResourceEnquiry> findAllResourceEnquiryByDate(String startDate, String endDate);
+
+	int findAllResourceEnquiryCount();
+
 	
 	
 }

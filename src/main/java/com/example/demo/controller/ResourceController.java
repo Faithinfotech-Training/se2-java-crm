@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,13 +70,19 @@ public class ResourceController {
     }
 	// add mapping for DELETE /resources/{resourceId} - delete resource
 	@DeleteMapping("/resources/{resourceId}")
-	public String deleteResource(@PathVariable int resourceId) {
+	public HashMap<String, String> deleteResource(@PathVariable int resourceId) {
 		Resources tempResource = resourceService.findResourcesById(resourceId);
 		// throw exception if null
+		
+		
+		
 		if (tempResource == null) {
 			throw new RuntimeException("Resource id not found - " + resourceId);
 		}
+		
+		HashMap<String, String> returnJsonHashMap = new HashMap<>();
 		resourceService.deleteResourcesById(resourceId);
-		return "Deleted resource id - " + resourceId;
+		returnJsonHashMap.put("response","Deleted resource id - " + resourceId );
+		return returnJsonHashMap;
 	}
 }

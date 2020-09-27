@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.entity.Customer;
 import com.example.demo.entity.ResourceType;
 import com.example.demo.entity.Resources;
 import javax.persistence.EntityManager;
@@ -44,7 +45,8 @@ public class ResourceTypeDAOImp implements ResourceTypeDAO {
 	public void saveResourceType(ResourceType resourceType) {
 		// TODO Auto-generated method stub
 		  //create a save query
-        entityManager.persist(resourceType);
+		ResourceType dbResourceType = entityManager.merge(resourceType);
+		resourceType.setResourceTypeId(dbResourceType.getResourceTypeId());
 		
 	}
 

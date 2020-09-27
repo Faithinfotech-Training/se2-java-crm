@@ -21,6 +21,15 @@ public interface ResourceEnquiryService {
 	public List<ResourceEnquiry> findAllResourceEnquiryByStatus(int status);
 	
 	public List<ResourceEnquiry> findAllResourceEnquiryByResourceType(int resourceType);
+
+
+	List<ResourceEnquiry> findAllResourceEnquiryByDateAndStatus(String startDate, String endDate, int status);
+
+
+	int findAllResourceEnquiryCount();
+
+
+	List<ResourceEnquiry> findAllResourceEnquiryByDate(String startDate, String endDate);
 	
 	
 }

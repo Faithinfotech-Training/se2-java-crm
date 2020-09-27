@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dao.ResourceEnquiryDAO;
 import com.example.demo.dao.ResourceEnquiryDAOImplementation;
 import com.example.demo.entity.ResourceEnquiry;
+import com.example.demo.entity.ResourceEnquiry;
 
 
 
@@ -96,4 +97,24 @@ public class ResourceEnquiryServiceImplementation implements ResourceEnquiryServ
 		return resourceEnquiryDAO.findAllResourceEnquiryByResourceType(resourceType);
 	}
 
+	@Override
+	@Transactional
+	public List<ResourceEnquiry> findAllResourceEnquiryByDate(String startDate,String endDate) {
+		//find enquiry by dATE
+		return resourceEnquiryDAO.findAllResourceEnquiryByDate(startDate, endDate);
+	}
+
+	@Override
+	@Transactional
+	public int findAllResourceEnquiryCount() {
+		// TODO Auto-generated method stub
+		return resourceEnquiryDAO.findAllResourceEnquiryCount();
+	}
+
+	@Override
+	@Transactional
+	public List<ResourceEnquiry> findAllResourceEnquiryByDateAndStatus(String startDate, String endDate, int status) {
+		// TODO Auto-generated method stub
+		return resourceEnquiryDAO.findAllResourceEnquiryByDateAndStatus(startDate, endDate, status);
+	}
 }

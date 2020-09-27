@@ -20,9 +20,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
+
 import com.example.demo.entity.CourseEnquiry;
 import com.example.demo.entity.CourseEnquiryStatusDTO;
 import com.example.demo.entity.EnquiryStatus;
+
+import com.example.demo.entity.ResourceEnquiry;
+
 import com.example.demo.entity.ResourceEnquiry;
 import com.example.demo.entity.ResourceEnquiryStatus;
 import com.example.demo.entity.ResourceEnquiryStatusDTO;
@@ -132,10 +136,10 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 		Query myQuery = entityManager.createQuery("from resource_enquiry where status = " + status);
 
 		// Extract the results
-		List<ResourceEnquiry> courseEnquiries = myQuery.getResultList();
+		List<ResourceEnquiry> resourceEnquiries = myQuery.getResultList();
 
-		// Return the course enquiries list filter by status
-		return courseEnquiries;
+		// Return the resource enquiries list filter by status
+		return resourceEnquiries;
 	}
 
 	//	Filter to find resource enquiry by status
@@ -155,7 +159,7 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 			}
 
 		}
-		// Return the course enquiries list filter by status
+		// Return the resource enquiries list filter by status
 		return filterByResourceTypeEnquiries;
 	}
 
@@ -280,5 +284,44 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 		return  resourcestatusList;
 	}
 
+	// api for filter by date
+	@Override
+	public List<ResourceEnquiry> findAllResourceEnquiryByDate(String startDate, String endDate) {
+		// Create a query
+		Query myQuery = entityManager.createQuery("from resource_enquiry where trunc(ENQUIRY_DATE)BETWEEN TO_DATE( '"
+				+ startDate + " ') and TO_DATE('" + endDate + "' )");
+		// trunc(ENQUIRYDATE)BETWEEN TO_DATE('20-09-27') and TO_DATE('20-09-27')
+		// Extract the results
+		List<ResourceEnquiry> resourceEnquiries = myQuery.getResultList();
+
+		// Return the resource enquiries list filter by status
+		return resourceEnquiries;
+	}
+
+	// api for filter by date and status
+	@Override
+	public List<ResourceEnquiry> findAllResourceEnquiryByDateAndStatus(String startDate, String endDate,int status) {
+		// Create a query
+		Query myQuery = entityManager.createQuery("from resource_enquiry where (trunc(ENQUIRY_DATE)BETWEEN TO_DATE( '"
+				+ startDate + " ') and TO_DATE('" + endDate + "' )) and status_id = " + status );
+		
+		// Extract the results
+		List<ResourceEnquiry> resourceEnquiries = myQuery.getResultList();
+
+		// Return the resource enquiries list filter by status
+		return resourceEnquiries;
+	}
+
+	// api for count of total
+	@Override
+	public int findAllResourceEnquiryCount() {
+		// Create a query
+		Query myQuery = entityManager.createQuery("select count(*) from resource_enquiry ");
+		// Extract the results
+		int count = ((Number)myQuery.getSingleResult()).intValue();
+
+		// Return the resource enquiries list count
+		return count;
+	}
 
 }
