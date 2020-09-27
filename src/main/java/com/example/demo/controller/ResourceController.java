@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entity.Resources;
 import com.example.demo.service.ResourcesService;
 
-@CrossOrigin
 @RestController
 @RequestMapping("api")
 public class ResourceController {
@@ -68,13 +69,19 @@ public class ResourceController {
     }
 	// add mapping for DELETE /resources/{resourceId} - delete resource
 	@DeleteMapping("/resources/{resourceId}")
-	public String deleteResource(@PathVariable int resourceId) {
+	public HashMap<String, String> deleteResource(@PathVariable int resourceId) {
 		Resources tempResource = resourceService.findResourcesById(resourceId);
 		// throw exception if null
+		
+		
+		
 		if (tempResource == null) {
 			throw new RuntimeException("Resource id not found - " + resourceId);
 		}
+		
+		HashMap<String, String> returnJsonHashMap = new HashMap<>();
 		resourceService.deleteResourcesById(resourceId);
-		return "Deleted resource id - " + resourceId;
+		returnJsonHashMap.put("response","Deleted resource id - " + resourceId );
+		return returnJsonHashMap;
 	}
 }

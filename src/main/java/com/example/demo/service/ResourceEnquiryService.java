@@ -14,13 +14,22 @@ public interface ResourceEnquiryService {
 	
 	public void saveResourceEnquiry(ResourceEnquiry resourceEnquiry);
 	
-	public void updateResourceEnquiry(ResourceEnquiry resourceEnquiry);
+	public String updateResourceEnquiry(ResourceEnquiry resourceEnquiry);
 	
 	public void deleteByResourceEnquiryId(int resourceEnquiryId);
 	
 	public List<ResourceEnquiry> findAllResourceEnquiryByStatus(int status);
 	
 	public List<ResourceEnquiry> findAllResourceEnquiryByResourceType(int resourceType);
+
+
+	List<ResourceEnquiry> findAllResourceEnquiryByDateAndStatus(String startDate, String endDate, int status);
+
+
+	int findAllResourceEnquiryCount();
+
+
+	List<ResourceEnquiry> findAllResourceEnquiryByDate(String startDate, String endDate);
 	
 	
 }

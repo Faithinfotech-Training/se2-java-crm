@@ -27,12 +27,18 @@ public interface ResourceEnquiryDAO  {
 	List<ResourceEnquiry> findAllResourceEnquiryByResourceType(int rescourceType);
 
 
-	public boolean update(ResourceEnquiry resourceEnquiry);
+	public String update(ResourceEnquiry resourceEnquiry);
 	List<ResourceEnquiry> viewResourceSalesPipeline();
 
 	
 
 	List<ResourceEnquiry> viewResourceTable();
+
+	List<ResourceEnquiry> findAllResourceEnquiryByDateAndStatus(String startDate, String endDate, int status);
+
+	List<ResourceEnquiry> findAllResourceEnquiryByDate(String startDate, String endDate);
+
+	int findAllResourceEnquiryCount();
 
 	
 	

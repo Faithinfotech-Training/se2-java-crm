@@ -30,9 +30,15 @@ public interface CourseEnquiryDAO {
 	public List<CourseEnquiry> viewCourseTable();
 
 	//list all course enquiry by dates
-	List<CourseEnquiry> findAllCourseEnquiryByDate(Date startDate, Date endDate);
+	List<CourseEnquiry> findAllCourseEnquiryByDate(String startDate, String endDate);
 
+	//count of total query
+	public int findAllCourseEnquiryCount();
 
+	//list all course enquiry by dates and status
+	public List<CourseEnquiry> findAllCourseEnquiryByDateAndStatus(String startDate, String endDate, int status);
+
+	
 	
 
 

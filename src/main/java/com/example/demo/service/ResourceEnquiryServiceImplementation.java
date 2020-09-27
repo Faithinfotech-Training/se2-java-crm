@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dao.ResourceEnquiryDAO;
 import com.example.demo.dao.ResourceEnquiryDAOImplementation;
 import com.example.demo.entity.ResourceEnquiry;
+import com.example.demo.entity.ResourceEnquiry;
 
 
 
@@ -21,27 +22,27 @@ public class ResourceEnquiryServiceImplementation implements ResourceEnquiryServ
 	ResourceEnquiryDAO resourceEnquiryDAO;
 
 
-	
+
 	@Autowired
 	public ResourceEnquiryServiceImplementation(ResourceEnquiryDAO resourceEnquiryDAO) {
-	
+
 		super();
 		this.resourceEnquiryDAO = resourceEnquiryDAO;
 	}
 
 
-	
-// Method for getting all the resource enquiries
+
+	// Method for getting all the resource enquiries
 	@Override
 	@Transactional
 	public List<ResourceEnquiry> findAllResourceEnquiry() {
 
 		return resourceEnquiryDAO.findAll();
 	}	
-	
-	
 
-// Method for getting a specific resource enquiry by using Resource Enquiry ID
+
+
+	// Method for getting a specific resource enquiry by using Resource Enquiry ID
 	@Override
 	@Transactional
 	public ResourceEnquiry findByResourceEnquiryId(int resourceEnquiryId) {
@@ -50,8 +51,8 @@ public class ResourceEnquiryServiceImplementation implements ResourceEnquiryServ
 	}
 
 
-	
-// Method to save Resource Enquiry
+
+	// Method to save Resource Enquiry
 	@Override
 	@Transactional
 	public void saveResourceEnquiry(ResourceEnquiry resourceEnquiry) {
@@ -61,8 +62,8 @@ public class ResourceEnquiryServiceImplementation implements ResourceEnquiryServ
 	}
 
 
-	
-// Method to delete a resource Enquiry for given Resource Enquiry Id
+
+	// Method to delete a resource Enquiry for given Resource Enquiry Id
 	@Override
 	@Transactional
 	public void deleteByResourceEnquiryId(int resourceEnquiryId) {
@@ -71,15 +72,13 @@ public class ResourceEnquiryServiceImplementation implements ResourceEnquiryServ
 	}
 
 
-	
-// Method to update the status of specific resource Enquiry.
+
+	// Method to update the status of specific resource Enquiry.
 	@Override
 	@Transactional
-	public void updateResourceEnquiry( ResourceEnquiry resourceEnquiry) {
+	public String updateResourceEnquiry(ResourceEnquiry resourceEnquiry) {
+		return resourceEnquiryDAO.update(resourceEnquiry);
 
-			resourceEnquiryDAO.update(resourceEnquiry);
-		
-		
 	}
 
 
@@ -98,4 +97,24 @@ public class ResourceEnquiryServiceImplementation implements ResourceEnquiryServ
 		return resourceEnquiryDAO.findAllResourceEnquiryByResourceType(resourceType);
 	}
 
+	@Override
+	@Transactional
+	public List<ResourceEnquiry> findAllResourceEnquiryByDate(String startDate,String endDate) {
+		//find enquiry by dATE
+		return resourceEnquiryDAO.findAllResourceEnquiryByDate(startDate, endDate);
+	}
+
+	@Override
+	@Transactional
+	public int findAllResourceEnquiryCount() {
+		// TODO Auto-generated method stub
+		return resourceEnquiryDAO.findAllResourceEnquiryCount();
+	}
+
+	@Override
+	@Transactional
+	public List<ResourceEnquiry> findAllResourceEnquiryByDateAndStatus(String startDate, String endDate, int status) {
+		// TODO Auto-generated method stub
+		return resourceEnquiryDAO.findAllResourceEnquiryByDateAndStatus(startDate, endDate, status);
+	}
 }

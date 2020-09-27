@@ -5,6 +5,7 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,10 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dao.LoginDAO;
 import com.example.demo.entity.Login;
 import com.example.demo.entity.LoginInfo;
+import com.example.demo.entity.LoginResponse;
 import com.example.demo.service.LoginService;
 
 
 // Class to create login API
+
 @CrossOrigin
 @RestController
 @RequestMapping("/api")
@@ -37,18 +40,18 @@ public class LoginController {
 	}
 	
 	//Just checking working of system
-	/*@GetMapping("/")
+	@GetMapping("/")
 	List<Login> getLogin() {
 		
 		
 		LoginDAO loginServiceImplementation;
 		return loginService.getL();
 	} 
-	*/
+	
 	
 	@PostMapping(
 			  value = "/login", consumes = "application/json")
-	String LoginMethod(@RequestBody LoginInfo logininfo )
+	LoginResponse LoginMethod(@RequestBody LoginInfo logininfo )
 	{
 	     String userName=logininfo.getUsername();
 	     String password=logininfo.getPassword();

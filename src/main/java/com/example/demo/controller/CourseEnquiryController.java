@@ -1,10 +1,13 @@
 package com.example.demo.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entity.CourseEnquiry;
 import com.example.demo.service.CourseEnquiryService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/enquiry")
 public class CourseEnquiryController {
@@ -76,11 +80,25 @@ public class CourseEnquiryController {
 	}
 	
 	@GetMapping("/course/filter/date/{startDate}/{endDate}")
-	public ResponseEntity findByDateCourseEnquiry(@PathVariable("startDate") Date startDate,@PathVariable("endDate") Date endDate) {
+	public ResponseEntity findByDateCourseEnquiry(@PathVariable("startDate") String startDate,@PathVariable("endDate") String endDate) {
 		List<CourseEnquiry> courseEnquiry = courseEnquiryService.findAllCourseEnquiryByDate(startDate, endDate);
+		if(startDate == null || endDate == null)
+			return ResponseEntity.notFound().build();
+		return ResponseEntity.ok(courseEnquiry);
+	}
+	
+	@GetMapping("/course/filter/date/{startDate}/{endDate}/{status}")
+	public ResponseEntity findByDateAndStatusCourseEnquiry(@PathVariable("startDate") String startDate,@PathVariable("endDate") String endDate,@PathVariable int status) {
+		List<CourseEnquiry> courseEnquiry = courseEnquiryService.findAllCourseEnquiryByDateAndStatus(startDate, endDate, status);
 		if(startDate == null || endDate == null )
 			return ResponseEntity.notFound().build();
 		return ResponseEntity.ok(courseEnquiry);
+	}
+	
+	@GetMapping("/course/count")
+	public ResponseEntity<Integer> findCourseEnquiryCount() {
+		int count = courseEnquiryService.findAllCourseEnquiryCount();
+		return ResponseEntity.ok(count);
 	}
 	
 }

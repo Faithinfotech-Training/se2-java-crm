@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entity.Qualification;
 import com.example.demo.service.QualificationService;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class QualificationController {

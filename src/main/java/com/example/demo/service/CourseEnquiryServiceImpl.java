@@ -71,9 +71,23 @@ public class CourseEnquiryServiceImpl implements CourseEnquiryService {
 	
 	@Override
 	@Transactional
-	public List<CourseEnquiry> findAllCourseEnquiryByDate(Date startDate,Date endDate) {
+	public List<CourseEnquiry> findAllCourseEnquiryByDate(String startDate,String endDate) {
 		//find enquiry by dATE
 		return courseEnquiryDAO.findAllCourseEnquiryByDate(startDate, endDate);
+	}
+
+	@Override
+	@Transactional
+	public int findAllCourseEnquiryCount() {
+		// TODO Auto-generated method stub
+		return courseEnquiryDAO.findAllCourseEnquiryCount();
+	}
+
+	@Override
+	@Transactional
+	public List<CourseEnquiry> findAllCourseEnquiryByDateAndStatus(String startDate, String endDate, int status) {
+		// TODO Auto-generated method stub
+		return courseEnquiryDAO.findAllCourseEnquiryByDateAndStatus(startDate, endDate, status);
 	}
 	
 }
