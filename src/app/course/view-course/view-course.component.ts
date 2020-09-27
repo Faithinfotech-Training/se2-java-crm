@@ -4,6 +4,7 @@ import { Course } from 'src/app/models/course.model';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';  
 import { Template } from '@angular/compiler/src/render3/r3_ast';
 import { ToastrService } from 'ngx-toastr';
+import { OrderModule, OrderPipe } from 'ngx-order-pipe'
 
 @Component({
   selector: 'app-view-course',
@@ -17,12 +18,33 @@ export class ViewCourseComponent implements OnInit {
   ActivateViewCourse:boolean=false;
   SelectedCourse:Course;
   AddEditModelTitle:String;
+  config:any;
 
-  constructor(public courseService:CourseService,private modalService: BsModalService,private toastrService:ToastrService) { }
+  constructor(public courseService:CourseService,private modalService: BsModalService,private toastrService:ToastrService,
+    private orderPipe:OrderPipe) { }
 
   ngOnInit(): void {
     this.GetCourseList();
+    this.GetOrder();
+    this.GetPagination();
   }
+  
+  GetPagination(){
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1,
+     // totalItems: this.courseService.list.count
+    };
+  }
+
+  GetOrder(){
+    this.courseService.sortedlist = this.orderPipe.transform(this.courseService
+      .list, 'info.name');
+      console.log("Sorted List");
+    //console.log(this.courseService.sortedlist);
+  }
+  
+  
   GetCourseList(){
     console.log('Get courses list called');
     this.courseService.getCourse().subscribe(res=>{
@@ -67,28 +89,31 @@ export class ViewCourseComponent implements OnInit {
     );
   }
 
+  setOrder(value: string) {
+    if (this.courseService.order === value) {
+      this.courseService.reverse = !this.courseService.reverse;
+    }
+    this.courseService.order = value;
+  }
+
+  pageChanged(event){
+    this.config.currentPage = event;
+  }
+
   deleteClick(course:Course){
     if(confirm("Are you sure you want to delete")){
       this.courseService.deleteCourse(course.courseId).subscribe(res=>{
           let responseObj:any=res;
-          console.log(res);
-          
           if(responseObj.status==500){
           
             this.toastrService.error('error','Error while Deleting');
           }
           else
-          {
-             
+          {  
               this.toastrService.success('Success','Course Deleted Successfully');
-          }
-
-
-          this.GetCourseList();
+          } 
       });
-      
-  
-      
+      this.GetCourseList();
     }
   }
 }

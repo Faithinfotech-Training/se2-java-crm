@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ResourceComponent } from './resource/resource.component';
@@ -14,6 +13,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CourseComponent } from './course/course.component';
 import { AddEditCourseComponent } from './course/add-edit-course/add-edit-course.component';
 import { ViewCourseComponent } from './course/view-course/view-course.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter'
+import { OrderModule } from 'ngx-order-pipe'
+import { NgxPaginationModule } from 'ngx-pagination'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +36,10 @@ import { ViewCourseComponent } from './course/view-course/view-course.component'
     ModalModule.forRoot(),
     FormsModule,
     ToastrModule.forRoot(),
+    Ng2SearchPipeModule,
+    FormsModule,
+    OrderModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

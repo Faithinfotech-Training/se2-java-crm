@@ -22,19 +22,43 @@
             </div>
 
 
+            <div class="container">
+
+                <div class="search-course">
+                    <input class="form-control" type="text"
+                    name="search" [(ngModel)]="courseService.search" autocomplete="off"
+                    placeholder="Search for course">
+
+                </div>
+           
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">Course Name</th>
-                        <th scope="col">Fees</th>
-                        <th scope="col">Duration</th>
-                        <th scope="col">Domain</th>
-                        <th scope="col">Status</th>
-                        <th scope="col" class="fit"></th>
+                        <th [class.active]="courseService.order === 'info.name'"
+                        (click)="setOrder('info.name')">Course Name <span [hidden]="courseService.reverse">▼</span
+                            ><span [hidden]="!courseService.reverse"> ▲</span></th>
+                        <th [class.active]="courseService.order === 'info.name'"
+                        (click)="setOrder('info.name')" scope="col">Fees <span [hidden]="courseService.reverse">▼</span
+                            ><span [hidden]="!courseService.reverse"> ▲</span></th>
+                        <th [class.active]="courseService.order === 'info.name'"
+                        (click)="setOrder('info.name')" scope="col">Duration <span [hidden]="courseService.reverse">▼</span
+                            ><span [hidden]="!courseService.reverse"> ▲</span></th>
+                        <th [class.active]="courseService.order === 'info.name'"
+                        (click)="setOrder('info.name')" scope="col">Domain <span [hidden]="courseService.reverse">▼</span
+                            ><span [hidden]="!courseService.reverse"> ▲</span></th>
+                        <th [class.active]="courseService.order === 'info.name'"
+                        (click)="setOrder('info.name')" scope="col">Status <span [hidden]="courseService.reverse">▼</span
+                            ><span [hidden]="!courseService.reverse"> ▲</span></th>
+                        <th [class.active]="courseService.order === 'info.name'"
+                        (click)="setOrder('info.name')" scope="col" class="fit"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr name="fieldName" ngDefaultControl *ngFor="let course of courseService.list" [(ngModel)]="courseService.list">
+                    <tr name="fieldName" ngDefaultControl *ngFor="let course of courseService.list | 
+                    filter:courseService.search | 
+                    orderBy: courseService.order:courseService.reverse:'case-insensitive'|
+                    paginate: config"
+                     [(ngModel)]="courseService.list">
                         <td>
                             <a href="javascript:void(0)" (click)="openModelWithClass(template,course)">
                                 {{course.courseName}}
@@ -67,7 +91,8 @@
 
                 </tbody>
             </table>
-
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+        </div>
         </div>
     </div>
 </div>
@@ -157,6 +182,19 @@
                     value="{{SelectedCourse.domain.domainName}}">
             </div>
         </div>
+
+         <!-- Qualification -->
+         <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Qualification</label>
+            <div class="col-sm-8">
+                <div *ngFor="let qualifica of SelectedCourse.qualifications">
+                <input type="text" readonly class="form-control" id="Qualifications"
+                    value="{{ qualifica.qualificationName }} ( {{ qualifica.percentage }} )" >
+                    <p></p>
+                </div>
+            </div>
+        </div>
+
     </div>
 </ng-template>
 
