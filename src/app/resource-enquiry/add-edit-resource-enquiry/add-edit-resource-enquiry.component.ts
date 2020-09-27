@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm,FormControl,Validators } from '@angular/forms';
 import {  ResourceEnquiryService } from "src/app/services/resource-enquiry.service";
 import { ToastrService } from 'ngx-toastr';
+import { ResourceEnquiry } from 'src/app/models/resource-enquiry.model';
+import { ResourceEnquiryComponent } from '../resource-enquiry.component';
 
 
 @Component({
@@ -12,12 +14,13 @@ import { ToastrService } from 'ngx-toastr';
 export class AddEditResourceEnquiryComponent implements OnInit {
 
   
- 
+  resourceEnquiry:ResourceEnquiry;
   StatusTypeList:any=[];
   ResourceList:any=[];
 
   control: FormControl = new FormControl('',Validators.min(1));
-
+  customer: any;
+  resource:any;
   constructor(public resourceEnquiryService:ResourceEnquiryService,private toastrService:ToastrService) { }
 
   ngOnInit(): void {
@@ -32,17 +35,47 @@ export class AddEditResourceEnquiryComponent implements OnInit {
     this.resourceEnquiryService.formData={
       resourceEnquiryId:null,
       enquiryDate:null,
-      resourceId:null,
-      customerId:null,
-      statusId:null
+      resourcesId:{
+        
+      },
+      customerId:{customerName:'',
+      
+      customerPercentage:'',
+      customerDOB:'',
+      customerPhoneNumber:'',
+      customerQualification:'',
+      leadSource:''},
+      status:{statusId:1,statusValue:"Interested"}
     }
   }
   
   insertResourceEnquiry(form:NgForm){
-    console.log('Insert Clicked',form.value);
+    this.resource=form.value["resource"];
     
-    this.resourceEnquiryService.addResourceEnquiry(form.value).subscribe(res=>{
-      
+    this.customer={
+      customerName:form.value["customerId.customerName"],
+    customerEmailId:form.value["customerId.customerEmailId"],
+    customerDOB:'1998-01-30',
+    customerQualification:'NA',
+    customerPercentage:'0',
+    customerPhoneNumber:form.value["customerId.customerPhoneNumber"],
+    leadSource:'Website'};
+
+
+    this.resourceEnquiry={
+    resourceEnquiryId:null,
+    enquiryDate:"2020-10-10",
+    resourcesId:this.resource,
+    customerId:this.customer,
+    status:{statusId:1,statusValue:"Received"}
+  }
+
+
+  console.log('Insert Clicked',this.resourceEnquiry);
+  
+  console.log(this.resourceEnquiry.resourcesId);
+
+  this.resourceEnquiryService.addResourceEnquiry(this.resourceEnquiry).subscribe(res=>{
       this.toastrService.success('Success','Resource Enquiry Added Successfully');
       this.resetform(form);
       this.refreshList();
@@ -71,7 +104,7 @@ export class AddEditResourceEnquiryComponent implements OnInit {
   updateResourceEnquiry(form:NgForm){
 
     console.log('Update clicked',form.value);
-
+    
     this.resourceEnquiryService.updateResourceEnquiry(form.value).subscribe(res=>{
       this.toastrService.success('Success','Resource Enquiry Updated Successfully');
       this.resetform(form);

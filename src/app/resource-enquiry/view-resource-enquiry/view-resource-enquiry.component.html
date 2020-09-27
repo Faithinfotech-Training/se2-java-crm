@@ -1,7 +1,9 @@
+
+ 
  <div class="table-block">
     <div class="card">
         <div class="card-body">
-
+            
             <div class="action-buttons">
                 <div class="btn-group-custom" role="group" aria-label="Basic example">
 
@@ -18,7 +20,13 @@
                     </button>
 
                 </div>
-
+                <div class="text-right">
+                    <label for="search" class="col-sm-2 col-form-label" style="text-align: right;">Search</label>
+                   
+                    <input type="text" [(ngModel)]="searchValue" class="form-control" id="search"/>
+                   </div>
+                
+                
             </div>
 
 
@@ -34,14 +42,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr name="fieldName" ngDefaultControl *ngFor="let resourceEnquiry of resourceEnquiryService.list" [(ngModel)]="resourceEnquiryService.list">
+                    <tr name="fieldName" ngDefaultControl *ngFor="let resourceEnquiry of resourceEnquiryService.list | paginate: { itemsPerPage: 5, currentPage: p } | searchFilterResourceEnquiry:searchValue" [(ngModel)]="resourceEnquiryService.list">
                         <th scope="row" name="resourceEnquiryId">{{resourceEnquiry.resourceEnquiryId}}</th>
                         <td>{{resourceEnquiry.enquiryDate}}</td>
-                        <td>{{resourceEnquiry.customerId.customerName}}</td>
-                        <td>{{resourceEnquiry.resourcesId.resourceName}}</td>
-                        <td>{{resourceEnquiry.status.statusValue}}</td>
+                        <td>{{resourceEnquiry.customerId?.customerName}}</td>
+                        <td>{{resourceEnquiry.resourcesId?.resourceName}}</td>
+                        <td>{{resourceEnquiry.status?.statusValue}}</td>
                         <td class="fit">
-
+                            
                             <a class="btn btn-light" (click)="openAddEditModel(AddEditTemplate,resourceEnquiry)">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square"
                                     fill="grey" xmlns="http://www.w3.org/2000/svg">
@@ -63,7 +71,9 @@
 
                 </tbody>
             </table>
-
+            <div class="text-center">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
         </div>
     </div>
 </div>

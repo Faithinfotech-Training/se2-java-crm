@@ -17,8 +17,8 @@ export class ViewResourceEnquiryComponent implements OnInit {
   ActivateViewResourceEnquiry:boolean=false;
   SelectedResourceEnquiry:ResourceEnquiry;
   AddEditModalTitle:String;
-
-
+  p: number = 1;
+  searchValue:string;
   constructor(public resourceEnquiryService:ResourceEnquiryService,private modalService: BsModalService,private toastrService:ToastrService) { }
 
   ngOnInit(): void {
