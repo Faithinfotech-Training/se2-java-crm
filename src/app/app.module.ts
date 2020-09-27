@@ -24,6 +24,10 @@ import { LoginComponent } from './login/login.component';
 import { LoginServiceService } from './services/login-service.service';
 import { AdminComponent } from './admin/admin.component';
 import { ManagerComponent } from './manager/manager.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import { OrderModule } from 'ngx-order-pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +55,10 @@ import { ManagerComponent } from './manager/manager.component';
     HttpClientModule,
     ModalModule.forRoot(),
     FormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
+    OrderModule
   ],
   providers: [LoginServiceService],
   bootstrap: [AppComponent],
