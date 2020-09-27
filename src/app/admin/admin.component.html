@@ -26,12 +26,17 @@
       </ul>
     </div>
   <!--/nav-->
-    <button class="btn btn-success" routerLink="resource">Manage Resources</button>
-    <button class="btn btn-success m-1" routerLink="course">Courses Resources</button>
-    <button class="btn btn-success m-1" routerLink="course-enquiry">Courses Enquiry</button>
-
-
+ 
   
   </div>
 
-    <router-outlet name="admin"></router-outlet>
+    <div class="row">
+      <div class="col-sm-2">
+<app-sidebar></app-sidebar>
+      </div>
+      <div class="col-sm-10">
+  <router-outlet></router-outlet>
+      </div>
+    </div>
+    
+  

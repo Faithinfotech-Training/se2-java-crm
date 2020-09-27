@@ -9,7 +9,7 @@ import { CourseEnquiry } from './course-enquiry.model';
 })
 export class ResourceEnquiryServiceService {
 
-  readonly  APIUrl = "http://localhost:9091/api/";
+  readonly  APIUrl = "http://localhost:8000/api/";
   form:CourseEnquiry;
   constructor(private http:HttpClient) { }
 

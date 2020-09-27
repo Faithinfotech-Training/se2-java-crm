@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ResourceComponent } from './resource/resource.component';
@@ -24,6 +24,12 @@ import { LoginComponent } from './login/login.component';
 import { LoginServiceService } from './services/login-service.service';
 import { AdminComponent } from './admin/admin.component';
 import { ManagerComponent } from './manager/manager.component';
+import { SidebarComponent } from './admin/sidebar/sidebar.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import { OrderModule } from 'ngx-order-pipe';
+import { ResourceEnquirySummaryComponent } from './manager/resource-enquiry-summary/resource-enquiry-summary.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +48,9 @@ import { ManagerComponent } from './manager/manager.component';
     AboutUsComponent,
     LoginComponent,
     AdminComponent,
-    ManagerComponent
+    ManagerComponent,
+    SidebarComponent,
+    ResourceEnquirySummaryComponent
     
   ],
   imports: [
@@ -52,9 +60,13 @@ import { ManagerComponent } from './manager/manager.component';
     HttpClientModule,
     ModalModule.forRoot(),
     FormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
+    OrderModule 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }

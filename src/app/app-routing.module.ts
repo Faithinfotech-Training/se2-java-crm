@@ -9,16 +9,19 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { ManagerComponent } from './manager/manager.component';
 import { AuthGaurdService } from './services/auth-guard.service';
-
+import {  ResourceEnquirySummaryComponent } from "./manager/resource-enquiry-summary/resource-enquiry-summary.component";
 const routes: Routes = [
-  {path:'admin/resource',component:ResourceComponent},
-  {path:'admin/course',component:CourseComponent},
-  {path:'resource',component:ResourceComponent},
-  {path:'admin/course-enquiry', component: CourseEnquiryComponent},
+  {path:'admin',component:AdminComponent,canActivate:[AuthGaurdService],
+    children:[
+      {path:'resource',component:ResourceComponent},
+      {path:'course',component:CourseComponent},
+      {path:'course-enquiry', component: CourseEnquiryComponent},
+    ]
+  },  
   {path:'home',component:HomepageComponent},
   {path:'aboutus',component:AboutUsComponent},
-  {path:'admin',component:AdminComponent,canActivate:[AuthGaurdService]},
-  {path:'login',component:LoginComponent},
+  {path:'',component:LoginComponent},
+  {path:'resource-enquiry-summary',component:ResourceEnquirySummaryComponent},
   {path:'manager', component:ManagerComponent,canActivate:[AuthGaurdService]},
 ];
 

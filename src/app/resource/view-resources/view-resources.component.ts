@@ -4,6 +4,7 @@ import { Resource } from 'src/app/models/resource.model';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';  
 import { Template } from '@angular/compiler/src/render3/r3_ast';
 import { ToastrService } from 'ngx-toastr';
+import { OrderPipe } from 'ngx-order-pipe';
 
 @Component({
   selector: 'app-view-resources',
@@ -17,13 +18,35 @@ export class ViewResourcesComponent implements OnInit {
   ActivateViewResources:boolean=false;
   SelectedResource:Resource;
   AddEditModalTitle:String;
+  p:any;
+  term:any;
+  orderString:any;
+  sortButtonToogle:boolean=false;
+  order:any;
+  reverseToggle:Boolean;
 
-  constructor(public resourceService:ResourceService,private modalService: BsModalService,private toastrService:ToastrService) { }
+  constructor(public resourceService:ResourceService,private modalService: BsModalService,private toastrService:ToastrService,private orderPipe: OrderPipe) { }
 
   ngOnInit(): void {
    
     this.GetResourcesList();
+    this.orderString="resourceName";
+    this.reverseToggle=false;
+    // this.GetOrder();
   }
+
+  toggleSort(){
+    this.reverseToggle=!this.reverseToggle;
+    this.sortButtonToogle=!this.sortButtonToogle;
+  }
+
+  GetOrder(){
+    this.resourceService.list = this.orderPipe.transform(this.resourceService
+      .list, 'info.Name');
+
+  }
+
+
 
   GetResourcesList(){
    
