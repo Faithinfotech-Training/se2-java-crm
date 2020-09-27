@@ -151,7 +151,6 @@ export class ShowCourseEnquiryComponent implements OnInit {
   }
 
   openModelWithClass(template:TemplateRef<any>,courseEnquiry:CourseEnquiry){
-
     this.SelectedCourseEnquiry=courseEnquiry;
     this.modalRef=this.modalService.show(
       template,
@@ -199,14 +198,12 @@ export class ShowCourseEnquiryComponent implements OnInit {
         },
         enquiryDate: new Date().toISOString().slice(0, 10).replace('T', ' '),
         enquiryStatus:this.enquiryStatus
-  
       };
     }else{
       this.AddEditModalTitle="Edit a Course Enquiry";  
       console.log(Object.assign({},courseEnquiry));
       this.service.form = Object.assign({},courseEnquiry);
       console.log("trial--->",this.service.form);
-      
     }
     
     console.log(courseEnquiry);

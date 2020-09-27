@@ -19,3 +19,29 @@
     color:blue;
     font-size: 24px;
 }
+body {
+    background-color: #e3eaf3;
+}
+.blue-color{
+    color: #6800bf !important;
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family: Arial;
+}
+
+.logo{
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family: Arial;
+}
+.logo-text-1{
+    border:1px #6800bf solid;
+    padding:5px;
+    color:white;
+    background-color: #6800bf;
+    border-radius:5px;
+}
+.logo-text-2{
+    color:#6800bf;
+    margin-left: 8px;
+}

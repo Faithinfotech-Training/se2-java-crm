@@ -12,17 +12,29 @@ import { AuthGaurdService } from './services/auth-guard.service';
 import { ManagerSalespipelineComponent } from './manager-salespipeline/manager-salespipeline.component';
 
 
+import {  ResourceEnquirySummaryComponent } from "./manager/resource-enquiry-summary/resource-enquiry-summary.component";
 const routes: Routes = [
-  {path:'resource',component:ResourceComponent},
-  {path:'course',component:CourseComponent},
-  {path:'course-enquiry', component: CourseEnquiryComponent},
+  {path:'admin',component:AdminComponent,canActivate:[AuthGaurdService],
+    children:[
+      {path:'resource',component:ResourceComponent},
+      {path:'course',component:CourseComponent},
+      {path:'course-enquiry', component: CourseEnquiryComponent},
+    ]
+  },  
   {path:'home',component:HomepageComponent},
   {path:'aboutus',component:AboutUsComponent},
   {path:'admin',component:AdminComponent,canActivate:[AuthGaurdService]},
   {path:'login',component:LoginComponent},
   {path:'manager', component:ManagerComponent,canActivate:[AuthGaurdService]},
-  {path:'managersalespipeline',component:ManagerSalespipelineComponent}
+  {path:'managersalespipeline',component:ManagerSalespipelineComponent},
 
+  {path:'',component:LoginComponent},
+  
+  {path:'manager', component:ManagerComponent,canActivate:[AuthGaurdService],
+    children:[
+      {path:'resource-enquiry-summary',component:ResourceEnquirySummaryComponent},
+    ]
+  },
 ];
 
 @NgModule({

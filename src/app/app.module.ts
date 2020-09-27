@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
 import { ResourceComponent } from './resource/resource.component';
 import { ViewResourcesComponent } from './resource/view-resources/view-resources.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -28,6 +29,11 @@ import { ManagerSalespipelineComponent } from './manager-salespipeline/manager-s
 import { ResourseSalesComponent } from './manager-salespipeline/resourse-sales/resourse-sales.component';
 import { CourseSalesComponent } from './manager-salespipeline/course-sales/course-sales.component';
 import { ChartsModule } from 'ng2-charts';
+import { SidebarComponent } from './admin/sidebar/sidebar.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import { OrderModule } from 'ngx-order-pipe';
+import { ResourceEnquirySummaryComponent } from './manager/resource-enquiry-summary/resource-enquiry-summary.component';
 
 @NgModule({
   declarations: [
@@ -50,17 +56,23 @@ import { ChartsModule } from 'ng2-charts';
     ManagerComponent,
     ManagerSalespipelineComponent,
     ResourseSalesComponent,
-    CourseSalesComponent
+    CourseSalesComponent,
+    SidebarComponent,
+    ResourceEnquirySummaryComponent
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     HttpClientModule,
     ChartsModule,
     ModalModule.forRoot(),
     FormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
+    OrderModule
   ],
   providers: [LoginServiceService],
   bootstrap: [AppComponent],
