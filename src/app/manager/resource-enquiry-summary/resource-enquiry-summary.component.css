@@ -1,3 +1,6 @@
+body {
+    background-color: #e3eaf3;
+}
 .summary-view{
     justify-content: center;
 }
@@ -15,6 +18,13 @@
     font-size:1.2em;
     font-family: Arial, Helvetica, sans-serif;
     border-color: inherit;
+}
+.date-range-text{
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: bold;
+    margin:10px 0px;
+    margin-bottom: 50px;
 }
 .color-green{
  
@@ -39,7 +49,7 @@
     text-align: center;
 }
 .date-input{
-    width:200px;
+    width:300px;
 }
 .date-selector{
     align-items: center;

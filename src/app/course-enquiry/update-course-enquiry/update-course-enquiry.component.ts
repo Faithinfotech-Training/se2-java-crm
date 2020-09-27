@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { CourseEnquiryService } from 'src/app/services/course-enquiry.service';
 
 @Component({
   selector: 'app-update-course-enquiry',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdateCourseEnquiryComponent implements OnInit {
 
-  constructor() { }
+  constructor(public service:CourseEnquiryService) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(form:NgForm){
+    console.log(form.value);
   }
   
   

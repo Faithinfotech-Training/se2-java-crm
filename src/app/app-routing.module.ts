@@ -21,8 +21,12 @@ const routes: Routes = [
   {path:'home',component:HomepageComponent},
   {path:'aboutus',component:AboutUsComponent},
   {path:'',component:LoginComponent},
-  {path:'resource-enquiry-summary',component:ResourceEnquirySummaryComponent},
-  {path:'manager', component:ManagerComponent,canActivate:[AuthGaurdService]},
+  
+  {path:'manager', component:ManagerComponent,canActivate:[AuthGaurdService],
+    children:[
+      {path:'resource-enquiry-summary',component:ResourceEnquirySummaryComponent},
+    ]
+  },
 ];
 
 @NgModule({

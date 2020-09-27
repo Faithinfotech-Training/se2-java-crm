@@ -25,9 +25,23 @@ export class ResourceEnquirySummaryService {
   getResourcesTypeList():Observable<any[]>{
     return this.http.get<any>(`${environment.API_URL}/resourceTypes`);
   }
+// Get resource enquiry list and filter by date
+  getResourceEnquiryFilterByDate(date1,date2):Observable<any[]>{
+    return this.http.get<any>(`${environment.API_URL}/enquiry/resource/filter/date/${date1}/${date2}`);
+  }
+// Get resource enquiry list and filter by date and status
+  getResourceEnquiryFilterByStatus(date1,date2,status):Observable<any[]>{
+    return this.http.get<any>(`${environment.API_URL}/enquiry/resource/filter/date/${date1}/${date2}/${status}`);
+  }
+// Get resources count
+  getResourceEnquiryCount():Observable<any[]>{
+    return this.http.get<any>(`${environment.API_URL}/enquiry/resource/count`);
+
+  }
 
 
 }
+
 
 export class ResourceEnquiry{
   resourceEnquiryId:any;

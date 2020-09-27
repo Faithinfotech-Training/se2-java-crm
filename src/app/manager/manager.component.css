@@ -3,3 +3,43 @@
     background-color:#563d7c;
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
 }
+body {
+    background-color: #e3eaf3;
+}
+.sidebar{
+    background-color: #6800bf;
+    height: 100vh;
+    position: absolute;
+
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: fit-content; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+}
+.logo-holder{
+    margin:0px auto;
+    margin-bottom:30px;
+}
+.logo{
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: Arial;
+    margin:20px auto;
+}
+.logo-text-1{
+    border:1px #6800bf solid;
+    padding:5px;
+    color:white;
+    background-color: #6800bf;
+    border-radius:5px;
+   
+}
+.btn-white{
+    color:#6800bf;
+    background-color: white;
+}
+

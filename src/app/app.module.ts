@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
 import { ResourceComponent } from './resource/resource.component';
 import { ViewResourcesComponent } from './resource/view-resources/view-resources.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -55,17 +56,17 @@ import { ResourceEnquirySummaryComponent } from './manager/resource-enquiry-summ
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
+    RouterModule,
     HttpClientModule,
     ModalModule.forRoot(),
     FormsModule,
     ToastrModule.forRoot(),
     Ng2SearchPipeModule,
     NgxPaginationModule,
-    OrderModule 
+    OrderModule
   ],
-  providers: [],
+  providers: [LoginServiceService],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
