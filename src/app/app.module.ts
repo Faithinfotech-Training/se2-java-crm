@@ -24,6 +24,11 @@ import { LoginComponent } from './login/login.component';
 import { LoginServiceService } from './services/login-service.service';
 import { AdminComponent } from './admin/admin.component';
 import { ManagerComponent } from './manager/manager.component';
+import { ManagerSalespipelineComponent } from './manager-salespipeline/manager-salespipeline.component';
+import { ResourseSalesComponent } from './manager-salespipeline/resourse-sales/resourse-sales.component';
+import { CourseSalesComponent } from './manager-salespipeline/course-sales/course-sales.component';
+import { ChartsModule } from 'ng2-charts';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,13 +47,17 @@ import { ManagerComponent } from './manager/manager.component';
     AboutUsComponent,
     LoginComponent,
     AdminComponent,
-    ManagerComponent
+    ManagerComponent,
+    ManagerSalespipelineComponent,
+    ResourseSalesComponent,
+    CourseSalesComponent
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ChartsModule,
     ModalModule.forRoot(),
     FormsModule,
     ToastrModule.forRoot()

@@ -1,0 +1,39 @@
+<p text-align="center">Course Enquiry Salespipeline</p>
+<!--table class="table table-hover">
+    <thead>
+        <tr>
+           
+            <th>StatusName</th>
+            <th>Count</th>
+        </tr>
+    </thead>
+    
+    <tr *ngFor="let status of service.courseStatusLIst">
+    
+    <td>{{status.statusValue}}</td>
+    <td>{{status.statusCount}}</td>
+
+    </tr>
+    
+    </table-->
+
+    <div class="container">
+      
+        
+          <canvas baseChart width="1000px" height="800px"
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [chartType]="pieChartType"
+                [options]="pieChartOptions"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"
+                 [legend]="pieChartLegend"
+              [colors]="pieChartColors" >
+            </canvas>
+            
+   </div>
+   <br/>
+   <div>
+       Total Number of Course Enquiries: {{course_enquiry_count}}
+   </div>
+    

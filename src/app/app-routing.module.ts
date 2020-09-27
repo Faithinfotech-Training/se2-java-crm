@@ -9,6 +9,7 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { ManagerComponent } from './manager/manager.component';
 import { AuthGaurdService } from './services/auth-guard.service';
+import { ManagerSalespipelineComponent } from './manager-salespipeline/manager-salespipeline.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,8 @@ const routes: Routes = [
   {path:'admin',component:AdminComponent,canActivate:[AuthGaurdService]},
   {path:'login',component:LoginComponent},
   {path:'manager', component:ManagerComponent,canActivate:[AuthGaurdService]},
+  {path:'managersalespipeline',component:ManagerSalespipelineComponent}
+
 ];
 
 @NgModule({
