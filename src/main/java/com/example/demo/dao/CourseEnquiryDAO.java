@@ -3,6 +3,7 @@ package com.example.demo.dao;
 import java.util.List;
 
 import com.example.demo.entity.CourseEnquiry;
+import com.example.demo.entity.CourseEnquiryStatusDTO;
 
 public interface CourseEnquiryDAO {
 	
@@ -26,7 +27,7 @@ public interface CourseEnquiryDAO {
 
 	public List<CourseEnquiry> viewCourseSalesPipeline();
 
-	public List<CourseEnquiry> viewCourseTable();
+	public List<CourseEnquiryStatusDTO> viewCourseTable();
 
 
 	

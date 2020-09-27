@@ -8,4 +8,6 @@ import com.example.demo.entity.ResourceEnquiry;
 public interface RSalespipeline {
 
 	public List<ResourceEnquiry> viewResourcesSalesPipeline();
+
+	public List<ResourceEnquiry> viewResourcesLeadSalesPipeline();
 }

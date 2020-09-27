@@ -7,8 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="resourceEnquiryStatus")
+@Entity(name="resource_enquiry_status")
+@Table(name="resource_enquiry_status")
 public class ResourceEnquiryStatus {
 	
 	@Id
@@ -48,7 +48,7 @@ public class ResourceEnquiryStatus {
 
 	@Override
 	public String toString() {
-		return "EnquiryStatus [statusId=" + statusId + ", statusValue=" + statusValue + "]";
+		return "ResourceEnquiryStatus [statusId=" + statusId + ", statusValue=" + statusValue + "]";
 	}
 
 }
