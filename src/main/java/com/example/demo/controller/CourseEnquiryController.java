@@ -90,6 +90,7 @@ public class CourseEnquiryController {
 	@GetMapping("/course/filter/date/{startDate}/{endDate}/{status}")
 	public ResponseEntity findByDateAndStatusCourseEnquiry(@PathVariable("startDate") String startDate,@PathVariable("endDate") String endDate,@PathVariable int status) {
 		List<CourseEnquiry> courseEnquiry = courseEnquiryService.findAllCourseEnquiryByDateAndStatus(startDate, endDate, status);
+		System.out.println(startDate+" "+endDate);
 		if(startDate == null || endDate == null )
 			return ResponseEntity.notFound().build();
 		return ResponseEntity.ok(courseEnquiry);

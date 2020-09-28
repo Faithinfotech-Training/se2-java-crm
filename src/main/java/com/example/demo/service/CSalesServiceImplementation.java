@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.demo.dao.CourseEnquiryDAO;
 import com.example.demo.dao.CourseEnquiryDAOImpl;
 import com.example.demo.entity.CourseEnquiry;
+import com.example.demo.entity.CourseLeadResponseDTO;
 
 @Service
 public class CSalesServiceImplementation implements CSalespipelineService {
@@ -31,5 +32,11 @@ public class CSalesServiceImplementation implements CSalespipelineService {
 	public List<CourseEnquiry> viewCourseSalesPipeline() {
 	
 		return courseEnquiryDAO.viewCourseSalesPipeline();
+	}
+
+	@Override
+	public List<CourseLeadResponseDTO> viewCourseLeadsSalesPipeline() {
+		
+		return courseEnquiryDAO.viewCourseLeadSalesPipeline();
 	}
 }

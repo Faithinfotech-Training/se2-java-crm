@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.CourseEnquiry;
 import com.example.demo.entity.CourseEnquiryStatusDTO;
+import com.example.demo.entity.CourseLeadResponseDTO;
 import com.example.demo.entity.EnquiryStatus;
 
 @Repository
@@ -221,7 +222,7 @@ int totalNumberOfEnquiries;
 	@Override
 	public List<CourseEnquiry> findAllCourseEnquiryByDate(String startDate, String endDate) {
 		// Create a query
-		Query myQuery = entityManager.createQuery("from course_enquiry where trunc(ENQUIRYDATE)BETWEEN TO_DATE( '"
+		Query myQuery = entityManager.createQuery("from course_enquiry where trunc(ENQUIRYDATE) BETWEEN TO_DATE( '"
 				+ startDate + " ') and TO_DATE('" + endDate + "' )");
 		// trunc(ENQUIRYDATE)BETWEEN TO_DATE('20-09-27') and TO_DATE('20-09-27')
 		// Extract the results
@@ -259,6 +260,57 @@ int totalNumberOfEnquiries;
 
 		// Return the course enquiries list count
 		return count;
+	}
+
+	@Override
+	public List<CourseLeadResponseDTO> viewCourseLeadSalesPipeline() {
+	
+		int totalCount=0;
+		HashMap<String,Integer> statusMapper=new LinkedHashMap<String,Integer>();
+		List<CourseLeadResponseDTO> list=new ArrayList<CourseLeadResponseDTO>();
+		Query query = entityManager.createQuery("select count(*) from course_enquiry ");
+		
+		 totalCount = ((Number)query.getSingleResult()).intValue();
+	
+		  query= entityManager.createQuery("from course_enquiry");
+			
+			// Extract the result from database
+			List<CourseEnquiry> enquiryList=query.getResultList();
+
+		 enquiryList.get(0).getCustomerId().getLeadSource();
+		 
+		 
+		 for(int i=0;i<totalCount;i++)
+			{
+			
+				CourseEnquiry courseenquiry=enquiryList.get(i);
+				
+			String lead=courseenquiry.getCustomerId().getLeadSource();
+				
+			if(statusMapper.containsKey(lead))
+			{
+				statusMapper.put(lead, statusMapper.get(lead)+1);
+							
+			}
+			else
+			{
+				statusMapper.put(lead,0);
+			}
+			  
+			System.out.println(courseenquiry);
+			}
+		 for(Map.Entry m:statusMapper.entrySet()){  
+				
+				CourseLeadResponseDTO dto=new CourseLeadResponseDTO();
+		           System.out.println("Status Value:"+m.getKey()+" "+"Status Count:"+m.getValue());  
+		           dto.setLead(m.getKey().toString());
+		           dto.setLeadCount(Integer.parseInt(m.getValue().toString()));
+		           dto.setTotalCount(totalCount);
+		          list.add(dto); 
+		  
+		          }  	 
+		 
+		return list;
 	}
 
 }

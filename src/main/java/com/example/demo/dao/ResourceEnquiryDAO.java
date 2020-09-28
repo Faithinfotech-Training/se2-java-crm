@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.entity.CourseLeadResponseDTO;
 import com.example.demo.entity.ResourceEnquiry;
 import com.example.demo.entity.ResourceEnquiryStatusDTO;
 
@@ -40,6 +41,8 @@ public interface ResourceEnquiryDAO  {
 	List<ResourceEnquiry> findAllResourceEnquiryByDate(String startDate, String endDate);
 
 	int findAllResourceEnquiryCount();
+
+	List<CourseLeadResponseDTO> viewLeadSalesPipeline();
 
 	
 	

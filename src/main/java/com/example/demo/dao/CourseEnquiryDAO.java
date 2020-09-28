@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.example.demo.entity.CourseEnquiry;
 import com.example.demo.entity.CourseEnquiryStatusDTO;
+import com.example.demo.entity.CourseLeadResponseDTO;
 
 public interface CourseEnquiryDAO {
 	
@@ -38,6 +39,8 @@ public interface CourseEnquiryDAO {
 
 	//list all course enquiry by dates and status
 	public List<CourseEnquiry> findAllCourseEnquiryByDateAndStatus(String startDate, String endDate, int status);
+
+	public List<CourseLeadResponseDTO> viewCourseLeadSalesPipeline();
 
 	
 	

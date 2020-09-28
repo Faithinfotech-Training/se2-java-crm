@@ -35,5 +35,6 @@ public class CourseTableChartController {
 		 return courseTableChartService.viewCourseTable();
 		
 		} 
+		
 
 }
