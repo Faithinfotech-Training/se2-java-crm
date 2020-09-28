@@ -13,15 +13,15 @@ export class ResourceEnquirySummaryService {
   list:ResourceEnquiry[];
 
   constructor(private http:HttpClient) { }
-
+// Get Resources enquiry list
   getResourcesEnquiryList():Observable<any[]>{
     return this.http.get<any>(`${environment.API_URL}/enquiry/resource`);
   }
-
+// Get resources enquiry status list 
   getResourcesEnquiryStatusList():Observable<any[]>{
     return this.http.get<any>(`${environment.API_URL}/enquiry/resourcestatus`);
   }
-
+// Get List of all resource types
   getResourcesTypeList():Observable<any[]>{
     return this.http.get<any>(`${environment.API_URL}/resourceTypes`);
   }

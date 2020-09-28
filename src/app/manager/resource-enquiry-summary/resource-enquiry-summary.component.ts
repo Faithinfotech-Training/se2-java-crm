@@ -48,8 +48,8 @@ export class ResourceEnquirySummaryComponent implements OnInit {
   onSubmit(form:NgForm){
     let date1:any = new Date(form.value.date1);
     let date2:any = new Date(form.value.date2);
-    let date1Str=date1.toLocaleDateString('en-GB', { day: 'numeric', month: 'numeric', year: '2-digit' }).split(' ').join('-');
-    let date2Str=date2.toLocaleDateString('en-GB', { day: 'numeric', month: 'numeric', year: '2-digit' }).split(' ').join('-');
+    let date1Str=date1.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: '2-digit' }).split(' ').join('-');
+    let date2Str=date2.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: '2-digit' }).split(' ').join('-');
     console.log(date1Str);
     console.log(date2Str);
     this.date1=date1Str;
