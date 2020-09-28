@@ -11,6 +11,11 @@ export class CourseService {
 
   formData : Course
   list : Course[];
+  sortedlist : Course[];
+  search;
+  order: string = 'info.name';
+  reverse: boolean = false;
+
   constructor(private http:HttpClient) { }
 
   getCourse():Observable<any[]>{

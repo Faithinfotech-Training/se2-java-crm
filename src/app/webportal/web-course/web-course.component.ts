@@ -7,11 +7,11 @@ import { ToastrService } from 'ngx-toastr';
 import { OrderModule, OrderPipe } from 'ngx-order-pipe'
 
 @Component({
-  selector: 'app-view-course',
-  templateUrl: './view-course.component.html',
-  styleUrls: ['./view-course.component.css']
+  selector: 'app-web-course',
+  templateUrl: './web-course.component.html',
+  styleUrls: ['./web-course.component.css']
 })
-export class ViewCourseComponent implements OnInit {
+export class WebCourseComponent implements OnInit {
 
   modalRef: BsModalRef;  
   ModelTitle:string;
@@ -74,20 +74,20 @@ export class ViewCourseComponent implements OnInit {
     );
   }
 
-  openAddEditModel(template:TemplateRef<any>,course:Course){
+  // openAddEditModel(template:TemplateRef<any>,course:Course){
 
-    if(course===null){
-      this.AddEditModelTitle="Insert a new Course";
-    }else{
-      this.AddEditModelTitle="Edit Course";
-    }
-    this.courseService.formData = Object.assign({},course);
+  //   if(course===null){
+  //     this.AddEditModelTitle="Insert a new Course";
+  //   }else{
+  //     this.AddEditModelTitle="Edit Course";
+  //   }
+  //   this.courseService.formData = Object.assign({},course);
 
 
-    this.modalRef=this.modalService.show(
-      template,
-    );
-  }
+  //   this.modalRef=this.modalService.show(
+  //     template,
+  //   );
+  // }
 
   setOrder(value: string) {
     if (this.courseService.order === value) {
@@ -100,22 +100,22 @@ export class ViewCourseComponent implements OnInit {
     this.config.currentPage = event;
   }
 
-  deleteClick(course:Course){
-    if(confirm("Are you sure you want to delete")){
-      this.courseService.deleteCourse(course.courseId).subscribe(res=>{
-          let responseObj:any=res;
-          if(responseObj.status==500){
+  // deleteClick(course:Course){
+  //   if(confirm("Are you sure you want to delete")){
+  //     this.courseService.deleteCourse(course.courseId).subscribe(res=>{
+  //         let responseObj:any=res;
+  //         if(responseObj.status==500){
           
-            this.toastrService.error('error','Error while Deleting');
-          }
-          else
-          {  
-              this.toastrService.success('Success','Course Deleted Successfully');
-          } 
-      });
-      this.GetCourseList();
-    }
-  }
+  //           this.toastrService.error('error','Error while Deleting');
+  //         }
+  //         else
+  //         {  
+  //             this.toastrService.success('Success','Course Deleted Successfully');
+  //         } 
+  //     });
+  //     this.GetCourseList();
+  //   }
+  // }
 }
 
 

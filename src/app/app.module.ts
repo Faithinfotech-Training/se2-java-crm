@@ -34,12 +34,14 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { OrderModule } from 'ngx-order-pipe';
 import { ResourceEnquirySummaryComponent } from './manager/resource-enquiry-summary/resource-enquiry-summary.component';
+import { CourseEnquirySummaryComponent } from './manager/course-enquiry-summary/course-enquiry-summary.component';
 import { WebportalComponent } from './webportal/webportal.component';
 // import { CourseLeadComponent } from './manager-salespipeline/course-lead/course-lead.component';
 //import { ResourceLeadComponent } from './manager-salespipeline/resource-lead/resource-lead.component';
 import { LeadSalespipelineComponent } from './manager/lead-salespipeline/lead-salespipeline.component';
 import { CourseleadComponent } from './manager/lead-salespipeline/courselead/courselead.component';
 import { ResourceleadComponent } from './manager/lead-salespipeline/resourcelead/resourcelead.component';
+import { WebCourseComponent } from './webportal/web-course/web-course.component';
 
 
 @NgModule({
@@ -66,10 +68,14 @@ import { ResourceleadComponent } from './manager/lead-salespipeline/resourcelead
     CourseSalesComponent,
     SidebarComponent,
     ResourceEnquirySummaryComponent,
+    CourseEnquirySummaryComponent,
+    ResourceEnquirySummaryComponent,
     LeadSalespipelineComponent,
     CourseleadComponent,
     ResourceleadComponent,
     WebportalComponent,
+    WebCourseComponent,
+   
     
   ],
   imports: [
@@ -81,6 +87,10 @@ import { ResourceleadComponent } from './manager/lead-salespipeline/resourcelead
     ModalModule.forRoot(),
     FormsModule,
     ToastrModule.forRoot(),
+    Ng2SearchPipeModule,
+    FormsModule,
+    OrderModule,
+    NgxPaginationModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
     OrderModule

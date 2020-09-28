@@ -11,9 +11,11 @@ import { ManagerComponent } from './manager/manager.component';
 import { AuthGaurdService } from './services/auth-guard.service';
 import { ManagerSalespipelineComponent } from './manager-salespipeline/manager-salespipeline.component';
 
+import { CourseEnquirySummaryComponent } from "./manager/course-enquiry-summary/course-enquiry-summary.component"
 import {  ResourceEnquirySummaryComponent } from "./manager/resource-enquiry-summary/resource-enquiry-summary.component";
 import { LeadSalespipelineComponent } from './manager/lead-salespipeline/lead-salespipeline.component';
 import { WebportalComponent } from './webportal/webportal.component';
+import { WebCourseComponent } from './webportal/web-course/web-course.component';
 const routes: Routes = [
   {path:'admin',component:AdminComponent,canActivate:[AuthGaurdService],
     children:[
@@ -30,10 +32,14 @@ const routes: Routes = [
  // {path:'managersalespipeline',component:ManagerSalespipelineComponent},
 
   {path:'',component:LoginComponent},
-  {path:'webportal',component:WebportalComponent},
+  {path:'webportal',component:WebportalComponent,
+    children:[
+      {path:'web-course',component:WebCourseComponent},
+    ]},
   {path:'manager', component:ManagerComponent,canActivate:[AuthGaurdService],
     children:[
       {path:'resource-enquiry-summary',component:ResourceEnquirySummaryComponent},
+      {path:'course-enquiry-summary',component:CourseEnquirySummaryComponent},
      { path:'managersalespipeline',component:ManagerSalespipelineComponent},
      {path:'leadsalespipeline',component:LeadSalespipelineComponent}
     ]

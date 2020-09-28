@@ -55,6 +55,17 @@ export class AddEditCourseComponent implements OnInit {
 
 
   insertCourse(form:NgForm){
+    
+    console.log(form.value.qualifications);
+
+    // Create a empty array to hold qualifications
+    let list:Array<any> = [];
+    // Add qualification selected from <select> to list
+    list.push(form.value.qualifications);
+
+    // Assign qualification list to 'qualification'
+    form.value.qualifications=list;
+    
     console.log('Insert Clicked',form.value);
     
     this.courseService.addCourse(form.value).subscribe(res=>{
@@ -76,7 +87,6 @@ export class AddEditCourseComponent implements OnInit {
     form.value.courseId=this.courseService.formData.courseId;
     if(form.value.courseId==null){
       this.insertCourse(form);
-      
     }
     else{
       this.updateCourse(form);
