@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'se2-angular-crm';
+  isCollapsed = true;
+
 }

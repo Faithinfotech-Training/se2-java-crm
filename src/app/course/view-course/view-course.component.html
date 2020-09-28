@@ -37,20 +37,11 @@
                         <th [class.active]="courseService.order === 'info.name'"
                         (click)="setOrder('info.name')">Course Name <span [hidden]="courseService.reverse">▼</span
                             ><span [hidden]="!courseService.reverse"> ▲</span></th>
-                        <th [class.active]="courseService.order === 'info.name'"
-                        (click)="setOrder('info.name')" scope="col">Fees <span [hidden]="courseService.reverse">▼</span
-                            ><span [hidden]="!courseService.reverse"> ▲</span></th>
-                        <th [class.active]="courseService.order === 'info.name'"
-                        (click)="setOrder('info.name')" scope="col">Duration <span [hidden]="courseService.reverse">▼</span
-                            ><span [hidden]="!courseService.reverse"> ▲</span></th>
-                        <th [class.active]="courseService.order === 'info.name'"
-                        (click)="setOrder('info.name')" scope="col">Domain <span [hidden]="courseService.reverse">▼</span
-                            ><span [hidden]="!courseService.reverse"> ▲</span></th>
-                        <th [class.active]="courseService.order === 'info.name'"
-                        (click)="setOrder('info.name')" scope="col">Status <span [hidden]="courseService.reverse">▼</span
-                            ><span [hidden]="!courseService.reverse"> ▲</span></th>
-                        <th [class.active]="courseService.order === 'info.name'"
-                        (click)="setOrder('info.name')" scope="col" class="fit"></th>
+                        <th scope="col">Fees </th>
+                        <th scope="col">Duration </th>
+                        <th scope="col">Domain </th>
+                        <th scope="col">Status </th>
+                        <th scope="col" class="fit"></th>
                     </tr>
                 </thead>
                 <tbody>

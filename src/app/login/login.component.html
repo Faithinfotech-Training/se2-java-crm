@@ -1,0 +1,96 @@
+<!-- <div class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+
+
+  <div class="navbar-brand mr-0 mr-md-2">GeoInfoTech
+    </div>
+  
+  </nav-->
+<!-- </div> --> 
+
+
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+    
+  <div class="nav-item active">
+
+      <a class="logo">
+          <span class="logo-text-1">
+              GEO
+          </span> 
+          <span class="logo-text-2"> 
+              Infotech
+          </span>
+      </a>
+      
+  </div> 
+  <ul class="navbar-nav ml-auto">
+      
+    
+    
+    
+    <li class="nav-item">
+      <a class="nav-link" routerLink="login">Login</a>
+    </li>
+ 
+    <li class="nav-item">
+      <a class="nav-link" routerLink="home" >Home Page</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="aboutus">About Us</a>
+    </li>
+   
+
+ 
+  
+  </ul>
+</nav>
+
+
+
+<div class="container-sm p-5 my-3 border logincontainer" style="height:500px"  >
+  <div class="form-row userlogin" >
+      User Login
+  </div>
+ <br/>
+ <div class="card-body">
+   <form  #loginform="ngForm" (ngSubmit)="checkLogin()" novalidate>
+   
+     <div class="form-row">
+      <!--div class="form-group col">
+     <label class="control-label col-sm-6" >Username:</label>
+    </div-->
+     <div class="form-group col" [class.has-error]="nameControl.invalid" [class.has-success]="nameControl.valid">
+      <input class="control-label " type="text"  placeholder="Please enter your user name" name="username" class="form-control" [(ngModel)]="username" #nameControl="ngModel" required>
+      <br/><span class="alert alert-danger alert-dismissible fade show" *ngIf="nameControl.invalid && nameControl.touched">
+      User name is required.
+   </span>
+    </div>
+<div>
+</div>
+    </div>
+   <br/>
+    <div class="form-row">
+     
+      <div class="form-group col" [class.has-error]="nameControl.invalid" [class.has-success]="nameControl.valid">
+ <input class="control-label col-sm-6" type="password" class="form-control"  placeholder="Please enter your  password"  name="password" [(ngModel)]="password" #passwordControl="ngModel"  required>
+ <br/><span class="alert alert-danger alert-dismissible fade show" *ngIf="passwordControl.invalid && passwordControl.touched" >
+ Password is required.
+</span> 
+</div>
+ </div>
+<br/>
+ <div class="form-row" class="text-center">
+ <button (click)=checkLogin() class="btn btn-success btn-lg" >  Login
+ </button>
+ </div>
+<br/>
+ <div class="alert alert-danger alert-dismissible fade show" *ngIf="showErrorMessage">
+  <strong>Error!</strong>  Invalid username or password,Please try again!
+</div>
+
+</form>
+</div>
+</div>
+
+
+
+
