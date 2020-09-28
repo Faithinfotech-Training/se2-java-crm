@@ -1,0 +1,76 @@
+<div class="modal-body">
+
+    <form #form="ngForm" (submit)="onSubmit(form)">
+
+        <fieldset ngModelGroup="customerId">    
+<!--Customer Name Input-->
+ <div class="form-group row">
+    <label class="col-sm-4 col-form-label">Name</label>
+    <div class="col-sm-8">
+        <input type="text" class="form-control" id="customerName" name="customerName" #customerName="ngModel"
+            [(ngModel)]="resourceEnquiryService.formData.customerId.customerName" class="form-control" required minlength="4">
+
+            <div *ngIf="customerName.invalid && (customerName.dirty || customerName.touched)"
+            class="alert alert-danger mt-1">
+            <div *ngIf="customerName.errors.required">
+                Name is required.
+            </div>
+            <div *ngIf="customerName.errors.minlength">
+                Name must be at least 4 characters long.
+            </div>
+        </div>
+      
+
+        </div>
+    </div>
+  <!--Customer Email Input-->
+ <div class="form-group row">
+    <label class="col-sm-4 col-form-label">Email</label>
+    <div class="col-sm-8">
+        <input type="email" class="form-control" id="customerEmailId" name="customerEmailId" #customerEmailId="ngModel"
+            [(ngModel)]="resourceEnquiryService.formData.customerId.customerEmailId" class="form-control" required  minlength="8" maxlength="20">
+            
+            <div *ngIf="customerEmailId.invalid && (customerEmailId.dirty || customerEmailId.touched)"
+            class="alert alert-danger mt-1">
+            <div *ngIf="customerEmailId.errors.required">
+                Customer Email Id is required.
+            </div>
+            <div *ngIf="customerEmailId.errors.minlength">
+                Customer Email Id must be at least 10 characters long.
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    <!--Customer Phone Number Input-->
+ <div class="form-group row">
+    <label class="col-sm-4 col-form-label">Phone Number</label>
+    <div class="col-sm-8">
+        <input type="text" class="form-control" id="customerPhoneNumber" name="customerPhoneNumber" #customerPhoneNumber="ngModel"
+            [(ngModel)]="resourceEnquiryService.formData.customerId.customerPhoneNumber" class="form-control" required>
+       
+       <!-- Validation -->
+       <div *ngIf="customerPhoneNumber.touched && customerPhoneNumber.invalid" class="alert alert-danger">
+        <div *ngIf="customerPhoneNumber.errors.required">Mobile Number is required.</div>
+        <div *ngIf="customerPhoneNumber.errors.pattern">Please, Enter 10 digit Mobile Number.</div>
+        </div> 
+       
+        </div>
+    </div>
+</fieldset>
+    <div class="form-group row" *ngIf="resourceEnquiryService.formData.resourceEnquiryId!=null">
+        <label class="col-sm-4 col-form-label">Resource Enquiry Status</label>
+        <div class="col-sm-8">
+            <select type="text"  name="status" class="form-control" id="status"
+                 #status="ngModel" [(ngModel)]="resourceEnquiryService.formData.status" required>
+                <option *ngFor="let status of StatusTypeList" [ngValue]="status">
+                    {{status.statusValue}}
+                </option>
+            </select>
+        </div>
+    </div>
+        <div class="form-group row">
+            <button class="btn btn-block btn-success mt-5" type="submit" [disabled]="form.invalid">Submit</button>
+        </div>
+    </form>
+</div>
