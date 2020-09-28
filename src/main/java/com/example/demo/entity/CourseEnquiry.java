@@ -30,7 +30,7 @@ public class CourseEnquiry {
 	private Customer customerId;
 
 	//Course Id of the course the enquiry is about
-	@ManyToOne(cascade=CascadeType.PERSIST, targetEntity=Course.class)
+	@ManyToOne(cascade=CascadeType.MERGE, targetEntity=Course.class)
 	@JoinColumn(name="course_id")
 	private Course courseId;
 
@@ -39,7 +39,7 @@ public class CourseEnquiry {
 	private Date enquiryDate;
 
 	// Status of the enquiry
-	@ManyToOne(cascade=CascadeType.PERSIST, targetEntity=EnquiryStatus.class)
+	@ManyToOne(cascade=CascadeType.REFRESH, targetEntity=EnquiryStatus.class)
 	@JoinColumn(name="status_id")
 	private EnquiryStatus enquiryStatus;
 

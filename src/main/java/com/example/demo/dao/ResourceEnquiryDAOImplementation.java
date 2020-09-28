@@ -90,7 +90,6 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 
 	// Method to delete a specific resource
 	@Override
-
 	public ResourceEnquiry deleteByResourceEnquiryId(int resourceEnquiryId) {
 
 		ResourceEnquiry resourceEnquiry = (ResourceEnquiry) entityManager.find(ResourceEnquiry.class,
