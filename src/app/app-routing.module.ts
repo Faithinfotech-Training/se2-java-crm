@@ -16,6 +16,7 @@ import { CourseEnquirySummaryComponent } from "./manager/course-enquiry-summary/
 import {  ResourceEnquirySummaryComponent } from "./manager/resource-enquiry-summary/resource-enquiry-summary.component";
 import { LeadSalespipelineComponent } from './manager/lead-salespipeline/lead-salespipeline.component';
 import { WebportalComponent } from './webportal/webportal.component';
+import { WebCourseComponent } from './webportal/web-course/web-course.component';
 const routes: Routes = [
   {path:'resource',component:ResourceComponent},
   {path:'course',component:CourseComponent},
@@ -36,7 +37,10 @@ const routes: Routes = [
  // {path:'managersalespipeline',component:ManagerSalespipelineComponent},
 
   {path:'',component:LoginComponent},
-  {path:'webportal',component:WebportalComponent},
+  {path:'webportal',component:WebportalComponent,
+    children:[
+      {path:'web-course',component:WebCourseComponent},
+    ]},
   {path:'manager', component:ManagerComponent,canActivate:[AuthGaurdService],
     children:[
       {path:'resource-enquiry-summary',component:ResourceEnquirySummaryComponent},
