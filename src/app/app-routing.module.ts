@@ -31,6 +31,7 @@ const routes: Routes = [
       {path:'resource',component:ResourceComponent},
       {path:'course',component:CourseComponent},
       {path:'course-enquiry', component: CourseEnquiryComponent},
+      {path:'update-course-enquiry', component:UpdateCourseEnquiryComponent}
     ]
   },  
   {path:'home',component:HomepageComponent},

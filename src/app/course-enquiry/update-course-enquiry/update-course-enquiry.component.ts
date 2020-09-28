@@ -14,7 +14,7 @@ import { CourseEnquiryService } from 'src/app/services/course-enquiry.service';
 })
 export class UpdateCourseEnquiryComponent implements OnInit {
   // table headings to make it configurable
-  tableHeadings:any = ['Course Name', 'Name', 'Email Id', 'Enquiry Date', 'Enquiry Status'];
+  tableHeadings:any = ['Name', 'Email Id', 'Enquiry Date', 'Enquiry Status'];
   // pagination configurations variable
   config: any;
   term:any;
@@ -45,14 +45,19 @@ export class UpdateCourseEnquiryComponent implements OnInit {
       this.refreshCourseEnquiryStatusList()
       this.refreshCourseEnquiryListByStatus()
       this.refreshSelect()
-      this.order="";
+      this.order="courseId.courseName";
       this.term="";
-      this.sortedCollection = this.orderPipe.transform(this.service.CourseEnquiryList, 'order');
+      this.sortedCollection = this.orderPipe.transform(this.service.CourseEnquiryList, this.order);
     }
   
   refreshCourseEnquiryListByStatus(){
       this.service.getCourseEnquiryListByStatus().subscribe(res=>{
         this.service.CourseEnquiryListByStatus = res;
+        this.config = {
+          itemsPerPage: 5,
+          currentPage: 1,
+          totalItems: this.service.CourseEnquiryListByStatus.length
+        };
       });  
     }
   
@@ -93,11 +98,7 @@ export class UpdateCourseEnquiryComponent implements OnInit {
         console.log(data);
         this.service.CourseEnquiryList=data;
         console.log(data);
-        this.config = {
-          itemsPerPage: 5,
-          currentPage: 1,
-          totalItems: this.service.CourseEnquiryList.length
-        };
+
       });
   }
   // reset form function
@@ -122,10 +123,11 @@ export class UpdateCourseEnquiryComponent implements OnInit {
     console.log("Before" ,this.CourseEnquiryStatus);
     dataItem.enquiryStatus = this.CourseEnquiryStatus;
     this.service.updateCourseEnquiry(dataItem).subscribe( res=>{
-      console.log(res);
+      
       this.toastrService.success('Success','Course Enquiry Inserted Successfully');
       this.refreshCourseEnquiryList();
-      this.refreshSelect()
+      this.refreshCourseEnquiryListByStatus();
+      this.refreshSelect();
     });
   }
 

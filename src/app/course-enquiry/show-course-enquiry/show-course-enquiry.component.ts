@@ -19,11 +19,12 @@ export class ShowCourseEnquiryComponent implements OnInit {
   tableHeadings:any = ['Course Name', 'Name', 'Email Id', 'Enquiry Date', 'Enquiry Status'];
   // config var declaration for pagination 
   config: any;
+
   term:any;
-  collection = { count: 60, data: [] };
+  collection = { count: 60, data: [] };  
   order: string = 'courseId.courseName';
   reverse: boolean = false;
-  sortedCollection: any[];
+sortedCollection: any[];
   modalRef: BsModalRef;  
   ModelTitle:string;
   ActivateViewCourseEnquiry:boolean=false;
@@ -48,11 +49,25 @@ export class ShowCourseEnquiryComponent implements OnInit {
   ngOnInit(): void {
       this.refreshCourseEnquiryList()
       this.refreshCourseEnquiryStatusList()
-      this.order="";
       this.term="";
-      this.sortedCollection = this.orderPipe.transform(this.service.CourseEnquiryList, 'order');
+      this.GetPagination();
     }
-  // logging function for debugging
+    
+    GetPagination(){
+      this.config = {
+        itemsPerPage: 10,
+        currentPage: 1,
+       // totalItems: this.courseService.list.count
+      };
+    }
+  
+    GetOrder(){
+      console.log(this.service.CourseEnquiryList);
+      this.sortedCollection = this.orderPipe.transform(this.service.CourseEnquiryList, this.order);
+      this.service.CourseEnquiryList = this.sortedCollection;
+      console.log("Sorted,", this.sortedCollection);
+    }
+    // logging function for debugging
   log(txt:any){
      console.log(txt);
    }
@@ -66,6 +81,7 @@ export class ShowCourseEnquiryComponent implements OnInit {
       this.reverse = !this.reverse;
     }
     this.order = value;
+    this.GetOrder();
   }
   // refreshing course enquiry status list  
   refreshCourseEnquiryStatusList(){
@@ -84,7 +100,7 @@ export class ShowCourseEnquiryComponent implements OnInit {
         this.service.CourseEnquiryList=data;
         console.log(data);
         this.config = {
-          itemsPerPage: 5,
+          itemsPerPage: 10,
           currentPage: 1,
           totalItems: this.service.CourseEnquiryList.length
         };
@@ -191,7 +207,7 @@ export class ShowCourseEnquiryComponent implements OnInit {
         customerId:{
           customerId:null,
           customerName:'',
-          customerEmailId:'kaustubh@gmail.com',
+          customerEmailId:'',
           customerPercentage:'',
           customerDOB:'',
           customerPhoneNumber:'',

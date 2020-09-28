@@ -86,8 +86,6 @@ export class AddCourseEnquiryComponent implements OnInit {
       this.resetForm(form);
       this.service.getCourseEnquiryList().subscribe(res=>{
         this.service.CourseEnquiryList = res;
-        window.location.reload();
-    
       });
     });
   }
@@ -101,7 +99,6 @@ export class AddCourseEnquiryComponent implements OnInit {
       this.resetForm(form);
       this.service.getCourseEnquiryList().subscribe(res=>{
         this.service.CourseEnquiryList = res;
-        window.location.reload();
       });
     });
   }
