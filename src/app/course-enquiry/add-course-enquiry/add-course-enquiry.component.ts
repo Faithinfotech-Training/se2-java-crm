@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CourseEnquiry } from 'src/app/models/course-enquiry.model';
@@ -12,7 +12,7 @@ import { CourseService } from 'src/app/services/course.service';
   styleUrls: ['./add-course-enquiry.component.css']
 })
 export class AddCourseEnquiryComponent implements OnInit {
-
+  emailPattern:any = '/([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+/'; 
   courseEnquiry:CourseEnquiry;
   courseList:any;
   enquiryStatus:any;
@@ -29,7 +29,13 @@ export class AddCourseEnquiryComponent implements OnInit {
       };  
     this.refreshCourseEnquiryStatusList();  
     this.getCourseList();
-
+    // this.formGroup = new FormGroup({
+    //   lastName: new FormControl(this.formGroup.customerId.customerEmailId, [
+    //      Validators.required,
+    //      Validators.pattern(this.emailPattern),
+    //   ]),
+    //   });
+    // this.formGroup.enable;
 }
   refreshCourseEnquiryStatusList(){
     this.service.getCourseEnquiryStatusList().subscribe(res=>{

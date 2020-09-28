@@ -10,7 +10,13 @@ import { CourseEnquiry } from '../models/course-enquiry.model';
 export class CourseEnquiryService {
   order:any;
   reverse:any;
+  courseEnquiryStatus: any = {
+    statusId: 1,
+    statusValue: 'Received'
+  };
   CourseEnquiryList:any[];
+  courseEnquiryStatusList:any[];
+  CourseEnquiryListByStatus:any[];
   readonly  APIUrl = "http://localhost:9091/api/";
   form:CourseEnquiry;
   constructor(private http:HttpClient) { }
@@ -38,5 +44,8 @@ export class CourseEnquiryService {
     return this.http.get<any>(`${this.APIUrl}enquiry/coursestatus`);
   }
 
+  getCourseEnquiryListByStatus(){
+    return this.http.get<any>(`${this.APIUrl}enquiry/course/filter/` + this.courseEnquiryStatus.statusId);
+  }
 
 }

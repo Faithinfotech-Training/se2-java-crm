@@ -58,7 +58,8 @@ import { OrderModule } from 'ngx-order-pipe';
     ToastrModule.forRoot(),
     Ng2SearchPipeModule,
     NgxPaginationModule,
-    OrderModule
+    OrderModule,
+    BrowserAnimationsModule
   ],
   providers: [LoginServiceService],
   bootstrap: [AppComponent],
