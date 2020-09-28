@@ -79,8 +79,8 @@
                 <div class="status-tabs">
                     <div>
                         <div class="btn-group" *ngFor="let status of enquiryStatusList">
-    
-                            <button type="button" class="btn btn-primary" (click)="selectStatus(status.statusId)">{{status.statusValue}} 
+                                {{log(status.statusValue + " : "+status.statusId)}}
+                            <button type="button" class="btn btn-primary" (click)="selectStatus(status.statusId)">{{status.statusValue}}
                                 {{getCountOfStatusType(status.statusId)}}
                             </button>
                         </div>
@@ -129,7 +129,7 @@
                                        
                                         <td>{{enquiry.courseId.domain.domainName}}</td>
                         
-                                         <td>{{enquiry.status.statusValue}}</td>
+                                         <td>{{enquiry.enquiryStatus.statusValue}}</td>
                                     </tr>
                 
                 

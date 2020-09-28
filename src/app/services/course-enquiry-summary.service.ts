@@ -42,7 +42,7 @@ export class CourseEnquiry{
   registrationId:any;
   customerId:any;
   courseId:any;
-  status:any;
+  enquiryStatus:any;
   enquiryDate:any;
 
 }

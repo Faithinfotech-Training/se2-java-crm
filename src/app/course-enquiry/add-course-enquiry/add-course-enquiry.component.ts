@@ -12,7 +12,8 @@ import { CourseService } from 'src/app/services/course.service';
   styleUrls: ['./add-course-enquiry.component.css']
 })
 export class AddCourseEnquiryComponent implements OnInit {
-  emailPattern:any = '/([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+/'; 
+  //email validation regex
+  emailPattern:any = '([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+'; 
   courseEnquiry:CourseEnquiry;
   courseList:any;
   enquiryStatus:any;
@@ -29,24 +30,22 @@ export class AddCourseEnquiryComponent implements OnInit {
       };  
     this.refreshCourseEnquiryStatusList();  
     this.getCourseList();
-    // this.formGroup = new FormGroup({
-    //   lastName: new FormControl(this.formGroup.customerId.customerEmailId, [
-    //      Validators.required,
-    //      Validators.pattern(this.emailPattern),
-    //   ]),
-    //   });
-    // this.formGroup.enable;
+
 }
+  // refresh the course enquiry status list
   refreshCourseEnquiryStatusList(){
     this.service.getCourseEnquiryStatusList().subscribe(res=>{
       this.enquiryStatusList = res;
     });
   }
+  // update the courses list for addition drop down
   getCourseList(){
     this.courseService.getCourse().subscribe(data=>{
       this.courseList = data;
     });
   }
+
+  //reset Form when added or updated.
   resetForm(form?:NgForm){
     if(form!=null)
     {
@@ -54,16 +53,18 @@ export class AddCourseEnquiryComponent implements OnInit {
       form.resetForm();
     }
   }
+  // log function for debugging purposes
   log(txt:any)
   {
     console.log(txt);
   }
+  // onsubmit check the options and add or update
   onSubmit(form:NgForm){
-    console.log(form.value);
-    let formObject:any = form.value;
-    console.log(formObject);
+
+    //update the registration Id
     form.value.registrationId = this.service.form.registrationId; 
-   if(this.service.form.registrationId!=null) 
+   // If not null update the course enquiry else add
+    if(this.service.form.registrationId!=null) 
     {
       form.value.enquiryStatus = this.service.form.enquiryStatus;
       form.value.customerId.customerId = this.service.form.customerId.customerId;
@@ -72,10 +73,10 @@ export class AddCourseEnquiryComponent implements OnInit {
     else{
       form.value.enquiryStatus = this.enquiryStatus;
       this.insertCourseEnquiry(form);
-    
     }
   }
   
+  // Update the course enquiry using service
   updateCourseEnquiry(form:NgForm){
     console.log("UpdateCourseEnquiry", form.value);
     this.service.updateCourseEnquiry(form.value).subscribe(res=>{
@@ -85,10 +86,12 @@ export class AddCourseEnquiryComponent implements OnInit {
       this.resetForm(form);
       this.service.getCourseEnquiryList().subscribe(res=>{
         this.service.CourseEnquiryList = res;
+        window.location.reload();
+    
       });
     });
   }
-
+  // Add course enquiry using post using service
   insertCourseEnquiry(form:NgForm){
     console.log(form.value);
     this.service.addCourseEnquiry(form.value).subscribe(res=>{
@@ -98,6 +101,7 @@ export class AddCourseEnquiryComponent implements OnInit {
       this.resetForm(form);
       this.service.getCourseEnquiryList().subscribe(res=>{
         this.service.CourseEnquiryList = res;
+        window.location.reload();
       });
     });
   }

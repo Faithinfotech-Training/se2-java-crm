@@ -1,28 +1,24 @@
-<h3> Course Enquiry List</h3>
+<h3> Resource Enquiry List</h3>
 <div class="table-block">
     <div class="card">
         <div class="card-body">
             
             <div class="form-group">
-                <!-- Search field -->
                 <div class="row"> 
                 <label class="label">Input Search Term</label>
-                <input class="form-control" type="text" [(ngModel)]="term">
-
+                <input class="form-control" type="text" [(ngModel)]="searchValue">
                 </div>
-                <!-- Enquiry Status Drop Down By which the enquiries will be shown-->
                 <div>
                     <label class="label"> Enquiry Status</label>
-                    <select  [(ngModel)] = "service.courseEnquiryStatus" (change)="refreshSelect()"
+                    <select  [(ngModel)] = "resourceEnquiryService.resourceEnquiryStatus" (change)="refreshSelect()"
                         class="form-control">
-                        <option selected disabled [ngValue]="service.courseEnquiryStatus">{{service.courseEnquiryStatus.statusValue}}</option>
-                        <option *ngFor="let enquiryStatusName of service.courseEnquiryStatusList"
+                        <option selected disabled [ngValue]="resourceEnquiryService.resourceEnquiryStatus">{{resourceEnquiryService.resourceEnquiryStatus.statusValue}}</option>
+                        <option *ngFor="let enquiryStatusName of resourceEnquiryService.resourceEnquiryStatusList"
                          [ngValue]="enquiryStatusName">{{enquiryStatusName.statusValue}}
-                        </option>
+                    </option>
                     </select>
                 </div>
             </div>
-            <!-- Displaying the heading -->
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -30,34 +26,30 @@
                         <th scope="col" class="fit"></th>
                     </tr>
                 </thead>
-                <!-- Table body -->
                 <tbody>
-                    <tr name="fieldName" ngDefaultControl *ngFor="let courseEnquiry of service.CourseEnquiryListByStatus |  filter:term |
-                    orderBy: order | paginate: config"
-                     [(ngModel)]="service.CourseEnquiryListByStatus">
-                        <td>{{courseEnquiry.courseId.courseName}}</td>
-                        <td>{{courseEnquiry.customerId.customerName}}</td>
-                        <td>{{courseEnquiry.customerId.customerEmailId}}</td>
-                        <td>{{courseEnquiry.enquiryDate}}</td>
+                    <tr name="fieldName" ngDefaultControl *ngFor="let resourceEnquiry of resourceEnquiryService.resourceEnquiryListByStatus | paginate: { itemsPerPage: 5, currentPage: p }| searchFilterResourceEnquiry:searchValue"
+                     
+                     [(ngModel)]="resourceEnquiryService.resourceEnquiryListByStatus">
+                        <td>{{resourceEnquiry.resourcesId.resourceName}}</td>
+                        <td>{{resourceEnquiry.customerId.customerName}}</td>
+                        <td>{{resourceEnquiry.customerId.customerEmailId}}</td>
+                        <td>{{resourceEnquiry.enquiryDate}}</td>
                         <td>
-                            <!-- Enquiry Status Drop Down for updation -->
                             <select type="text" (change)="changeOption($event.target.value)" required>
-                                    <!-- <option selected disabled>{{courseEnquiry.enquiryStatus.statusValue}}</option> -->
-                                    <ng-container *ngFor="let enquiryStatus of CourseEnquiryStatusList" >
-                                    <option disabled selected [ngValue]="enquiryStatus" *ngIf="courseEnquiry.enquiryStatus.statusValue==enquiryStatus.statusValue">
+                                    <ng-container *ngFor="let enquiryStatus of resourceEnquiryStatusList" >
+                                    <option disabled selected [ngValue]="enquiryStatus" *ngIf="resourceEnquiry.status.statusValue==enquiryStatus.statusValue">
                                             {{enquiryStatus.statusValue}}
                                     </option>
-                                    <option [ngValue]="enquiryStatus" *ngIf="courseEnquiry.enquiryStatus.statusValue!=enquiryStatus.statusValue">
+                                    <option [ngValue]="enquiryStatus" *ngIf="resourceEnquiry.status.statusValue!=enquiryStatus.statusValue">
                                         {{enquiryStatus.statusValue}}
                                     </option>
                                     </ng-container>
                         
                             </select>
                         </td>
-                        <!-- Update button -->
                         <td class="fit">
 
-                            <a class="btn btn-light" (click)="onClickUpdate(courseEnquiry)">
+                            <a class="btn btn-light" (click)="onClickUpdate(resourceEnquiry)">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square"
                                     fill="grey" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -70,7 +62,8 @@
                     </tr>
                 </tbody>
             </table>
-            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+            <pagination-controls (pageChange)="p= $event"></pagination-controls>
         </div>
     </div>
 </div>
+
