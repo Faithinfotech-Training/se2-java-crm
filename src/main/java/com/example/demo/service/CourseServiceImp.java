@@ -47,4 +47,10 @@ public class CourseServiceImp implements CourseService {
 		courseDAO.deleteCourseById(courseId);
 	}
 
+	@Override
+	public List<Course> findAllCourseByStatusAndAccess() {
+		// TODO Auto-generated method stub
+		return courseDAO.findAllCourseByStatusAndAccess();
+	}
+
 }
