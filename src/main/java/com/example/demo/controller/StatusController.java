@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entity.Status;
 import com.example.demo.service.StatusServiceImp;
 
-@RestController
 @CrossOrigin
+@RestController
+
 @RequestMapping("api/status")
 public class StatusController {
 	@Autowired

@@ -32,7 +32,7 @@ public class EnquiryStatusDAOImpl implements EnquiryStatusDAO {
 	public List<EnquiryStatus> findAllEnquiryStatus() {
 		
 		// create a query
-		Query myQuery = entityManager.createQuery("from EnquiryStatus");
+		Query myQuery = entityManager.createQuery("from enquirystatus");
 		// extract the results
 		List<EnquiryStatus> enquiryStatuses = myQuery.getResultList();	
 		// return the course enquiries list

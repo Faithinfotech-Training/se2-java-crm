@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.demo.dao.CourseEnquiryDAO;
 import com.example.demo.dao.CourseEnquiryDAOImpl;
 import com.example.demo.entity.CourseEnquiry;
+import com.example.demo.entity.CourseEnquiryStatusDTO;
 
 @Service
 public class CourseTableChartServiceImplementation implements CourseTableChartService {
@@ -30,7 +31,7 @@ public class CourseTableChartServiceImplementation implements CourseTableChartSe
 
 	@Override
 	@Transactional
-	public List<CourseEnquiry> viewCourseTable() {
+	public List<CourseEnquiryStatusDTO> viewCourseTable() {
 	
 		return courseEnquiryDAO.viewCourseTable();
 	}
