@@ -4,7 +4,6 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +18,9 @@ import com.example.demo.entity.ResourceEnquiry;
 import com.example.demo.service.ResourceEnquiryServiceImplementation;
 
 
-@CrossOrigin
+
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/enquiry")
 public class ResourceEnquiryController {
 	
@@ -64,10 +64,10 @@ public class ResourceEnquiryController {
 		
 //This method updates the exisiting Resource Enquiry by using the Resource Enquiry ID and replaces the data with the data given in request body
 		@PutMapping(value="/resource")
-		public String updateResourceEnquiryStatus(@RequestBody ResourceEnquiry resourceEnquiry)
+		public ResourceEnquiry updateResourceEnquiryStatus(@RequestBody ResourceEnquiry resourceEnquiry)
 		{
 			String result = resourceEnquiryServiceImplementation.updateResourceEnquiry(resourceEnquiry);
-			return result;
+			return resourceEnquiry;
 		}
 		
 		
@@ -102,28 +102,5 @@ public class ResourceEnquiryController {
 					
 					List<ResourceEnquiry> enquiries = resourceEnquiryServiceImplementation.findAllResourceEnquiryByResourceType(resourceType);
 					return enquiries;
-				}
-				
-				
-				@GetMapping("/resource/filter/date/{startDate}/{endDate}")
-				public ResponseEntity findByDateResourceEnquiry(@PathVariable("startDate") String startDate,@PathVariable("endDate") String endDate) {
-					List<ResourceEnquiry> resourceEnquiry = resourceEnquiryServiceImplementation.findAllResourceEnquiryByDate(startDate, endDate);
-					if(startDate == null || endDate == null)
-						return ResponseEntity.notFound().build();
-					return ResponseEntity.ok(resourceEnquiry);
-				}
-				
-				@GetMapping("/resource/count")
-				public ResponseEntity<Integer> findResourceEnquiryCount() {
-					int count = resourceEnquiryServiceImplementation.findAllResourceEnquiryCount();
-					return ResponseEntity.ok(count);
-				}
-				
-				@GetMapping("/resource/filter/date/{startDate}/{endDate}/{status}")
-				public ResponseEntity findByDateAndStatusResourceEnquiry(@PathVariable("startDate") String startDate,@PathVariable("endDate") String endDate,@PathVariable int status) {
-					List<ResourceEnquiry> resourceEnquiry = resourceEnquiryServiceImplementation.findAllResourceEnquiryByDateAndStatus(startDate, endDate, status);
-					if(startDate == null || endDate == null )
-						return ResponseEntity.notFound().build();
-					return ResponseEntity.ok(resourceEnquiry);
 				}
 }

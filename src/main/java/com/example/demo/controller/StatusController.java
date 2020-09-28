@@ -12,7 +12,6 @@ import com.example.demo.service.StatusServiceImp;
 
 @CrossOrigin
 @RestController
-
 @RequestMapping("api/status")
 public class StatusController {
 	@Autowired
