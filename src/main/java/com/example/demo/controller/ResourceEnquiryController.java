@@ -18,8 +18,9 @@ import com.example.demo.entity.ResourceEnquiry;
 import com.example.demo.service.ResourceEnquiryServiceImplementation;
 
 
-@CrossOrigin
+
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/enquiry")
 public class ResourceEnquiryController {
 	
@@ -63,10 +64,10 @@ public class ResourceEnquiryController {
 		
 //This method updates the exisiting Resource Enquiry by using the Resource Enquiry ID and replaces the data with the data given in request body
 		@PutMapping(value="/resource")
-		public String updateResourceEnquiryStatus(@RequestBody ResourceEnquiry resourceEnquiry)
+		public ResourceEnquiry updateResourceEnquiryStatus(@RequestBody ResourceEnquiry resourceEnquiry)
 		{
 			String result = resourceEnquiryServiceImplementation.updateResourceEnquiry(resourceEnquiry);
-			return result;
+			return resourceEnquiry;
 		}
 		
 		
