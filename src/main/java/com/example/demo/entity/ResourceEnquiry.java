@@ -28,16 +28,16 @@ public class ResourceEnquiry {
 	private Integer resourceEnquiryId;
 
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.MERGE, targetEntity=Customer.class)
 	@JoinColumn(name = "customerId")
 	private Customer customerId;
 
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.MERGE, targetEntity=Resources.class)
 	@JoinColumn(name = "resourceId")
 	private Resources resourcesId;
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.MERGE, targetEntity=ResourceEnquiryStatus.class)
 	@JoinColumn(name="status_id")
 	private ResourceEnquiryStatus status;
 

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.demo.dao.LoginDAO;
 import com.example.demo.dao.LoginDAOImplementation;
 import com.example.demo.entity.Login;
+import com.example.demo.entity.LoginResponse;
 
 @Service
 public class LoginServiceImplementation implements LoginService{
@@ -26,7 +27,7 @@ public class LoginServiceImplementation implements LoginService{
 	}
 	@Override
 	@Transactional
-	public String login(String username, String password) {
+	public LoginResponse login(String username, String password) {
 		
 	 return loginDAO.login(username, password);
 	}
