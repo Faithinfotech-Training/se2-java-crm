@@ -1,7 +1,6 @@
 package com.example.demo.entity;
 
 import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +15,7 @@ public class Customer {
 	// Customer Id - primary key
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	
 	private Integer customerId;
 	
 	// Customer Full Name
@@ -23,7 +23,7 @@ public class Customer {
 	private String customerName;
 
 	// Customer Email Id
-	@Column(unique=true, nullable=false, length=20)
+	@Column(unique=true, nullable=false, length=40)
 	private String customerEmailId;
 	
 	// Customer Phone number

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entity.ResourceType;
 import com.example.demo.service.ResourceTypeService;
 
-
 @RestController
 @CrossOrigin
 @RequestMapping("api")

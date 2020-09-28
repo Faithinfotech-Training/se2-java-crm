@@ -20,7 +20,6 @@ import com.example.demo.entity.EnquiryStatus;
 import com.example.demo.service.CourseEnquiryService;
 import com.example.demo.service.EnquiryStatusService;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/api/enquiry")
 public class EnquiryStatusController {

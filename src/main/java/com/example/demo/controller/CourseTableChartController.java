@@ -4,15 +4,16 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.CourseEnquiry;
-
+import com.example.demo.entity.CourseEnquiryStatusDTO;
 import com.example.demo.service.CourseTableChartService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 
@@ -28,7 +29,7 @@ public class CourseTableChartController {
 		
 		
 		@RequestMapping(method=RequestMethod.GET,value="/stats/course/table")
-		public List<CourseEnquiry> viewSalespipeline()
+		public List<CourseEnquiryStatusDTO> viewSalespipeline()
 		{
 			
 		 return courseTableChartService.viewCourseTable();

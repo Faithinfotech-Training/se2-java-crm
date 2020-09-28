@@ -2,7 +2,10 @@
 package com.example.demo.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
@@ -17,9 +20,17 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
+
 import com.example.demo.entity.CourseEnquiry;
 import com.example.demo.entity.Customer;
+import com.example.demo.entity.CourseEnquiryStatusDTO;
+import com.example.demo.entity.EnquiryStatus;
+
 import com.example.demo.entity.ResourceEnquiry;
+
+import com.example.demo.entity.ResourceEnquiry;
+import com.example.demo.entity.ResourceEnquiryStatus;
+import com.example.demo.entity.ResourceEnquiryStatusDTO;
 import com.example.demo.entity.ResourceType;
 import com.example.demo.entity.Resources;
 
@@ -92,7 +103,6 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 
 	// Method to delete a specific resource
 	@Override
-
 	public ResourceEnquiry deleteByResourceEnquiryId(int resourceEnquiryId) {
 		
 		ResourceEnquiry resourceEnquiry = (ResourceEnquiry) entityManager.find(ResourceEnquiry.class,
@@ -127,10 +137,10 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 		Query myQuery = entityManager.createQuery("from resource_enquiry where status = " + status);
 
 		// Extract the results
-		List<ResourceEnquiry> courseEnquiries = myQuery.getResultList();
+		List<ResourceEnquiry> resourceEnquiries = myQuery.getResultList();
 
-		// Return the course enquiries list filter by status
-		return courseEnquiries;
+		// Return the resource enquiries list filter by status
+		return resourceEnquiries;
 	}
 
 	//	Filter to find resource enquiry by status
@@ -150,7 +160,7 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 			}
 
 		}
-		// Return the course enquiries list filter by status
+		// Return the resource enquiries list filter by status
 		return filterByResourceTypeEnquiries;
 	}
 
@@ -205,48 +215,114 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 
 
 	@Override
-	public List<ResourceEnquiry> viewResourceTable() {
+	public List<ResourceEnquiryStatusDTO> viewResourceTable() {
 		Query query= entityManager.createQuery("from resource_enquiry");
-		List<ResourceEnquiry> enquiryList=query.getResultList();
 
 		int totalNumberOfEnquiries;
-
+		
 		//Decalring total number of status values;
-
+		
 		int totalNumberOfStatusValues=0;
-
+		
+		HashMap<String,Integer> statusMapper=new LinkedHashMap<String,Integer>();
+		
+		
+		// Extract the result from database
+		List<ResourceEnquiry> enquiryList=query.getResultList();
+		
+		query=entityManager.createQuery("from resource_enquiry_status");
+		
+		List<ResourceEnquiryStatus> enquiryStatusList=query.getResultList();
+		
 		// Create list of IDs of status
-		List<String> statusList=new ArrayList<String>();
+	//	List<String> statusList=new ArrayList<String>();
+		
+		for(int i=0;i<enquiryStatusList.size();i++)
+		{
+			statusMapper.put(enquiryStatusList.get(i).getStatusValue(),0);
+		}
+		
 		
 		//Count value assignment
 		totalNumberOfEnquiries=enquiryList.size();
-
+		
 		System.out.println("Total Number of Resource Enquiries:"+" "+totalNumberOfEnquiries);
-
+		
 		//Iterating over enquiries and checking their status values
-
+		
 		for(int i=0;i<totalNumberOfEnquiries;i++)
 		{
 			ResourceEnquiry resourceenquiry=enquiryList.get(i);
-			if(!(statusList.contains(resourceenquiry.getStatus().getStatusValue())))
-			{
-				statusList.add(resourceenquiry.getStatus().getStatusValue());
-			}
+			
+			String status=resourceenquiry.getStatus().getStatusValue();
+			
+			statusMapper.put(status, statusMapper.get(status)+1);
+			
+			System.out.println(resourceenquiry);
+			
 		}
-
+		
+		   
 		//Count value assignment
-				totalNumberOfStatusValues=statusList.size();
+	//			totalNumberOfStatusValues=statusList.size();
 				
 		//Print all status values
-				for(int i=0;i<totalNumberOfStatusValues;i++)
-				{
-					System.out.println(statusList.get(i));
-				}
+		
 				
-		System.out.println("Total Number of status Values:"+" "+totalNumberOfStatusValues);
-
-		return  enquiryList;
+	//	System.out.println("Total Number of status Values:"+" "+totalNumberOfStatusValues);
+		List<ResourceEnquiryStatusDTO> resourcestatusList=new ArrayList<ResourceEnquiryStatusDTO>();
+		
+		for(Map.Entry m:statusMapper.entrySet()){  
+			
+			ResourceEnquiryStatusDTO resourceEnquiryStatusDTO=new ResourceEnquiryStatusDTO();
+	           System.out.println("Status Value:"+m.getKey()+" "+"Status Count:"+m.getValue());  
+	           resourceEnquiryStatusDTO.setStatusValue(m.getKey().toString());
+	           resourceEnquiryStatusDTO.setStatusCount(Integer.parseInt(m.getValue().toString()));
+	          resourcestatusList.add(resourceEnquiryStatusDTO); 
+	  
+	          }  
+		
+		return  resourcestatusList;
 	}
 
+	// api for filter by date
+	@Override
+	public List<ResourceEnquiry> findAllResourceEnquiryByDate(String startDate, String endDate) {
+		// Create a query
+		Query myQuery = entityManager.createQuery("from resource_enquiry where trunc(ENQUIRY_DATE)BETWEEN TO_DATE( '"
+				+ startDate + " ') and TO_DATE('" + endDate + "' )");
+		// trunc(ENQUIRYDATE)BETWEEN TO_DATE('20-09-27') and TO_DATE('20-09-27')
+		// Extract the results
+		List<ResourceEnquiry> resourceEnquiries = myQuery.getResultList();
+
+		// Return the resource enquiries list filter by status
+		return resourceEnquiries;
+	}
+
+	// api for filter by date and status
+	@Override
+	public List<ResourceEnquiry> findAllResourceEnquiryByDateAndStatus(String startDate, String endDate,int status) {
+		// Create a query
+		Query myQuery = entityManager.createQuery("from resource_enquiry where (trunc(ENQUIRY_DATE)BETWEEN TO_DATE( '"
+				+ startDate + " ') and TO_DATE('" + endDate + "' )) and status_id = " + status );
+		
+		// Extract the results
+		List<ResourceEnquiry> resourceEnquiries = myQuery.getResultList();
+
+		// Return the resource enquiries list filter by status
+		return resourceEnquiries;
+	}
+
+	// api for count of total
+	@Override
+	public int findAllResourceEnquiryCount() {
+		// Create a query
+		Query myQuery = entityManager.createQuery("select count(*) from resource_enquiry ");
+		// Extract the results
+		int count = ((Number)myQuery.getSingleResult()).intValue();
+
+		// Return the resource enquiries list count
+		return count;
+	}
 
 }

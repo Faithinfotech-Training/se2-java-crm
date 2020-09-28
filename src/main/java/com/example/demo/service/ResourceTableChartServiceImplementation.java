@@ -13,6 +13,7 @@ import com.example.demo.dao.ResourceEnquiryDAO;
 import com.example.demo.dao.ResourceEnquiryDAOImplementation;
 import com.example.demo.entity.CourseEnquiry;
 import com.example.demo.entity.ResourceEnquiry;
+import com.example.demo.entity.ResourceEnquiryStatusDTO;
 
 @Service
 public class ResourceTableChartServiceImplementation implements ResourceTableChartService {
@@ -29,7 +30,7 @@ public class ResourceTableChartServiceImplementation implements ResourceTableCha
 	
 	@Override
 	@Transactional
-	public List<ResourceEnquiry> viewResourceTable() {
+	public List<ResourceEnquiryStatusDTO> viewResourceTable() {
 		
 		return resourceEnquiryDAO.viewResourceTable();
 	}

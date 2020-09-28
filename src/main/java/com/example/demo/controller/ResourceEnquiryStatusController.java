@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entity.ResourceEnquiryStatus;
 import com.example.demo.service.ResourceEnquiryStatusService;
 
+
 @RestController
 @CrossOrigin
 @RequestMapping("/api/enquiry")
