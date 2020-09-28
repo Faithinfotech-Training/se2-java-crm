@@ -17,6 +17,7 @@ import {  ResourceEnquirySummaryComponent } from "./manager/resource-enquiry-sum
 import { LeadSalespipelineComponent } from './manager/lead-salespipeline/lead-salespipeline.component';
 import { WebportalComponent } from './webportal/webportal.component';
 import { WebCourseComponent } from './webportal/web-course/web-course.component';
+import { WebResourceComponent } from './webportal/web-resource/web-resource.component';
 const routes: Routes = [
   {path:'resource',component:ResourceComponent},
   {path:'course',component:CourseComponent},
@@ -40,6 +41,7 @@ const routes: Routes = [
   {path:'webportal',component:WebportalComponent,
     children:[
       {path:'web-course',component:WebCourseComponent},
+      {path:'web-resource',component:WebResourceComponent}
     ]},
   {path:'manager', component:ManagerComponent,canActivate:[AuthGaurdService],
     children:[
