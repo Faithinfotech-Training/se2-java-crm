@@ -6,4 +6,5 @@ export class Customer {
     customerQualification:any;
     customerPercentage:any;
     leadSource:any;
+    customerId:any;
 }

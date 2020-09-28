@@ -1,14 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { CourseEnquiry } from './course-enquiry.model';
+import { CourseEnquiry } from '../models/course-enquiry.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ResourceEnquiryServiceService {
-
+export class CourseEnquiryService {
+  order:any;
+  reverse:any;
+  CourseEnquiryList:any[];
   readonly  APIUrl = "http://localhost:9091/api/";
   form:CourseEnquiry;
   constructor(private http:HttpClient) { }

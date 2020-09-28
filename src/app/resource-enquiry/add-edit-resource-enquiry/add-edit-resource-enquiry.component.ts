@@ -3,7 +3,6 @@ import { NgForm,FormControl,Validators } from '@angular/forms';
 import {  ResourceEnquiryService } from "src/app/services/resource-enquiry.service";
 import { ToastrService } from 'ngx-toastr';
 import { ResourceEnquiry } from 'src/app/models/resource-enquiry.model';
-import { ResourceEnquiryComponent } from '../resource-enquiry.component';
 
 
 @Component({
@@ -13,114 +12,118 @@ import { ResourceEnquiryComponent } from '../resource-enquiry.component';
 })
 export class AddEditResourceEnquiryComponent implements OnInit {
 
-  
+  //Declaring Variables
   resourceEnquiry:ResourceEnquiry;
-  StatusTypeList:any=[];
-  ResourceList:any=[];
-
-  control: FormControl = new FormControl('',Validators.min(1));
+  StatusTypeList:any;
+  ResourceList:any;
   customer: any;
   resource:any;
+  status:any;
+  
+
   constructor(public resourceEnquiryService:ResourceEnquiryService,private toastrService:ToastrService) { }
 
+  //Initializing and loading the list of all the statuses and resources
   ngOnInit(): void {
+    this.status={
+      statusId:1,
+      statusValue:'Received'
+    };
     this.loadStatusList();
     this.loadResourceList();
   }
-  resetform(form?:NgForm){
-    if(form!=null){
-      form.resetForm();
-    }
 
-    this.resourceEnquiryService.formData={
-      resourceEnquiryId:null,
-      enquiryDate:null,
-      resourcesId:{
-        
-      },
-      customerId:{customerName:'',
-      
-      customerPercentage:'',
-      customerDOB:'',
-      customerPhoneNumber:'',
-      customerQualification:'',
-      leadSource:''},
-      status:{statusId:1,statusValue:"Interested"}
-    }
-  }
-  
-  insertResourceEnquiry(form:NgForm){
-    this.resource=form.value["resource"];
-    
-    this.customer={
-      customerName:form.value["customerId.customerName"],
-    customerEmailId:form.value["customerId.customerEmailId"],
-    customerDOB:'1998-01-30',
-    customerQualification:'NA',
-    customerPercentage:'0',
-    customerPhoneNumber:form.value["customerId.customerPhoneNumber"],
-    leadSource:'Website'};
-
-
-    this.resourceEnquiry={
-    resourceEnquiryId:null,
-    enquiryDate:"2020-10-10",
-    resourcesId:this.resource,
-    customerId:this.customer,
-    status:{statusId:1,statusValue:"Received"}
-  }
-
-
-  console.log('Insert Clicked',this.resourceEnquiry);
-  
-  console.log(this.resourceEnquiry.resourcesId);
-
-  this.resourceEnquiryService.addResourceEnquiry(this.resourceEnquiry).subscribe(res=>{
-      this.toastrService.success('Success','Resource Enquiry Added Successfully');
-      this.resetform(form);
-      this.refreshList();
-    });
-  }
-
-  refreshList(){
-    this.resourceEnquiryService.getResourceEnquiries().subscribe(res=>{
-      console.log('GetResourceEnquiryList',res);
-      this.resourceEnquiryService.list=res;
-    });
-  }
-  onSubmit(form:NgForm){
-    
-    form.value.resourceEnquiryId=this.resourceEnquiryService.formData.resourceEnquiryId;
-    if(form.value.resourceEnquiryId==null){
-      this.insertResourceEnquiry(form);
-      
-    }
-    else{
-      this.updateResourceEnquiry(form);
-    }
-  }
-
-
-  updateResourceEnquiry(form:NgForm){
-
-    console.log('Update clicked',form.value);
-    
-    this.resourceEnquiryService.updateResourceEnquiry(form.value).subscribe(res=>{
-      this.toastrService.success('Success','Resource Enquiry Updated Successfully');
-      this.resetform(form);
-      this.refreshList();
-    });
-  }
-
+  //Gets all the list of Status
   loadStatusList(){
     this.resourceEnquiryService.getStatusList().subscribe(res=>{
       this.StatusTypeList=res;
     });
   }
 
+  //Gets all the list of Resources
   loadResourceList(){
     this.resourceEnquiryService.getResourceList().subscribe(res=>{
       this.ResourceList=res;
     });
   }
+
+  //Resets all the values in the form
+  resetform(form?:NgForm){
+    if(form!=null){
+      form.resetForm();
+    }
+  }
+  
+  //Resfreshes the page i.e Gets the list of all the resource Enquiries
+  refreshList(){
+    this.resourceEnquiryService.getResourceEnquiries().subscribe(res=>{
+      console.log('GetResourceEnquiryList',res);
+      console.log('statusList',this.StatusTypeList);
+      this.resourceEnquiryService.list=res;
+
+    });
+  }
+
+  //When submit button is clicked this function is called.
+  onSubmit(form:NgForm){
+    
+    form.value.resourceEnquiryId=this.resourceEnquiryService.formData.resourceEnquiryId;
+    if(form.value.resourceEnquiryId==null){
+      form.value.status = this.status;
+      this.insertResourceEnquiry(form);
+      console.log(form);
+    }
+    else{
+      console.log(form.value.status);
+      
+      form.value.customerId.customerId = this.resourceEnquiryService.formData.customerId.customerId;
+      this.updateResourceEnquiry(form);
+    }
+  }
+
+  //When Add new Resource Enquiry Button is clicked. This method is called.
+  insertResourceEnquiry(form:NgForm){
+  
+  form.value.customerId.customerId=null;
+  form.value.customerId.customerDOB='2020-10-10';
+  form.value.customerId.customerPercentage='0';
+  form.value.customerId.customerQualification='NA';
+  form.value.customerId.leadSource='website';
+  form.value.enquiryDate=new Date().toISOString().slice(0,10).replace('T','');
+ 
+  this.resourceEnquiryService.addResourceEnquiry(form.value).subscribe(res=>{
+    let ResponceObj:any = res;
+      console.log(ResponceObj);
+    this.toastrService.success('Success','Resource Enquiry Added Successfully');
+      this.resetform(form);
+      this.refreshList();
+      window.location.reload();
+    });
+  }
+
+ 
+ 
+  //On clicking the update button this method is called. It updates the data in the form for given resource Enquiry
+  updateResourceEnquiry(form:NgForm){ 
+
+  form.value.customerId.customerDOB='2020-10-10';
+  form.value.customerId.customerPercentage='0';
+  form.value.customerId.customerQualification='NA';
+  form.value.customerId.leadSource='website';
+  form.value.enquiryDate='2020-09-27';
+  form.value.status = this.resourceEnquiryService.formData.status
+
+  this.resourceEnquiryService.updateResourceEnquiry(form.value).subscribe(res=>{
+      let ResponceObj:any = res;
+      console.log(ResponceObj);
+      this.toastrService.success('Success','Resource Enquiry Updated Successfully');
+      this.resetform(form);
+      this.resourceEnquiryService.getResourceList().subscribe(res=>{
+      this.resourceEnquiryService.list= res;
+      window.location.reload();
+    });
+  });
+  }
+
+ 
 }

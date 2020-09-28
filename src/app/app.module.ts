@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ResourceComponent } from './resource/resource.component';
@@ -29,6 +29,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ManagerComponent } from './manager/manager.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { SearchFilterResourceEnquiryPipe } from './search-filter-resource-enquiry.pipe';
+import { UpdateResourceEnquiryComponent } from './resource-enquiry/update-resource-enquiry/update-resource-enquiry.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,21 +52,24 @@ import { SearchFilterResourceEnquiryPipe } from './search-filter-resource-enquir
     LoginComponent,
     AdminComponent,
     ManagerComponent,
-    SearchFilterResourceEnquiryPipe
+    SearchFilterResourceEnquiryPipe,
+    
+    UpdateResourceEnquiryComponent
     
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     ModalModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    NgxPaginationModule
+    NgxPaginationModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [LoginServiceService],
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }

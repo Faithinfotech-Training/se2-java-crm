@@ -8,6 +8,7 @@
                 <div class="btn-group-custom" role="group" aria-label="Basic example">
 
                     <button type="button" class="btn btn-success" (click)="openAddEditModel(AddEditTemplate,null)">
+            
 
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill"
                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -20,8 +21,8 @@
                     </button>
 
                 </div>
-                <div class="text-right">
-                    <label for="search" class="col-sm-2 col-form-label" style="text-align: right;">Search</label>
+                <div class="row">
+                    <label for="search" class="col-sm-2 col-form-label">Search</label>
                    
                     <input type="text" [(ngModel)]="searchValue" class="form-control" id="search"/>
                    </div>
