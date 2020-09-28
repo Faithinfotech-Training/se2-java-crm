@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entity.Access;
 import com.example.demo.service.AccessService;
 
-@RestController
 @CrossOrigin
+@RestController
+
 @RequestMapping("/api")
 public class AccessController {
 	private AccessService accessService;
