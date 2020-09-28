@@ -18,11 +18,7 @@ export class CourseEnquiryService {
   CourseEnquiryList:any[];
   courseEnquiryStatusList:any[];
   CourseEnquiryListByStatus:any[];
-<<<<<<< Updated upstream
-  readonly  APIUrl = "http://localhost:8080/api/";
-=======
   readonly  APIUrl = "http://localhost:9090/api/";
->>>>>>> Stashed changes
   form:CourseEnquiry;
   constructor(private http:HttpClient) { }
 
