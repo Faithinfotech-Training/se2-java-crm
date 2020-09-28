@@ -28,11 +28,8 @@ import { LoginComponent } from './login/login.component';
 import { LoginServiceService } from './services/login-service.service';
 import { AdminComponent } from './admin/admin.component';
 import { ManagerComponent } from './manager/manager.component';
-<<<<<<< HEAD
-import {NgxPaginationModule} from 'ngx-pagination';
 import { SearchFilterResourceEnquiryPipe } from './search-filter-resource-enquiry.pipe';
 import { UpdateResourceEnquiryComponent } from './resource-enquiry/update-resource-enquiry/update-resource-enquiry.component';
-=======
 import { ManagerSalespipelineComponent } from './manager-salespipeline/manager-salespipeline.component';
 import { ResourseSalesComponent } from './manager-salespipeline/resourse-sales/resourse-sales.component';
 import { CourseSalesComponent } from './manager-salespipeline/course-sales/course-sales.component';
@@ -53,7 +50,6 @@ import { WebCourseComponent } from './webportal/web-course/web-course.component'
 import { WebResourceComponent } from './webportal/web-resource/web-resource.component';
 
 
->>>>>>> 58d54c6a339e6f16c744b277accc2f554ee5e8f2
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,11 +72,9 @@ import { WebResourceComponent } from './webportal/web-resource/web-resource.comp
     LoginComponent,
     AdminComponent,
     ManagerComponent,
-<<<<<<< HEAD
     SearchFilterResourceEnquiryPipe,
     
-    UpdateResourceEnquiryComponent
-=======
+    UpdateResourceEnquiryComponent,
     ManagerSalespipelineComponent,
     ResourseSalesComponent,
     CourseSalesComponent,
@@ -95,7 +89,6 @@ import { WebResourceComponent } from './webportal/web-resource/web-resource.comp
     WebCourseComponent,
     WebResourceComponent,
    
->>>>>>> 58d54c6a339e6f16c744b277accc2f554ee5e8f2
     
   ],
   imports: [
@@ -106,11 +99,9 @@ import { WebResourceComponent } from './webportal/web-resource/web-resource.comp
     ChartsModule,
     ModalModule.forRoot(),
     FormsModule,
-<<<<<<< HEAD
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     NgxPaginationModule,
-=======
     ToastrModule.forRoot(),
     Ng2SearchPipeModule,
     FormsModule,
@@ -119,7 +110,6 @@ import { WebResourceComponent } from './webportal/web-resource/web-resource.comp
     Ng2SearchPipeModule,
     NgxPaginationModule,
     OrderModule,
->>>>>>> 58d54c6a339e6f16c744b277accc2f554ee5e8f2
     BrowserAnimationsModule
   ],
   providers: [LoginServiceService],

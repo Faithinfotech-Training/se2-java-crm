@@ -37,11 +37,9 @@ const routes: Routes = [
   {path:'admin',component:AdminComponent,canActivate:[AuthGaurdService]},
   {path:'login',component:LoginComponent},
   {path:'manager', component:ManagerComponent,canActivate:[AuthGaurdService]},
-<<<<<<< HEAD
   {path:'resource',component:ResourceComponent},
   {path:'resource-enquiry',component:ResourceEnquiryComponent},
-  {path:'resource-enquiry/update',component:UpdateResourceEnquiryComponent}
-=======
+  {path:'resource-enquiry/update',component:UpdateResourceEnquiryComponent},
  // {path:'managersalespipeline',component:ManagerSalespipelineComponent},
 
   {path:'',component:LoginComponent},
@@ -59,7 +57,6 @@ const routes: Routes = [
     ]
   },
   {path:'resources',component:ResourceComponent}
->>>>>>> 58d54c6a339e6f16c744b277accc2f554ee5e8f2
 ];
 
 @NgModule({

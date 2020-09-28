@@ -6,12 +6,7 @@
             <div class="form-group">
                 <div class="row"> 
                 <label class="label">Input Search Term</label>
-                <input class="form-control" type="text" [(ngModel)]="term">
-                <label >Sort By</label>
-                <select  [(ngModel)] = "order" (change)="order" class="form-control">
-                    <option selected disabled>--selected--</option>
-                    <option *ngFor="let heading of tableHeadings" [ngValue]="heading">{{heading}}</option>
-                </select>
+                <input class="form-control" type="text" [(ngModel)]="searchValue">
                 </div>
                 <div>
                     <label class="label"> Enquiry Status</label>
@@ -32,8 +27,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr name="fieldName" ngDefaultControl *ngFor="let resourceEnquiry of resourceEnquiryService.resourceEnquiryListByStatus | paginate: { itemsPerPage: 5, currentPage: p }
-                     "
+                    <tr name="fieldName" ngDefaultControl *ngFor="let resourceEnquiry of resourceEnquiryService.resourceEnquiryListByStatus | paginate: { itemsPerPage: 5, currentPage: p }| searchFilterResourceEnquiry:searchValue"
+                     
                      [(ngModel)]="resourceEnquiryService.resourceEnquiryListByStatus">
                         <td>{{resourceEnquiry.resourcesId.resourceName}}</td>
                         <td>{{resourceEnquiry.customerId.customerName}}</td>
@@ -41,7 +36,6 @@
                         <td>{{resourceEnquiry.enquiryDate}}</td>
                         <td>
                             <select type="text" (change)="changeOption($event.target.value)" required>
-                                    <!-- <option selected disabled>{{courseEnquiry.enquiryStatus.statusValue}}</option> -->
                                     <ng-container *ngFor="let enquiryStatus of resourceEnquiryStatusList" >
                                     <option disabled selected [ngValue]="enquiryStatus" *ngIf="resourceEnquiry.status.statusValue==enquiryStatus.statusValue">
                                             {{enquiryStatus.statusValue}}

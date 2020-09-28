@@ -33,7 +33,7 @@ export class UpdateResourceEnquiryComponent implements OnInit {
   resourceEnquiryStatus:any;
   selectedResourceEnquiry:ResourceEnquiry;
   selectEnquiryStatus:any;
-  
+  searchValue:string;
 
   constructor(public resourceEnquiryService:ResourceEnquiryService,
     private toastrService:ToastrService,
