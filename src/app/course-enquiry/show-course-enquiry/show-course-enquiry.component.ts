@@ -191,7 +191,7 @@ export class ShowCourseEnquiryComponent implements OnInit {
         customerId:{
           customerId:null,
           customerName:'',
-          customerEmailId:'',
+          customerEmailId:'kaustubh@gmail.com',
           customerPercentage:'',
           customerDOB:'',
           customerPhoneNumber:'',

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ResourceComponent } from './resource/resource.component';
+import { ResourceEnquiryComponent } from './resource-enquiry/resource-enquiry.component'
+import{UpdateResourceEnquiryComponent} from './resource-enquiry/update-resource-enquiry/update-resource-enquiry.component'
 import {CourseComponent } from './course/course.component'
 import { CourseEnquiryComponent } from './course-enquiry/course-enquiry.component';
 import { HomepageComponent } from './homepages/homepage/homepage.component';
@@ -35,6 +37,9 @@ const routes: Routes = [
   {path:'admin',component:AdminComponent,canActivate:[AuthGaurdService]},
   {path:'login',component:LoginComponent},
   {path:'manager', component:ManagerComponent,canActivate:[AuthGaurdService]},
+  {path:'resource',component:ResourceComponent},
+  {path:'resource-enquiry',component:ResourceEnquiryComponent},
+  {path:'resource-enquiry/update',component:UpdateResourceEnquiryComponent},
  // {path:'managersalespipeline',component:ManagerSalespipelineComponent},
 
   {path:'',component:LoginComponent},

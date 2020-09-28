@@ -21,7 +21,7 @@
                         <th scope="col">Fees </th>
                         <th scope="col">Duration </th>
                         <th scope="col">Domain </th>
-                        <th scope="col">Status </th>
+                        <th scope="col">Age Required </th>
                         <th scope="col" class="fit"></th>
                     </tr>
                 </thead>
@@ -39,7 +39,7 @@
                         <td>{{course.fees}}</td>
                         <td>{{course.duration}}</td>
                         <td>{{course.domain.domainName}}</td>
-                        <td>{{course.status.statusType}}</td>
+                        <td>{{course.ageCriteria}}</td>
                         <td class="fit">
 
                         
@@ -110,24 +110,6 @@
             <label class="col-sm-4 col-form-label">Age Criteria</label>
             <div class="col-sm-8">
                 <input type="text" readonly class="form-control" id="AgeCriteria" value="{{SelectedCourse.ageCriteria}}">
-            </div>
-        </div>
-
-        <!-- Status -->
-        <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Status</label>
-            <div class="col-sm-8">
-                <input type="text" readonly class="form-control" id="Status"
-                    value="{{SelectedCourse.status.statusType}}">
-            </div>
-        </div>
-
-        <!-- Access -->
-        <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Access</label>
-            <div class="col-sm-8">
-                <input type="text" readonly class="form-control" id="Access"
-                    value="{{SelectedCourse.access.accessType}}">
             </div>
         </div>
 
