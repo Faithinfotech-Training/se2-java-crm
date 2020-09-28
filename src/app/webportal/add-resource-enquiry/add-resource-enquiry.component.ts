@@ -41,6 +41,7 @@ export class AddResourceEnquiryComponent implements OnInit {
     if(form!=null){
       form.resetForm();
     }
+
   }
   
   //When submit button is clicked this function is called.
@@ -48,13 +49,11 @@ export class AddResourceEnquiryComponent implements OnInit {
     console.log(form.value);
     form.value.status = this.status;
     this.insertResourceEnquiry(form);
-    console.log(form);
 
   }
 
   //When Add new Resource Enquiry Button is clicked. This method is called.
-  insertResourceEnquiry(form:NgForm){
-  console.log(form.value);  
+  insertResourceEnquiry(form:NgForm){  
   form.value.customerId.customerId=null;
   form.value.customerId.customerDOB='2020-10-10';
   form.value.customerId.customerPercentage='0';
@@ -63,15 +62,15 @@ export class AddResourceEnquiryComponent implements OnInit {
   form.value.customerId.customerEmailId = this.resourceEnquiryService.formData.customerId.customerEmailId;
   form.value.customerId.customerName = this.resourceEnquiryService.formData.customerId.customerName;
   form.value.customerId.customerPhoneNumber = this.resourceEnquiryService.formData.customerId.customerPhoneNumber;
-  
   form.value.enquiryDate=new Date().toISOString().slice(0,10).replace('T','');
-  form.value.resourceId = this.resourceService.formData
+  console.log("Resource Id:", this.resourceService.formData);
+  form.value.resourcesId = this.resourceService.formData;
+  console.log("Resource Form ID:", form.value.resourceId);
   this.resourceEnquiryService.addResourceEnquiry(form.value).subscribe(res=>{
     let ResponceObj:any = res;
       console.log(ResponceObj);
     this.toastrService.success('Success','Resource Enquiry Added Successfully');
       this.resetform(form);
-      window.location.reload();
     });
   }
 
