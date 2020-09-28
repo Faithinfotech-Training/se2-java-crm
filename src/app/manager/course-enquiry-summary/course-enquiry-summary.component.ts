@@ -74,7 +74,7 @@ export class CourseEnquirySummaryComponent implements OnInit {
 // Get total number of count of status
   getCountOfStatusType(id){
     if(this.enquiryList!=null){
-         
+      
         return this.enquiryList.filter((e)=>e.enquiryStatus.statusId==id).length;
 
     }
