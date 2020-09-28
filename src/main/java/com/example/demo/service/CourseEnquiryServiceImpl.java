@@ -50,7 +50,7 @@ public class CourseEnquiryServiceImpl implements CourseEnquiryService {
 
 	@Override
 	@Transactional
-	public boolean updateCourseEnquiry(CourseEnquiry courseEnquiry) {
+	public String updateCourseEnquiry(CourseEnquiry courseEnquiry) {
 		// Update course enquiry
 		return courseEnquiryDAO.updateCourseEnquiry(courseEnquiry);
 	}

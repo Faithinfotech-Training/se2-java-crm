@@ -5,13 +5,19 @@ import java.util.List;
 import com.example.demo.entity.Course;
 
 public interface CourseService {
-	//get all courses
+	// get all courses
 	public List<Course> findAllCourse();
-	//get courses by id
+
+	// get courses by id
 	public Course findCourseById(int courseId);
-	//insert courses
+
+	// insert courses
 	public void save(Course course);
-	//delete course by id
+
+	// delete course by id
 	public void deleteCourseById(int courseId);
-	
+
+	// list all public and active courses
+	List<Course> findAllCourseByStatusAndAccess();
+
 }

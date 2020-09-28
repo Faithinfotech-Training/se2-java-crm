@@ -17,6 +17,7 @@ import com.example.demo.entity.ResourceType;
 import com.example.demo.service.ResourceTypeService;
 
 @RestController
+@CrossOrigin
 @RequestMapping("api")
 public class ResourceTypeController {
 	// private ResourceDAO resourceTypeDAO;

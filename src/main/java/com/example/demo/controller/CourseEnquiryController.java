@@ -57,9 +57,9 @@ public class CourseEnquiryController {
 	}
 	 // Update the course enquiry
 	 @PutMapping("/course")
-	 public ResponseEntity updateCourseEnquiry(@RequestBody CourseEnquiry courseEnquiry) {
-		 courseEnquiryService.updateCourseEnquiry(courseEnquiry);
-		 return ResponseEntity.ok().build();
+	 public String updateCourseEnquiry(@RequestBody CourseEnquiry courseEnquiry) {
+		String result = courseEnquiryService.updateCourseEnquiry(courseEnquiry);
+		 return result;
 	 }
 			
 	// Delete the course enquiry

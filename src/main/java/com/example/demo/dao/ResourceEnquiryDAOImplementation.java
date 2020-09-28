@@ -21,7 +21,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 
-import com.example.demo.entity.ResourceEnquiry;
+import com.example.demo.entity.CourseEnquiry;
+import com.example.demo.entity.Customer;
 import com.example.demo.entity.CourseEnquiryStatusDTO;
 import com.example.demo.entity.CourseLeadResponseDTO;
 import com.example.demo.entity.EnquiryStatus;
@@ -96,18 +97,18 @@ public class ResourceEnquiryDAOImplementation implements ResourceEnquiryDAO {
 					+ ".\nCorrect Sequence of Updation: Received -> Interested/Not Interested ->"
 					+ " Accepted/Rejected -> Rented";
 		}
+		//entityManager.merge(resourceEnquiry);
 		return "Updated Successfully.";
 	}
 
 
 	// Method to delete a specific resource
 	@Override
-
 	public ResourceEnquiry deleteByResourceEnquiryId(int resourceEnquiryId) {
-
+		
 		ResourceEnquiry resourceEnquiry = (ResourceEnquiry) entityManager.find(ResourceEnquiry.class,
 				resourceEnquiryId);
-
+		
 		if (entityManager.contains(resourceEnquiry)) {
 			entityManager.remove(resourceEnquiry);
 		} else {

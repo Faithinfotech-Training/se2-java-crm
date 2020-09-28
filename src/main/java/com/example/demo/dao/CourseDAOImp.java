@@ -23,7 +23,17 @@ public class CourseDAOImp implements CourseDAO {
 	@Override
 	public List<Course> findAllCourse() {
 		// create query for find all course
-		Query query = entityManager.createQuery("from Course");
+		Query query = entityManager.createQuery("from Course order by course_name asc");
+		// save result to list of course
+		List<Course> course = query.getResultList();
+		// return course
+		return course;
+	}
+	
+	@Override
+	public List<Course> findAllCourseByStatusAndAccess() {
+		// create query for find all course
+		Query query = entityManager.createQuery("from Course where status_id = 1 and access_id=1 order by course_name asc");
 		// save result to list of course
 		List<Course> course = query.getResultList();
 		// return course
