@@ -35,7 +35,7 @@ import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { OrderModule } from 'ngx-order-pipe';
 import { ResourceEnquirySummaryComponent } from './manager/resource-enquiry-summary/resource-enquiry-summary.component';
 import { WebportalComponent } from './webportal/webportal.component';
-//import { CourseLeadComponent } from './manager-salespipeline/course-lead/course-lead.component';
+// import { CourseLeadComponent } from './manager-salespipeline/course-lead/course-lead.component';
 //import { ResourceLeadComponent } from './manager-salespipeline/resource-lead/resource-lead.component';
 import { LeadSalespipelineComponent } from './manager/lead-salespipeline/lead-salespipeline.component';
 import { CourseleadComponent } from './manager/lead-salespipeline/courselead/courselead.component';
@@ -70,7 +70,6 @@ import { ResourceleadComponent } from './manager/lead-salespipeline/resourcelead
     CourseleadComponent,
     ResourceleadComponent,
     WebportalComponent,
-   
     
   ],
   imports: [
