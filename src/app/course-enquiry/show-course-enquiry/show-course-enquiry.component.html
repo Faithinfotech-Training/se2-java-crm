@@ -4,6 +4,7 @@
         <div class="card-body">
             <div class="action-buttons">
                 <div class="btn-group-custom" role="group" aria-label="Basic example">
+                    <!-- View button for the course enquiry -->
                     <button type="button" class="btn btn-success" (click)="openAddEditModel(AddEditTemplate,null)">
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill"
                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -16,9 +17,12 @@
             </div>
             <div class="form-group">
                 <div class="row"> 
+                 <!-- Search filter    -->
                 <label class="label">Input Search Term</label>
                 <input class="form-control" type="text" [(ngModel)]="term">
             </div>
+            <!-- Configurable tableHeadings -->
+
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -26,6 +30,7 @@
                         <th scope="col" class="fit"></th>
                     </tr>
                 </thead>
+                <!-- table body -->
                 <tbody>
                     <tr name="fieldName" ngDefaultControl *ngFor="let courseEnquiry of service.CourseEnquiryList |  filter:term |
                     orderBy: order | paginate: config"
@@ -40,7 +45,7 @@
                         <td>{{courseEnquiry.enquiryDate}}</td>
                         <td>{{courseEnquiry.enquiryStatus.statusValue}}</td>
                         <td class="fit">
-
+                            <!-- edit and delete option     -->
                             <a class="btn btn-light" (click)="openAddEditModel(AddEditTemplate, courseEnquiry)">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square"
                                     fill="grey" xmlns="http://www.w3.org/2000/svg">

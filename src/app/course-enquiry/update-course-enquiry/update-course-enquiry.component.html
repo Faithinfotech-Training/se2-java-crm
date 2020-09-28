@@ -4,11 +4,13 @@
         <div class="card-body">
             
             <div class="form-group">
+                <!-- Search field -->
                 <div class="row"> 
                 <label class="label">Input Search Term</label>
                 <input class="form-control" type="text" [(ngModel)]="term">
 
                 </div>
+                <!-- Enquiry Status Drop Down By which the enquiries will be shown-->
                 <div>
                     <label class="label"> Enquiry Status</label>
                     <select  [(ngModel)] = "service.courseEnquiryStatus" (change)="refreshSelect()"
@@ -20,6 +22,7 @@
                     </select>
                 </div>
             </div>
+            <!-- Displaying the heading -->
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -27,6 +30,7 @@
                         <th scope="col" class="fit"></th>
                     </tr>
                 </thead>
+                <!-- Table body -->
                 <tbody>
                     <tr name="fieldName" ngDefaultControl *ngFor="let courseEnquiry of service.CourseEnquiryListByStatus |  filter:term |
                     orderBy: order | paginate: config"
@@ -36,6 +40,7 @@
                         <td>{{courseEnquiry.customerId.customerEmailId}}</td>
                         <td>{{courseEnquiry.enquiryDate}}</td>
                         <td>
+                            <!-- Enquiry Status Drop Down for updation -->
                             <select type="text" (change)="changeOption($event.target.value)" required>
                                     <!-- <option selected disabled>{{courseEnquiry.enquiryStatus.statusValue}}</option> -->
                                     <ng-container *ngFor="let enquiryStatus of CourseEnquiryStatusList" >
@@ -49,6 +54,7 @@
                         
                             </select>
                         </td>
+                        <!-- Update button -->
                         <td class="fit">
 
                             <a class="btn btn-light" (click)="onClickUpdate(courseEnquiry)">
