@@ -232,14 +232,14 @@
         </div>
 
         <!-- Qualification -->
-        <!-- <div class="form-group row">
+        <div class="form-group row">
             <label class="col-sm-4 col-form-label">Qualification</label>
             <div class="col-sm-8">
             <select type="text" name="qualifications" class="form-control" id="qualifications" #qualifications="ngModel"
                     [(ngModel)]="courseService.formData.qualifications" required>
                         <option *ngIf="courseService.formData.qualifications" disabled [ngValue]="courseService.formData.qualifications">
                             {{courseService.formData.qualifications.qualificationName}}</option>
-                            <option *ngFor="let qualifica of QualificationList" [ngValue]="qualifications">
+                            <option *ngFor="let qualifica of QualificationList" [ngValue]="qualifica">
                         {{qualifica.qualificationName}}
                         <a>(</a>
                         {{qualifica.percentage}}
@@ -247,7 +247,7 @@
                     </option>
                 </select>
             </div>
-        </div> -->
+        </div> 
 
         <div class="form-group row">
             <button class="btn btn-block btn-success mt-5" type="submit" [disabled]="form.invalid">Submit</button>

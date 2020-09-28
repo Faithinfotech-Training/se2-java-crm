@@ -36,12 +36,13 @@ import { OrderModule } from 'ngx-order-pipe';
 import { ResourceEnquirySummaryComponent } from './manager/resource-enquiry-summary/resource-enquiry-summary.component';
 import { CourseEnquirySummaryComponent } from './manager/course-enquiry-summary/course-enquiry-summary.component';
 import { WebportalComponent } from './webportal/webportal.component';
-//import { CourseLeadComponent } from './manager-salespipeline/course-lead/course-lead.component';
+// import { CourseLeadComponent } from './manager-salespipeline/course-lead/course-lead.component';
 //import { ResourceLeadComponent } from './manager-salespipeline/resource-lead/resource-lead.component';
 import { LeadSalespipelineComponent } from './manager/lead-salespipeline/lead-salespipeline.component';
 import { CourseleadComponent } from './manager/lead-salespipeline/courselead/courselead.component';
 import { ResourceleadComponent } from './manager/lead-salespipeline/resourcelead/resourcelead.component';
 import { WebCourseComponent } from './webportal/web-course/web-course.component';
+import { WebResourceComponent } from './webportal/web-resource/web-resource.component';
 
 
 @NgModule({
@@ -75,6 +76,7 @@ import { WebCourseComponent } from './webportal/web-course/web-course.component'
     ResourceleadComponent,
     WebportalComponent,
     WebCourseComponent,
+    WebResourceComponent,
    
     
   ],
@@ -93,7 +95,8 @@ import { WebCourseComponent } from './webportal/web-course/web-course.component'
     NgxPaginationModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
-    OrderModule
+    OrderModule,
+    BrowserAnimationsModule
   ],
   providers: [LoginServiceService],
   bootstrap: [AppComponent],
