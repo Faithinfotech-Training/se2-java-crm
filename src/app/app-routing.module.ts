@@ -12,10 +12,7 @@ import { AuthGaurdService } from './services/auth-guard.service';
 import { ManagerSalespipelineComponent } from './manager-salespipeline/manager-salespipeline.component';
 
 import {  ResourceEnquirySummaryComponent } from "./manager/resource-enquiry-summary/resource-enquiry-summary.component";
-<<<<<<< HEAD
-=======
 import { LeadSalespipelineComponent } from './manager/lead-salespipeline/lead-salespipeline.component';
->>>>>>> efc4d4ff8ea2ff1814e4b48fd0c83dbcdd099ab6
 import { WebportalComponent } from './webportal/webportal.component';
 const routes: Routes = [
   {path:'admin',component:AdminComponent,canActivate:[AuthGaurdService],

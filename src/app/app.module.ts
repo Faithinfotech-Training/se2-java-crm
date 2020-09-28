@@ -34,17 +34,13 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { OrderModule } from 'ngx-order-pipe';
 import { ResourceEnquirySummaryComponent } from './manager/resource-enquiry-summary/resource-enquiry-summary.component';
-<<<<<<< HEAD
 import { WebportalComponent } from './webportal/webportal.component';
-=======
 //import { CourseLeadComponent } from './manager-salespipeline/course-lead/course-lead.component';
 //import { ResourceLeadComponent } from './manager-salespipeline/resource-lead/resource-lead.component';
 import { LeadSalespipelineComponent } from './manager/lead-salespipeline/lead-salespipeline.component';
 import { CourseleadComponent } from './manager/lead-salespipeline/courselead/courselead.component';
 import { ResourceleadComponent } from './manager/lead-salespipeline/resourcelead/resourcelead.component';
-import { WebportalComponent } from './webportal/webportal.component';
 
->>>>>>> efc4d4ff8ea2ff1814e4b48fd0c83dbcdd099ab6
 
 @NgModule({
   declarations: [
@@ -70,16 +66,11 @@ import { WebportalComponent } from './webportal/webportal.component';
     CourseSalesComponent,
     SidebarComponent,
     ResourceEnquirySummaryComponent,
-<<<<<<< HEAD
-    WebportalComponent
-=======
-    
     LeadSalespipelineComponent,
     CourseleadComponent,
     ResourceleadComponent,
     WebportalComponent,
    
->>>>>>> efc4d4ff8ea2ff1814e4b48fd0c83dbcdd099ab6
     
   ],
   imports: [
