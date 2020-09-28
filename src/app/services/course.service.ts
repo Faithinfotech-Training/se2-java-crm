@@ -11,10 +11,15 @@ export class CourseService {
 
   formData : Course
   list : Course[];
+  sortedlist : Course[];
+  search;
+  order: string = 'info.name';
+  reverse: boolean = false;
+
   constructor(private http:HttpClient) { }
 
   getCourse():Observable<any[]>{
-    return this.http.get<any>(`${environment.API_URL}/course`);
+    return this.http.get<any>(environment.API_URL+'/course');
   }
 
   getCourseById(val:any):Observable<any>{

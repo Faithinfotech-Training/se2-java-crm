@@ -18,12 +18,6 @@
                 <div class="row"> 
                 <label class="label">Input Search Term</label>
                 <input class="form-control" type="text" [(ngModel)]="term">
-                <label >Sort By</label>
-                <select  [(ngModel)] = "order" (change)="log(order)" class="form-control">
-                    <option selected disabled>--selected--</option>
-                    <option *ngFor="let heading of tableHeadings" [ngValue]="heading">{{heading}}</option>
-                </select>
-                </div>
             </div>
             <table class="table table-striped">
                 <thead>

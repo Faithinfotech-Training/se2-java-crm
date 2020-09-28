@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
 import { ResourceComponent } from './resource/resource.component';
 import { ViewResourcesComponent } from './resource/view-resources/view-resources.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -27,9 +28,32 @@ import { LoginComponent } from './login/login.component';
 import { LoginServiceService } from './services/login-service.service';
 import { AdminComponent } from './admin/admin.component';
 import { ManagerComponent } from './manager/manager.component';
+<<<<<<< HEAD
 import {NgxPaginationModule} from 'ngx-pagination';
 import { SearchFilterResourceEnquiryPipe } from './search-filter-resource-enquiry.pipe';
 import { UpdateResourceEnquiryComponent } from './resource-enquiry/update-resource-enquiry/update-resource-enquiry.component';
+=======
+import { ManagerSalespipelineComponent } from './manager-salespipeline/manager-salespipeline.component';
+import { ResourseSalesComponent } from './manager-salespipeline/resourse-sales/resourse-sales.component';
+import { CourseSalesComponent } from './manager-salespipeline/course-sales/course-sales.component';
+import { ChartsModule } from 'ng2-charts';
+import { SidebarComponent } from './admin/sidebar/sidebar.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import { OrderModule } from 'ngx-order-pipe';
+import { ResourceEnquirySummaryComponent } from './manager/resource-enquiry-summary/resource-enquiry-summary.component';
+import { CourseEnquirySummaryComponent } from './manager/course-enquiry-summary/course-enquiry-summary.component';
+import { WebportalComponent } from './webportal/webportal.component';
+//import { CourseLeadComponent } from './manager-salespipeline/course-lead/course-lead.component';
+//import { ResourceLeadComponent } from './manager-salespipeline/resource-lead/resource-lead.component';
+import { LeadSalespipelineComponent } from './manager/lead-salespipeline/lead-salespipeline.component';
+import { CourseleadComponent } from './manager/lead-salespipeline/courselead/courselead.component';
+import { ResourceleadComponent } from './manager/lead-salespipeline/resourcelead/resourcelead.component';
+import { WebCourseComponent } from './webportal/web-course/web-course.component';
+import { WebResourceComponent } from './webportal/web-resource/web-resource.component';
+
+
+>>>>>>> 58d54c6a339e6f16c744b277accc2f554ee5e8f2
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,20 +76,50 @@ import { UpdateResourceEnquiryComponent } from './resource-enquiry/update-resour
     LoginComponent,
     AdminComponent,
     ManagerComponent,
+<<<<<<< HEAD
     SearchFilterResourceEnquiryPipe,
     
     UpdateResourceEnquiryComponent
+=======
+    ManagerSalespipelineComponent,
+    ResourseSalesComponent,
+    CourseSalesComponent,
+    SidebarComponent,
+    ResourceEnquirySummaryComponent,
+    CourseEnquirySummaryComponent,
+    ResourceEnquirySummaryComponent,
+    LeadSalespipelineComponent,
+    CourseleadComponent,
+    ResourceleadComponent,
+    WebportalComponent,
+    WebCourseComponent,
+    WebResourceComponent,
+   
+>>>>>>> 58d54c6a339e6f16c744b277accc2f554ee5e8f2
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     HttpClientModule,
+    ChartsModule,
     ModalModule.forRoot(),
     FormsModule,
+<<<<<<< HEAD
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     NgxPaginationModule,
+=======
+    ToastrModule.forRoot(),
+    Ng2SearchPipeModule,
+    FormsModule,
+    OrderModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
+    OrderModule,
+>>>>>>> 58d54c6a339e6f16c744b277accc2f554ee5e8f2
     BrowserAnimationsModule
   ],
   providers: [LoginServiceService],

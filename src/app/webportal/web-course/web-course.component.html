@@ -1,0 +1,157 @@
+<div class="table-block">
+    <div class="card">
+        <div class="card-body">
+
+
+            <div class="container">
+
+                <div class="search-course">
+                    <input class="form-control" type="text"
+                    name="search" [(ngModel)]="courseService.search" autocomplete="off"
+                    placeholder="Search for course">
+
+                </div>
+           
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th [class.active]="courseService.order === 'info.name'"
+                        (click)="setOrder('info.name')">Course Name <span [hidden]="courseService.reverse">▼</span
+                            ><span [hidden]="!courseService.reverse"> ▲</span></th>
+                        <th scope="col">Fees </th>
+                        <th scope="col">Duration </th>
+                        <th scope="col">Domain </th>
+                        <th scope="col">Status </th>
+                        <th scope="col" class="fit"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr name="fieldName" ngDefaultControl *ngFor="let course of courseService.list | 
+                    filter:courseService.search | 
+                    orderBy: courseService.order:courseService.reverse:'case-insensitive'|
+                    paginate: config"
+                     [(ngModel)]="courseService.list">
+                        <td>
+                            <a href="javascript:void(0)" (click)="openModelWithClass(template,course)">
+                                {{course.courseName}}
+                            </a>
+                        </td>
+                        <td>{{course.fees}}</td>
+                        <td>{{course.duration}}</td>
+                        <td>{{course.domain.domainName}}</td>
+                        <td>{{course.status.statusType}}</td>
+                        <td class="fit">
+
+                        
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<ng-template #template>
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">View Course</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <!-- Course Name -->
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Course Name</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control" id="CourseName"
+                    value="{{SelectedCourse.courseName}}">
+            </div>
+        </div>
+
+        <!-- Course Description -->
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Course Description</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control" id="Description"
+                    value="{{SelectedCourse.description}}">
+            </div>
+        </div>
+
+        <!-- Duration -->
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Duration</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control" id="Duration" value="{{SelectedCourse.duration}}">
+            </div>
+        </div>
+
+        <!-- Fees -->
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Fees</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control" id="Fees" value="{{SelectedCourse.fees}}">
+            </div>
+        </div>
+
+         <!-- Score Criteria -->
+         <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Score Criteria</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control" id="ScoreCriteria" value="{{SelectedCourse.scoreCriteria}}">
+            </div>
+        </div>
+
+         <!-- Age Criteria -->
+         <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Age Criteria</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control" id="AgeCriteria" value="{{SelectedCourse.ageCriteria}}">
+            </div>
+        </div>
+
+        <!-- Status -->
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Status</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control" id="Status"
+                    value="{{SelectedCourse.status.statusType}}">
+            </div>
+        </div>
+
+        <!-- Access -->
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Access</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control" id="Access"
+                    value="{{SelectedCourse.access.accessType}}">
+            </div>
+        </div>
+
+        <!-- Domain -->
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Domain</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control" id="Domain"
+                    value="{{SelectedCourse.domain.domainName}}">
+            </div>
+        </div>
+
+         <!-- Qualification -->
+         <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Qualification</label>
+            <div class="col-sm-8">
+                <div *ngFor="let qualifica of SelectedCourse.qualifications">
+                <input type="text" readonly class="form-control" id="Qualifications"
+                    value="{{ qualifica.qualificationName }} ( {{ qualifica.percentage }} )" >
+                    <p></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</ng-template>
+

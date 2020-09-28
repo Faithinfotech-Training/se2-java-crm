@@ -31,7 +31,7 @@ this.toastrService.success('Success','Logged out successfully');
     //Adding delay of 500ms
     setTimeout(() => 
 {
-    this.router.navigate(['login']);
+    this.router.navigate(['']);
 },
 800);
    

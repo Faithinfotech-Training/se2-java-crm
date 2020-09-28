@@ -76,7 +76,6 @@ export class AddEditCourseComponent implements OnInit {
     form.value.courseId=this.courseService.formData.courseId;
     if(form.value.courseId==null){
       this.insertCourse(form);
-      
     }
     else{
       this.updateCourse(form);
