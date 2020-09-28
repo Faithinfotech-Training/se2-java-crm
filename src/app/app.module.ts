@@ -41,6 +41,7 @@ import { WebportalComponent } from './webportal/webportal.component';
 import { LeadSalespipelineComponent } from './manager/lead-salespipeline/lead-salespipeline.component';
 import { CourseleadComponent } from './manager/lead-salespipeline/courselead/courselead.component';
 import { ResourceleadComponent } from './manager/lead-salespipeline/resourcelead/resourcelead.component';
+import { WebCourseComponent } from './webportal/web-course/web-course.component';
 
 
 @NgModule({
@@ -67,12 +68,13 @@ import { ResourceleadComponent } from './manager/lead-salespipeline/resourcelead
     CourseSalesComponent,
     SidebarComponent,
     ResourceEnquirySummaryComponent,
-    CourseEnquirySummaryComponent
+    CourseEnquirySummaryComponent,
     ResourceEnquirySummaryComponent,
     LeadSalespipelineComponent,
     CourseleadComponent,
     ResourceleadComponent,
     WebportalComponent,
+    WebCourseComponent,
    
     
   ],
