@@ -50,8 +50,8 @@ export class WebResourceComponent implements OnInit {
   GetResourcesList(){
    
     console.log('Get resources list called');
-    this.resourceService.getResources().subscribe(res=>{
-      console.log('GetResourcesList',res);
+    this.resourceService.getResourcesByAccess().subscribe(res=>{
+      console.log('GetResourcesListByAccess',res);
       this.resourceService.list=res;
 
     
@@ -81,7 +81,9 @@ export class WebResourceComponent implements OnInit {
   }
 
   openAddEditModel(template:TemplateRef<any>,resource:Resource){
-
+   
+    var date =new Date().toISOString().slice(0,10).replace('T','');
+    console.log(date);
     if(resource===null){
       this.AddEditModalTitle="Insert a new Resource";
     }else{
