@@ -46,7 +46,7 @@ export class CourseEnquiryService {
   }
 
   getCourseEnquiryListByStatus(){
-    return this.http.get<any>(`${this.APIUrl}enquiry/course/filter/` + this.courseEnquiryStatus.statusId);
+    return this.http.get<any>(`${this.APIUrl}enquiry/course/filter/status/` + this.courseEnquiryStatus.statusId);
   }
 
 }
