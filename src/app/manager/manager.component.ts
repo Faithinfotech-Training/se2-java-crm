@@ -25,7 +25,7 @@ export class ManagerComponent implements OnInit {
     //Adding delay
     setTimeout(() => 
 {
-    this.router.navigate(['login']);
+    this.router.navigate(['']);
 },
 800);
    

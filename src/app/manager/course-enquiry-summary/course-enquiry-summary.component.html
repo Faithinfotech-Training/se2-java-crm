@@ -1,0 +1,147 @@
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <div class="summary-view">
+                <div class="main-text">
+                    Course Enquiry Summary View
+                </div>
+                <div class="card stats-card color-green">
+                    Total Enquiries
+
+                    <div class="stat-count">
+                        {{totalCount}}
+                    </div>
+                </div>
+
+                <div class="card date-selector">
+                    <form #form="ngForm" (submit)="onSubmit(form)">
+                    <div class="date-range-text">
+                        Select Date Range
+                    </div>
+                    <div class="row w-75">
+                        <div class="col-sm-2">
+                            From
+                        </div>
+                        <div class="col-sm-4">
+                            <span class="d-flex">
+                                <svg width="1.9em" height="1.9em" viewBox="0 0 16 16" class="bi bi-calendar-date"
+                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                <path
+                                    d="M6.445 11.688V6.354h-.633A12.6 12.6 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23z" />
+                            </svg>
+                            <input id="date1" type="date" class="form-control date-input ml-1" name="date1" #date1="ngModel" [(ngModel)]="form.date1"
+                            required>
+                            </span>
+                            
+                        </div>
+
+                        <div class="col-sm-2">
+                            To
+                        </div>
+
+                        <div class="col-sm-4">
+                            <span class="d-flex">
+                                <svg width="1.9em" height="1.9em" viewBox="0 0 16 16" class="bi bi-calendar-date"
+                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                <path
+                                    d="M6.445 11.688V6.354h-.633A12.6 12.6 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23z" />
+                            </svg>
+                            <input id="date2" type="date" class="form-control date-input ml-1" name="date2" #date2="ngModel"
+                            [(ngModel)]="form.date2" required>
+                            </span>
+                            
+                        </div>
+                        <div class="center-align">
+                            <button class="btn btn-success" [disabled]="form.invalid" type="submit">Search</button>                        
+                        
+                        </div>
+                    </div>
+                </form>
+                </div>
+
+                <div class="searched" [hidden]="!searched">
+
+
+                
+                <div class="card stats-card" style="color:black">
+                    Total Enquiries in between given dates
+
+                    <div class="stat-count">
+                        {{enquiryList.length}}
+                    </div>
+                </div>
+
+
+                <div class="status-tabs">
+                    <div>
+                        <div class="btn-group" *ngFor="let status of enquiryStatusList">
+    
+                            <button type="button" class="btn btn-primary" (click)="selectStatus(status.statusId)">{{status.statusValue}} 
+                                {{getCountOfStatusType(status.statusId)}}
+                            </button>
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+
+                <div class="drill-down-view">
+                    <div [hidden]="statusSelected">
+                        <!-- CourseType Summary View -->
+                        <!-- <div class="status-tabs">
+
+                            
+                            <div>
+                                <div class="btn-group" *ngFor="let resourceType of resourceTypeList">
+                                       
+                                    <button class="btn btn-secondary mt-2">{{resourceType.resourceTypeString}} {{getCourseTypeCount(resourceType.resourceTypeId)}}</button>
+                                     
+                                    
+                                </div>
+                                
+                            </div>
+                        </div> -->
+                        <!-- Table View -->
+                        <div class="table-view">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                    
+                                        <th scope="col" >Customer Name</th>
+                                        <th scope="col">Enquiry Date</th>
+                                        <th scope="col">Course Type</th>
+                                        <th scope="col">Status</th>
+                                        
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr name="fieldName" ngDefaultControl *ngFor="let enquiry of filterList">
+                                        <th scope="row">{{enquiry.customerId.customerName}}</th>
+                                        <td>
+                                                {{enquiry.enquiryDate}}
+                                        </td>
+                                       
+                                        <td>{{enquiry.courseId.domain.domainName}}</td>
+                        
+                                         <td>{{enquiry.status.statusValue}}</td>
+                                    </tr>
+                
+                
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -15,7 +15,7 @@ export class ResourceService {
   constructor(private http:HttpClient) { }
 
   getResources():Observable<any[]>{
-    return this.http.get<any>(`${environment.API_URL}/resources`);
+    return this.http.get<any>(environment.API_URL+'/resources');
   }
 
   getResourceById(val:any):Observable<any>{
