@@ -16,13 +16,9 @@ export class CourseEnquiryService {
     statusValue: 'Received'
   };
   CourseEnquiryList:any[];
-<<<<<<< HEAD
   courseEnquiryStatusList:any[];
   CourseEnquiryListByStatus:any[];
   readonly  APIUrl = "http://localhost:9091/api/";
-=======
-  readonly  APIUrl = "http://localhost:8000/api/";
->>>>>>> f8fa5750b9b234ada488223081b4cb51516bb68f
   form:CourseEnquiry;
   constructor(private http:HttpClient) { }
 
