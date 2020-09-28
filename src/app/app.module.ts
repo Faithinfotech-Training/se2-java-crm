@@ -25,12 +25,26 @@ import { LoginComponent } from './login/login.component';
 import { LoginServiceService } from './services/login-service.service';
 import { AdminComponent } from './admin/admin.component';
 import { ManagerComponent } from './manager/manager.component';
+import { ManagerSalespipelineComponent } from './manager-salespipeline/manager-salespipeline.component';
+import { ResourseSalesComponent } from './manager-salespipeline/resourse-sales/resourse-sales.component';
+import { CourseSalesComponent } from './manager-salespipeline/course-sales/course-sales.component';
+import { ChartsModule } from 'ng2-charts';
 import { SidebarComponent } from './admin/sidebar/sidebar.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { OrderModule } from 'ngx-order-pipe';
 import { ResourceEnquirySummaryComponent } from './manager/resource-enquiry-summary/resource-enquiry-summary.component';
+<<<<<<< HEAD
 import { WebportalComponent } from './webportal/webportal.component';
+=======
+//import { CourseLeadComponent } from './manager-salespipeline/course-lead/course-lead.component';
+//import { ResourceLeadComponent } from './manager-salespipeline/resource-lead/resource-lead.component';
+import { LeadSalespipelineComponent } from './manager/lead-salespipeline/lead-salespipeline.component';
+import { CourseleadComponent } from './manager/lead-salespipeline/courselead/courselead.component';
+import { ResourceleadComponent } from './manager/lead-salespipeline/resourcelead/resourcelead.component';
+import { WebportalComponent } from './webportal/webportal.component';
+
+>>>>>>> efc4d4ff8ea2ff1814e4b48fd0c83dbcdd099ab6
 
 @NgModule({
   declarations: [
@@ -51,9 +65,21 @@ import { WebportalComponent } from './webportal/webportal.component';
     LoginComponent,
     AdminComponent,
     ManagerComponent,
+    ManagerSalespipelineComponent,
+    ResourseSalesComponent,
+    CourseSalesComponent,
     SidebarComponent,
     ResourceEnquirySummaryComponent,
+<<<<<<< HEAD
     WebportalComponent
+=======
+    
+    LeadSalespipelineComponent,
+    CourseleadComponent,
+    ResourceleadComponent,
+    WebportalComponent,
+   
+>>>>>>> efc4d4ff8ea2ff1814e4b48fd0c83dbcdd099ab6
     
   ],
   imports: [
@@ -61,6 +87,7 @@ import { WebportalComponent } from './webportal/webportal.component';
     AppRoutingModule,
     RouterModule,
     HttpClientModule,
+    ChartsModule,
     ModalModule.forRoot(),
     FormsModule,
     ToastrModule.forRoot(),

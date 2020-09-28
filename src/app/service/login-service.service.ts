@@ -7,6 +7,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable, observable} from "rxjs";
 import { map, filter, catchError, mergeMap } from 'rxjs/operators';
 import { LoginresponseModule } from '../login/loginresponse/loginresponse.module';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class LoginServiceService {
   { 
         
   }
-  readonly APIUrl="http://localhost:8000/api";
+ // readonly APIUrl="http://localhost:8000/api";
 
 // Login method  to connect with the backend
 
@@ -28,7 +29,7 @@ export class LoginServiceService {
    {
      console.log(val);
    
-       return this.http.post<LoginresponseModule>(this.APIUrl+'/login',val);
+       return this.http.post<LoginresponseModule>(environment.API_URL+'/login',val);
    }
 
    // checking if the user is logged in 

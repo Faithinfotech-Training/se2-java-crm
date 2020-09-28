@@ -14,7 +14,7 @@ export class CourseService {
   constructor(private http:HttpClient) { }
 
   getCourse():Observable<any[]>{
-    return this.http.get<any>(`${environment.API_URL}/course`);
+    return this.http.get<any>(environment.API_URL+'/course');
   }
 
   getCourseById(val:any):Observable<any>{
