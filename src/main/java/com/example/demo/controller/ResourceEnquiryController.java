@@ -4,6 +4,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -101,5 +102,28 @@ public class ResourceEnquiryController {
 					
 					List<ResourceEnquiry> enquiries = resourceEnquiryServiceImplementation.findAllResourceEnquiryByResourceType(resourceType);
 					return enquiries;
+				}
+				
+				
+				@GetMapping("/resource/filter/date/{startDate}/{endDate}")
+				public ResponseEntity findByDateResourceEnquiry(@PathVariable("startDate") String startDate,@PathVariable("endDate") String endDate) {
+					List<ResourceEnquiry> resourceEnquiry = resourceEnquiryServiceImplementation.findAllResourceEnquiryByDate(startDate, endDate);
+					if(startDate == null || endDate == null)
+						return ResponseEntity.notFound().build();
+					return ResponseEntity.ok(resourceEnquiry);
+				}
+				
+				@GetMapping("/resource/count")
+				public ResponseEntity<Integer> findResourceEnquiryCount() {
+					int count = resourceEnquiryServiceImplementation.findAllResourceEnquiryCount();
+					return ResponseEntity.ok(count);
+				}
+				
+				@GetMapping("/resource/filter/date/{startDate}/{endDate}/{status}")
+				public ResponseEntity findByDateAndStatusResourceEnquiry(@PathVariable("startDate") String startDate,@PathVariable("endDate") String endDate,@PathVariable int status) {
+					List<ResourceEnquiry> resourceEnquiry = resourceEnquiryServiceImplementation.findAllResourceEnquiryByDateAndStatus(startDate, endDate, status);
+					if(startDate == null || endDate == null )
+						return ResponseEntity.notFound().build();
+					return ResponseEntity.ok(resourceEnquiry);
 				}
 }
