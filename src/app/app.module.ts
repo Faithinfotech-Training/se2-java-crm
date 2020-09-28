@@ -30,6 +30,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { OrderModule } from 'ngx-order-pipe';
 import { ResourceEnquirySummaryComponent } from './manager/resource-enquiry-summary/resource-enquiry-summary.component';
+import { WebportalComponent } from './webportal/webportal.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ResourceEnquirySummaryComponent } from './manager/resource-enquiry-summ
     AdminComponent,
     ManagerComponent,
     SidebarComponent,
-    ResourceEnquirySummaryComponent
+    ResourceEnquirySummaryComponent,
+    WebportalComponent
     
   ],
   imports: [

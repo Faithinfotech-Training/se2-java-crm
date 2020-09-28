@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { ManagerComponent } from './manager/manager.component';
 import { AuthGaurdService } from './services/auth-guard.service';
 import {  ResourceEnquirySummaryComponent } from "./manager/resource-enquiry-summary/resource-enquiry-summary.component";
+import { WebportalComponent } from './webportal/webportal.component';
 const routes: Routes = [
   {path:'admin',component:AdminComponent,canActivate:[AuthGaurdService],
     children:[
@@ -21,7 +22,7 @@ const routes: Routes = [
   {path:'home',component:HomepageComponent},
   {path:'aboutus',component:AboutUsComponent},
   {path:'',component:LoginComponent},
-  
+  {path:'webportal',component:WebportalComponent},
   {path:'manager', component:ManagerComponent,canActivate:[AuthGaurdService],
     children:[
       {path:'resource-enquiry-summary',component:ResourceEnquirySummaryComponent},
