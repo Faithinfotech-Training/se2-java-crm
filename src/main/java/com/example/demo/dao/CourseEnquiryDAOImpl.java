@@ -87,6 +87,7 @@ public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
 		return courseEnquiries;
 	}
 
+	
 	@Override
 	@Modifying
 	public List<CourseEnquiry> viewCourseSalesPipeline() {
