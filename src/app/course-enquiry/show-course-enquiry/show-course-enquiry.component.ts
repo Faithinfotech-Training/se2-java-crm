@@ -14,8 +14,10 @@ import { OrderPipe } from 'ngx-order-pipe';
   styleUrls: ['./show-course-enquiry.component.css']
 })
 export class ShowCourseEnquiryComponent implements OnInit {
-  
+  // declarations
+  // table headings to make it configurable
   tableHeadings:any = ['Course Name', 'Name', 'Email Id', 'Enquiry Date', 'Enquiry Status'];
+  // config var declaration for pagination 
   config: any;
   term:any;
   collection = { count: 60, data: [] };
@@ -50,20 +52,22 @@ export class ShowCourseEnquiryComponent implements OnInit {
       this.term="";
       this.sortedCollection = this.orderPipe.transform(this.service.CourseEnquiryList, 'order');
     }
-
-   log(txt:any){
+  // logging function for debugging
+  log(txt:any){
      console.log(txt);
-   } 
+   }
+  // pagechange event function  
   pageChanged(event){
       this.config.currentPage = event;
   }
+  // setting the variables
   setOrder(value: string) {
     if (this.order === value) {
       this.reverse = !this.reverse;
     }
     this.order = value;
   }
-    
+  // refreshing course enquiry status list  
   refreshCourseEnquiryStatusList(){
     this.service.getCourseEnquiryStatusList().subscribe(
       data=>{
@@ -72,6 +76,7 @@ export class ShowCourseEnquiryComponent implements OnInit {
       }
     );
   }  
+  //refresh course enquiry list
   refreshCourseEnquiryList(){
     this.service.getCourseEnquiryList().subscribe(data=> 
       {
@@ -86,6 +91,7 @@ export class ShowCourseEnquiryComponent implements OnInit {
       });
   }
 
+  // reset form after addition and updation
   resetForm(form?:NgForm){
     if(form!=null)
     {
@@ -93,10 +99,12 @@ export class ShowCourseEnquiryComponent implements OnInit {
     }
   }
 
+  // after submit update the form
   onSubmit(form:NgForm){
     this.updateCourseEnquiry(form);
   }
 
+  //update the course enquiry using service
   updateCourseEnquiry(form:NgForm){
     console.log(form.value);
     this.service.updateCourseEnquiry(form.value).subscribe(res=>{
@@ -105,15 +113,7 @@ export class ShowCourseEnquiryComponent implements OnInit {
       this.refreshCourseEnquiryList();
     });
   }
-  onClickUpdate(dataItem:any){
-    console.log(this.CourseEnquiryStatus);
-    dataItem.enquiryStatus = this.CourseEnquiryStatus;
-    this.service.updateCourseEnquiry(dataItem).subscribe( res=>{
-      console.log(res);
-      this.toastrService.success('Success','Course Enquiry Inserted Successfully');
-      this.refreshCourseEnquiryList();
-    });
-  }
+ 
 
   ChangeOption(enquiryStatus:any){
     console.log(enquiryStatus);
@@ -125,7 +125,7 @@ export class ShowCourseEnquiryComponent implements OnInit {
     });
     console.log(this.CourseEnquiryStatus);
   }
-
+  // delete the course enquiry if user confirms the deletion
   onClickDelete(dataItem:any){
     if(confirm("Are you sure?"))
     {
@@ -135,30 +135,32 @@ export class ShowCourseEnquiryComponent implements OnInit {
          this.toastrService.success('Success','Course Enquiry Deleted Successfully');  
          this.refreshCourseEnquiryList();
         });
-       
     }
    }
-
+   // update the variable 
    viewCourseEnquiryClick(){
     this.ModelTitle="View Course Enquiry";
     this.ActivateViewCourseEnquiry=true;
     console.log('View Course Enquiry clicked!');
   }
-
+  // close the modal
   closeClick(){
     this.ActivateViewCourseEnquiry=false;
-
   }
 
+  // open the modal for viewing the course enquiry
   openModelWithClass(template:TemplateRef<any>,courseEnquiry:CourseEnquiry){
     this.SelectedCourseEnquiry=courseEnquiry;
     this.modalRef=this.modalService.show(
       template,
     );
   }
-
+  // open the modal for course enquiry add/update
   openAddEditModel(template:TemplateRef<any>,courseEnquiry:CourseEnquiry){
 
+    // if course enquiry is null
+    // create a new course enquiry
+    // else update the course enquiry
     if(courseEnquiry===null){
       console.log("Insider create a new Course Enquiry");
       this.AddEditModalTitle="Insert a new Course Enquiry";
@@ -211,7 +213,7 @@ export class ShowCourseEnquiryComponent implements OnInit {
       template
     );
   }
-
+  // delete the course enquiry after confirmation
   deleteClick(courseEnquiry:any){
     if(confirm("Are you sure you want to delete")){
       this.service.deleteCourseEnquiry(courseEnquiry.registrationId).subscribe(res=>{

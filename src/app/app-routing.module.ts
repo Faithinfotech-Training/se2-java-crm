@@ -9,6 +9,7 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { ManagerComponent } from './manager/manager.component';
 import { AuthGaurdService } from './services/auth-guard.service';
+import { UpdateCourseEnquiryComponent } from './course-enquiry/update-course-enquiry/update-course-enquiry.component';
 import { ManagerSalespipelineComponent } from './manager-salespipeline/manager-salespipeline.component';
 
 import { CourseEnquirySummaryComponent } from "./manager/course-enquiry-summary/course-enquiry-summary.component"
@@ -16,7 +17,12 @@ import {  ResourceEnquirySummaryComponent } from "./manager/resource-enquiry-sum
 import { LeadSalespipelineComponent } from './manager/lead-salespipeline/lead-salespipeline.component';
 import { WebportalComponent } from './webportal/webportal.component';
 import { WebCourseComponent } from './webportal/web-course/web-course.component';
+import { WebResourceComponent } from './webportal/web-resource/web-resource.component';
 const routes: Routes = [
+  {path:'resource',component:ResourceComponent},
+  {path:'course',component:CourseComponent},
+  {path:'course-enquiry', component: CourseEnquiryComponent},
+  {path:'update-course-enquiry', component: UpdateCourseEnquiryComponent},
   {path:'admin',component:AdminComponent,canActivate:[AuthGaurdService],
     children:[
       {path:'resource',component:ResourceComponent},
@@ -35,6 +41,7 @@ const routes: Routes = [
   {path:'webportal',component:WebportalComponent,
     children:[
       {path:'web-course',component:WebCourseComponent},
+      {path:'web-resource',component:WebResourceComponent}
     ]},
   {path:'manager', component:ManagerComponent,canActivate:[AuthGaurdService],
     children:[
