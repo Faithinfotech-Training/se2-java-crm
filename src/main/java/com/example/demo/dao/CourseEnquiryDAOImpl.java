@@ -35,8 +35,7 @@ public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
 	public void saveCourseEnquiry(CourseEnquiry courseEnquiry) {
 		// Save course enquiry
 		System.out.println("hello");
-		courseEnquiry.setRegistrationId(0);
-		entityManager.merge(courseEnquiry);
+		entityManager.persist(courseEnquiry);
 	}
 
 	@Override
@@ -83,12 +82,13 @@ public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
 	public List<CourseEnquiry> findAllCourseEnquiryByStatus(int enquiryStatus) {
 
 		// Create a query
-		Query myQuery = entityManager.createQuery("from course_enquiry where enquiryStatus = " + enquiryStatus);
 
+		Query myQuery = entityManager.createQuery("from course_enquiry 	where enquiryStatus = " + enquiryStatus);
+		
 		// Extract the results
 		List<CourseEnquiry> courseEnquiries = myQuery.getResultList();
-
-		// Return the course enquiries list filter by status
+		
+		// Return the course enquires list filter by status
 		return courseEnquiries;
 	}
 

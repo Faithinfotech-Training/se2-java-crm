@@ -32,7 +32,7 @@ public class ResourceEnquiryStatusDAOImp implements ResourceEnquiryStatusDAO{
 
 	@Override
 	public List<ResourceEnquiryStatus> findAllEnquiryStatus() {
-		Query myQuery = entityManager.createQuery("from ResourceEnquiryStatus");
+		Query myQuery = entityManager.createQuery("from resource_enquiry_status");
 		// extract the results
 		List<ResourceEnquiryStatus> enquiryStatuses = myQuery.getResultList();	
 		// return the course enquiries list

@@ -13,7 +13,6 @@ import com.example.demo.service.AccessService;
 
 @CrossOrigin
 @RestController
-
 @RequestMapping("/api")
 public class AccessController {
 	private AccessService accessService;
