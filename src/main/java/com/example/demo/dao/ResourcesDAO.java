@@ -18,5 +18,6 @@ public interface ResourcesDAO {
 	public void saveResources(Resources resources);
 //	Delete resources
 	public Resources deleteResourcesById(int id);
+	public List<Resources> findAllResourceByStatusAndAccess();
 	
 }

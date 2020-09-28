@@ -2,6 +2,7 @@ package com.example.demo.dao;
 
 import java.util.List;
 
+import com.example.demo.entity.Course;
 import com.example.demo.entity.Resources;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -62,6 +63,16 @@ public class ResourcesDAOImp implements ResourcesDAO {
             return null;    
         }
         return resource;
+	}
+
+	@Override
+	public List<Resources> findAllResourceByStatusAndAccess() {
+		// create query for find all course
+				Query query = entityManager.createQuery("from Resources where status_id = 1 and access_id=1 order by resource_name asc");
+				// save result to list of course
+				List<Resources> resource = query.getResultList();
+				// return course
+				return resource;
 	}
 	
 	

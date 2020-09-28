@@ -12,4 +12,5 @@ public interface ResourcesService {
 	public Resources findResourcesById(int theId);
 	public void saveResources(Resources resources);
 	public void deleteResourcesById(int id);
+	public List<Resources> findAllCourseByStatusAndAccess();
 }
