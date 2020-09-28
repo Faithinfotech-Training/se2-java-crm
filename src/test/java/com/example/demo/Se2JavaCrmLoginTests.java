@@ -24,11 +24,11 @@ public class Se2JavaCrmLoginTests
 	@MockBean
 	private LoginDAOImplementation loginDAOImplementation;
 	
-	@Test
+/*	@Test
 	public void loginTest()
 	{
 		String response=loginDAOImplementation.login("","");
 		assertEquals(null,response);
 		
-	}
+	}*/
 }

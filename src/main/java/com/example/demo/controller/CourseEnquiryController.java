@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -69,12 +71,34 @@ public class CourseEnquiryController {
 		return ResponseEntity.ok(courseEnquiry);
 	}
 	
-	@GetMapping("/course/filter/{courseStatus}")
+	@GetMapping("/course/filter/status/{courseStatus}")
 	public ResponseEntity findByStatusCourseEnquiry(@PathVariable("courseStatus") Integer courseStatus) {
 		List<CourseEnquiry> courseEnquiry = courseEnquiryService.findAllCourseEnquiryByStatus(courseStatus);
 		if(courseStatus == null)
 			return ResponseEntity.notFound().build();
 		return ResponseEntity.ok(courseEnquiry);
+	}
+	
+	@GetMapping("/course/filter/date/{startDate}/{endDate}")
+	public ResponseEntity findByDateCourseEnquiry(@PathVariable("startDate") String startDate,@PathVariable("endDate") String endDate) {
+		List<CourseEnquiry> courseEnquiry = courseEnquiryService.findAllCourseEnquiryByDate(startDate, endDate);
+		if(startDate == null || endDate == null)
+			return ResponseEntity.notFound().build();
+		return ResponseEntity.ok(courseEnquiry);
+	}
+	
+	@GetMapping("/course/filter/date/{startDate}/{endDate}/{status}")
+	public ResponseEntity findByDateAndStatusCourseEnquiry(@PathVariable("startDate") String startDate,@PathVariable("endDate") String endDate,@PathVariable int status) {
+		List<CourseEnquiry> courseEnquiry = courseEnquiryService.findAllCourseEnquiryByDateAndStatus(startDate, endDate, status);
+		if(startDate == null || endDate == null )
+			return ResponseEntity.notFound().build();
+		return ResponseEntity.ok(courseEnquiry);
+	}
+	
+	@GetMapping("/course/count")
+	public ResponseEntity<Integer> findCourseEnquiryCount() {
+		int count = courseEnquiryService.findAllCourseEnquiryCount();
+		return ResponseEntity.ok(count);
 	}
 	
 }

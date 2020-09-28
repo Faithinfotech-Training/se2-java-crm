@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.ResourceEnquiry;
+import com.example.demo.entity.ResourceEnquiryStatusDTO;
 
 
 public interface ResourceEnquiryDAO  {
@@ -32,7 +33,13 @@ public interface ResourceEnquiryDAO  {
 
 	
 
-	List<ResourceEnquiry> viewResourceTable();
+	List<ResourceEnquiryStatusDTO> viewResourceTable();
+
+	List<ResourceEnquiry> findAllResourceEnquiryByDateAndStatus(String startDate, String endDate, int status);
+
+	List<ResourceEnquiry> findAllResourceEnquiryByDate(String startDate, String endDate);
+
+	int findAllResourceEnquiryCount();
 
 	
 	

@@ -95,9 +95,7 @@ public class ResourceEnquiryController {
 			return enquiries;
 		}
 		
-		/**		Filter by Resource Type
-		 * 		
-		**/
+		
 				@GetMapping(value = "/resource/filter/resourcetype/{resourceType}")
 				public List<ResourceEnquiry> findAllResourceEnquiriesByResourceType(@PathVariable("resourceType") Integer resourceType) {
 					
