@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dao.LoginDAO;
 import com.example.demo.entity.CourseEnquiry;
+import com.example.demo.entity.CourseLeadResponseDTO;
 import com.example.demo.entity.Login;
 import com.example.demo.entity.ResourceEnquiry;
 import com.example.demo.service.LoginService;
@@ -42,12 +43,13 @@ public class ResourceSalespipelineController {
 
 		} 
 		
+		
+		
 		@RequestMapping(method=RequestMethod.GET,value="/stats/resource/leadsalespipeline")
-		public List<ResourceEnquiry>viewLeadSalespipeline()
+		public List<CourseLeadResponseDTO> viewLeadsSalespipeline()
 		{
-			 System.out.println("SalesPipelineChart");
-		return salespipelineService.viewResourcesSalesPipeline();
-
-		} 
+			 System.out.println("SalesPipelineChart");	
+		 return salespipelineService.viewResourceLeadsSalesPipeline();
+		}	
 
 }

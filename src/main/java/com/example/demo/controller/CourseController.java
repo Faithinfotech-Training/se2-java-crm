@@ -34,6 +34,12 @@ public class CourseController {
 	public List<Course> findAllCourses() {
 		return courseService.findAllCourse();
 	}
+	
+	@GetMapping("/course/active/public")
+	public List<Course> findAllActiveAndPublicCourses() {
+		return courseService.findAllCourseByStatusAndAccess();
+	}
+	
 
 	// Find the course by id
 	@GetMapping("/course/{courseId}")

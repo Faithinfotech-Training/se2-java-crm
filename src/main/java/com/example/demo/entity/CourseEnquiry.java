@@ -25,7 +25,7 @@ public class CourseEnquiry {
 	private Integer registrationId;
 
 	// Customer Id is mapped to the enquiry
-	@ManyToOne(cascade=CascadeType.PERSIST, targetEntity=Customer.class)
+	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity=Customer.class)
 	@JoinColumn(name="customer_id")
 	private Customer customerId;
 

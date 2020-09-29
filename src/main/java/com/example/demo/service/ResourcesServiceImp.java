@@ -50,4 +50,11 @@ public class ResourcesServiceImp implements ResourcesService {
 		resourcesDAO.deleteResourcesById(id);
 	}
 
+
+	@Override
+	public List<Resources> findAllCourseByStatusAndAccess() {
+		
+		return resourcesDAO.findAllResourceByStatusAndAccess();
+	}
+
 }

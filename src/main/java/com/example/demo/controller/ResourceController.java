@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.entity.Course;
 import com.example.demo.entity.Resources;
 import com.example.demo.service.ResourcesService;
 
@@ -42,7 +43,10 @@ public class ResourceController {
 	public List<Resources> findAll() {
 		return resourceService.findAll();
 	}
-
+	@GetMapping("/resource/active/public")
+	public List<Resources> findAllActiveAndPublicCourses() {
+		return resourceService.findAllCourseByStatusAndAccess();
+	}
 	// add mapping for GET /resources/{resourceId}
 	@GetMapping("/resources/{resourceId}")
 	public Resources getResources(@PathVariable int resourceId) {
