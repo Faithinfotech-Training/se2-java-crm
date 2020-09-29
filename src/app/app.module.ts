@@ -78,7 +78,6 @@ import { AddResourceEnquiryComponent } from './webportal/add-resource-enquiry/ad
     AdminComponent,
     ManagerComponent,
     SearchFilterResourceEnquiryPipe,
-    
     UpdateResourceEnquiryComponent,
     ManagerSalespipelineComponent,
     ResourseSalesComponent,
@@ -98,8 +97,6 @@ import { AddResourceEnquiryComponent } from './webportal/add-resource-enquiry/ad
     ResourceTableComponent,
     WebCourseEnquiryFormComponent,
     AddResourceEnquiryComponent,
-   
-    
   ],
   imports: [
     BrowserModule,

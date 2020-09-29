@@ -54,7 +54,7 @@
         <div class="form-group row">
             <label class="col-sm-4 col-form-label">Duration</label>
             <div class="col-sm-8">
-                <input min="1" pattern="[0-9.]+" type="text" class="form-control" id="Duration" name="duration" #duration="ngModel"
+                <input min="1" pattern="[1-9][0-9]" non-negative="^0{10}" type="text" class="form-control" id="Duration" name="duration" #duration="ngModel"
                     [(ngModel)]="courseService.formData.duration" required>
 
                 <!-- Validation -->
@@ -68,9 +68,11 @@
                         Duration must be greater than 1.
                     </div>
                     <div *ngIf="duration.errors.pattern">
-                        Duration must be numeric.
+                        Duration must be positive and non zero number upto 100.
                     </div>
-
+                    <div *ngIf="duration.errors.non-negative">
+                        Duration must be positive and non zero.
+                    </div>
 
                 </div>
             </div>
@@ -80,8 +82,9 @@
         <div class="form-group row">
             <label class="col-sm-4 col-form-label">Fees</label>
             <div class="col-sm-8">
-                <input type="number" class="form-control" name="fees" id="Fees" #fees="ngModel"
-                    [(ngModel)]="courseService.formData.fees" required min="1" oninput="this.value = Math.abs(this.value)">
+                <input type="number" min="1" max="10000" class="form-control" name="fees" id="Fees" #fees="ngModel"
+                    [(ngModel)]="courseService.formData.fees" required oninput="this.value = Math.abs(this.value); if(this.value > 10000){
+                        this.value = 10000;}">
 
 
                 <!-- Validation -->
@@ -91,12 +94,12 @@
                     <div *ngIf="fees.errors.required">
                         Fees is number.
                     </div>
-                    <div *ngIf="fees.errors.pattern">
-                       Pattern error
-                    </div>
                     <div *ngIf="fees.errors.min">
-                        Min error
+                        Fees must be greater than 0.
                      </div>
+                     <div *ngIf="scoreCriteria.errors.max">
+                        Fees must be less than 10000.
+                    </div>
 
                 </div>
 
@@ -108,7 +111,8 @@
             <label class="col-sm-4 col-form-label">Age Criteria</label>
             <div class="col-sm-8">
                 <input type="number" class="form-control" name="ageCriteria" id="ageCriteria" #ageCriteria="ngModel"
-                    [(ngModel)]="courseService.formData.ageCriteria" required min="18" oninput="this.value = Math.abs(this.value)">
+                    [(ngModel)]="courseService.formData.ageCriteria" required min="18" max="100" oninput="this.value = Math.abs(this.value); if(this.value > 100 || this.value < 18){
+                    this.value = 18;}">
 
                 <!-- Validation -->
 
@@ -122,6 +126,10 @@
                         Min 18 age is required.
                      </div>
 
+                     <div *ngIf="scoreCriteria.errors.max">
+                        Age is less than 100.
+                    </div>
+
                 </div>
 
             </div>
@@ -131,16 +139,24 @@
         <div class="form-group row">
             <label class="col-sm-4 col-form-label">Score Criteria</label>
             <div class="col-sm-8">
-                <input type="number" class="form-control" name="scoreCriteria" id="scoreCriteria" #scoreCriteria="ngModel"
-                    [(ngModel)]="courseService.formData.scoreCriteria" oninput="this.value = Math.abs(this.value)">
+                <input type="number" [min]="10" max="100" class="form-control" name="scoreCriteria" id="scoreCriteria" #scoreCriteria="ngModel"  
+                    [(ngModel)]="courseService.formData.scoreCriteria" oninput="this.value = Math.abs(this.value); if(this.value > 100){
+                        this.value = 100;}">
 
-
+        
+                    
                 <!-- Validation -->
 
                 <div *ngIf="scoreCriteria.invalid && (scoreCriteria.dirty || scoreCriteria.touched)" class="alert alert-danger mt-1">
-
+                    <div *ngIf="someNumber.errors.range">Must be in range</div>
                     <div *ngIf="scoreCriteria.errors.required">
                         scoreCriteria is number.
+                    </div>
+                    <div *ngIf="scoreCriteria.errors?.min">
+                        scoreCriteria is greater than 0.
+                    </div>
+                    <div *ngIf="scoreCriteria.errors.max">
+                        scoreCriteria is less than 100.
                     </div>
 
                 </div>
@@ -232,13 +248,13 @@
         </div>
 
         <!-- Qualification -->
-        <div class="form-group row">
+         <div class="form-group row">
             <label class="col-sm-4 col-form-label">Qualification</label>
             <div class="col-sm-8">
             <select type="text" name="qualifications" class="form-control" id="qualifications" #qualifications="ngModel"
                     [(ngModel)]="courseService.formData.qualifications" required>
                         <option *ngIf="courseService.formData.qualifications" disabled [ngValue]="courseService.formData.qualifications">
-                            {{courseService.formData.qualifications.qualificationName}}</option>
+                            {{courseService.formData.qualifications[0].qualificationName}}</option>
                             <option *ngFor="let qualifica of QualificationList" [ngValue]="qualifica">
                         {{qualifica.qualificationName}}
                         <a>(</a>
@@ -246,8 +262,38 @@
                         <a>)</a>
                     </option>
                 </select>
+                
+                <div *ngIf="qualifications.invalid && (qualifications.dirty || qualifications.touched)"
+                    class="alert alert-danger mt-1">
+
+                    <div *ngIf="qualifications.errors.required">
+                        Qualification is required.
+                    </div>
+
+                </div>
             </div>
-        </div> 
+        </div>  
+
+        <!-- <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Qualification</label>
+            <div class="col-sm-8">
+                <select type="text" name="qualifications" class="form-control" id="qualifications" #qualifications="ngModel"
+                [(ngModel)]="courseService.formData.qualifications" required>
+                <label *ngFor="let qualifica of QualificationList" [ngValue]="qualifica">
+                    <input type="checkbox" [formControlName]="i">
+                    {{qualifica[0].qualificationName}}
+                  </label>
+            </select>
+                
+               
+                <div *ngIf="qualifications.invalid && (qualifications.dirty || qualifications.touched)"
+                    class="alert alert-danger mt-1">
+                    <div *ngIf="qualifications.errors.required">
+                        Qualification is required.
+                    </div>
+                </div>
+            </div>
+        </div>  -->
 
         <div class="form-group row">
             <button class="btn btn-block btn-success mt-5" type="submit" [disabled]="form.invalid">Submit</button>

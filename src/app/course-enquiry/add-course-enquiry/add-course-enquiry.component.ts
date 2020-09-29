@@ -78,16 +78,19 @@ export class AddCourseEnquiryComponent implements OnInit {
   
   // Update the course enquiry using service
   updateCourseEnquiry(form:NgForm){
-    console.log("UpdateCourseEnquiry", form.value);
+    console.log("UpdateCourseEnquiry:::", form.value);
     this.service.updateCourseEnquiry(form.value).subscribe(res=>{
-      let ResponceObj:any = res;
-      console.log(ResponceObj);
-      this.toastrService.success('Success','Course Enquiry Updated Successfully');
-      this.resetForm(form);
+      let ResponseObj:any = res;
+      if(ResponseObj.resultValue == '1'){
+        this.toastrService.success('Success','Course Enquiry Updated Successfully');
+        this.resetForm(form);
+        
+      }
+      else{
+        this.toastrService.error('Error', ResponseObj.result);
+      }
       this.service.getCourseEnquiryList().subscribe(res=>{
-        this.service.CourseEnquiryList = res;
-        window.location.reload();
-    
+      this.service.CourseEnquiryList = res;
       });
     });
   }
@@ -101,7 +104,6 @@ export class AddCourseEnquiryComponent implements OnInit {
       this.resetForm(form);
       this.service.getCourseEnquiryList().subscribe(res=>{
         this.service.CourseEnquiryList = res;
-        window.location.reload();
       });
     });
   }

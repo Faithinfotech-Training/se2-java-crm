@@ -13,6 +13,7 @@ import { ResourceEnquiry } from 'src/app/models/resource-enquiry.model';
 export class AddEditResourceEnquiryComponent implements OnInit {
 
   //Declaring Variables
+  emailPattern:any = '([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+';
   resourceEnquiry:ResourceEnquiry;
   StatusTypeList:any;
   ResourceList:any;
@@ -81,14 +82,13 @@ export class AddEditResourceEnquiryComponent implements OnInit {
     }
   }
 
-  //When Add new Resource Enquiry Button is clicked. This method is called.
+  //When Add new Resource Enquiry Button is clicked. This method is called. customer Details are in the form.
   insertResourceEnquiry(form:NgForm){
   
   form.value.customerId.customerId=null;
   form.value.customerId.customerDOB='2020-10-10';
   form.value.customerId.customerPercentage='0';
   form.value.customerId.customerQualification='NA';
-  form.value.customerId.leadSource='website';
   form.value.enquiryDate=new Date().toISOString().slice(0,10).replace('T','');
  
   this.resourceEnquiryService.addResourceEnquiry(form.value).subscribe(res=>{
@@ -109,19 +109,26 @@ export class AddEditResourceEnquiryComponent implements OnInit {
   form.value.customerId.customerDOB='2020-10-10';
   form.value.customerId.customerPercentage='0';
   form.value.customerId.customerQualification='NA';
-  form.value.customerId.leadSource='website';
-  form.value.enquiryDate='2020-09-27';
+  
+  form.value.enquiryDate= new Date().toISOString().slice(0, 10).replace('T', ' ');
   form.value.status = this.resourceEnquiryService.formData.status
 
   this.resourceEnquiryService.updateResourceEnquiry(form.value).subscribe(res=>{
-      let ResponceObj:any = res;
-      console.log(ResponceObj);
+      
+      console.log(res);
+      let responseObj:any = res;
+      if(responseObj.resultValue=='1'){
       this.toastrService.success('Success','Resource Enquiry Updated Successfully');
       this.resetform(form);
       this.resourceEnquiryService.getResourceList().subscribe(res=>{
       this.resourceEnquiryService.list= res;
+      });
       window.location.reload();
-    });
+    }
+    else{
+      this.toastrService.error('Error',responseObj.result);
+    }
+    
   });
   }
 

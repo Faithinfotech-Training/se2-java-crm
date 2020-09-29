@@ -12,7 +12,7 @@ import { NgForm } from '@angular/forms';
 })
 export class ViewResourceEnquiryComponent implements OnInit {
 
-  
+  //Declaring the variables
   modalRef: BsModalRef;  
   ModelTitle:string;
   ActivateViewResourceEnquiry:boolean=false;
@@ -26,20 +26,24 @@ export class ViewResourceEnquiryComponent implements OnInit {
     statusId:1,
     statusValue:"Received"
   };
+
   constructor(public resourceEnquiryService:ResourceEnquiryService,private modalService: BsModalService,private toastrService:ToastrService) { }
 
+  //This function is called on loading of the page.
   ngOnInit(): void {
-    
     this.GetResourceEnquiryList();
     this.refreshEnquiryStatusList();
-
   }
+
+  //Resets the input form
   resetForm(form?:NgForm){
     if(form!=null)
     {
       form.resetForm();
     }
   }
+
+  //Gets the List of all the resource Enquiries
   GetResourceEnquiryList(){
     this.resourceEnquiryService.getResourceEnquiries().subscribe(res=>{
       this.resourceEnquiryService.list=res;
@@ -47,6 +51,8 @@ export class ViewResourceEnquiryComponent implements OnInit {
 
   });
 }
+
+//gets the list of all the status
 refreshEnquiryStatusList(){
   this.resourceEnquiryService.getStatusList().subscribe(
     data=>{
@@ -55,9 +61,13 @@ refreshEnquiryStatusList(){
     }
   );
 } 
+
+//When submit button is clicked this function is called. 
 onSubmit(form:NgForm){
   this.updateResourceEnquiry(form);
 }
+
+//Updates the customer details
 updateResourceEnquiry(form:NgForm){
   console.log(form.value);
   this.resourceEnquiryService.updateResourceEnquiry(form.value).subscribe(res=>{
@@ -68,6 +78,7 @@ updateResourceEnquiry(form:NgForm){
   
 }
 
+//when update button is clicked.
 onClickUpdate(dataItem:any){
   console.log(this.ResourceEnquiryStatus);
   dataItem.enquiryStatus = this.ResourceEnquiryStatus;
@@ -77,6 +88,7 @@ onClickUpdate(dataItem:any){
     this.GetResourceEnquiryList();
   });
 }
+
 ChangeOption(enquiryStatus:any){
   console.log(enquiryStatus);
   this.StatusTypeList.forEach(element => {
@@ -88,6 +100,7 @@ ChangeOption(enquiryStatus:any){
   console.log(this.ResourceEnquiryStatus);
 }
 
+//When delete button is clicked this function is called
 onClickDelete(dataItem:any){
   if(confirm("Are you sure?"))
   {
@@ -102,18 +115,13 @@ onClickDelete(dataItem:any){
      
   }
  }
-  /*viewResourceEnquiryClick(){
-    this.ModelTitle="View Resource Enquiry";
-    this.ActivateViewResourceEnquiry=true;
-
-    console.log('viewResources clicked!');
-  }*/
 
   closeClick(){
     this.ActivateViewResourceEnquiry=false;
 
   }
 
+  //This opens the modal
   openModelWithClass(template:TemplateRef<any>,resourceEnquiry:ResourceEnquiry){
 
     this.SelectedResourceEnquiry=resourceEnquiry;
@@ -123,6 +131,7 @@ onClickDelete(dataItem:any){
     );
   }
 
+  //This opens the add edit model
   openAddEditModel(template:TemplateRef<any>,resourceEnquiry:ResourceEnquiry){
 
     if(resourceEnquiry==null){
@@ -164,6 +173,7 @@ onClickDelete(dataItem:any){
     );
   }
 
+  //When delete is clickd this function is called
   deleteClick(resourceEnquiry:ResourceEnquiry){
     if(confirm("Are you sure you want to delete")){
       this.resourceEnquiryService.deleteResourceEnquiry(resourceEnquiry.resourceEnquiryId).subscribe(res=>{
