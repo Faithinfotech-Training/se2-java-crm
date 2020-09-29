@@ -1,14 +1,17 @@
+<!-- This page is for updating the Resource Enquiry status-->
 <h3> Resource Enquiry List</h3>
 <div class="table-block">
     <div class="card">
         <div class="card-body">
             
             <div class="form-group">
+            <!--search Bar-->
                 <div class="row"> 
-                <label class="label">Input Search Term</label>
+                <label class="label">Search</label>
                 <input class="form-control" type="text" [(ngModel)]="searchValue">
                 </div>
                 <div>
+                    <!--Drop down list to select the status -->
                     <label class="label"> Enquiry Status</label>
                     <select  [(ngModel)] = "resourceEnquiryService.resourceEnquiryStatus" (change)="refreshSelect()"
                         class="form-control">
@@ -19,6 +22,7 @@
                     </select>
                 </div>
             </div>
+            <!-- Table of all the Resource Enquiry is displayed using the selected status-->
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -48,7 +52,7 @@
                             </select>
                         </td>
                         <td class="fit">
-
+                            <!-- On clicking this button the status of the Enquiry is updated-->
                             <a class="btn btn-light" (click)="onClickUpdate(resourceEnquiry)">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square"
                                     fill="grey" xmlns="http://www.w3.org/2000/svg">

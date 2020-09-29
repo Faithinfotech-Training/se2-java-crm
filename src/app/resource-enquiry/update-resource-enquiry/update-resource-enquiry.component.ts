@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-//import { OrderPipe } from 'ngx-order-pipe';
 import { ToastrService } from 'ngx-toastr';
 import { Resource } from 'src/app/models/resource.model';
 import { ResourceEnquiryService } from 'src/app/services/resource-enquiry.service';
@@ -14,6 +13,7 @@ import { ResourceEnquiry } from 'src/app/models/resource-enquiry.model';
 })
 export class UpdateResourceEnquiryComponent implements OnInit {
 
+  //Declaring all the variables
   tableHeadings:any = ['Resource Name', 'Name', 'Email Id', 'Enquiry Date', 'Enquiry Status'];
   config: any;
   term:any;
@@ -40,35 +40,42 @@ export class UpdateResourceEnquiryComponent implements OnInit {
     private modalService: BsModalService,
     ) { }
 
+    //These functions are called on initialising of the page
   ngOnInit(): void {
     this.refreshResourceEnquiryList()
       this.refreshResourceEnquiryStatusList()
       this.refreshResourceEnquiryListByStatus()
       this.order="";
       this.term="";
-     // this.sortedCollection = this.orderPipe.transform(this.resourceEnquiryService.list, 'order');
+     
   }
+
+  //gets the List of Resource enquiries according to the status given
   refreshResourceEnquiryListByStatus(){
     this.resourceEnquiryService.getResourceEnquiryListByStatus().subscribe(res=>{
       this.resourceEnquiryService.resourceEnquiryListByStatus = res;
     });
   }
+
+  //gets the list of status and list of resource enquiries. 
     refreshSelect(){
 
       this.refreshResourceEnquiryStatusList();
-      console.log('Resource Enquiry Status in Service', this.resourceEnquiryService.resourceEnquiryStatus);
-      console.log('Course Enquiry Status List', this.resourceEnquiryService.resourceEnquiryListByStatus);
       this.refreshResourceEnquiryListByStatus();
     }
+    //pagination page change event
     pageChanged(event){
       this.config.currentPage = event;
   }
+
   setOrder(value: string) {
     if (this.order === value) {
       this.reverse = !this.reverse;
     }
     this.order = value;
   }
+
+  //Gets the list of all the status
   refreshResourceEnquiryStatusList(){
     this.resourceEnquiryService.getStatusList().subscribe(
       data=>{
@@ -77,7 +84,9 @@ export class UpdateResourceEnquiryComponent implements OnInit {
 
       }
     );
-  }      
+  }   
+  
+  //Gets all the list of Resource Enquiries
   refreshResourceEnquiryList(){
     this.resourceEnquiryService.getResourceEnquiries().subscribe(data=> 
       {
@@ -92,12 +101,14 @@ export class UpdateResourceEnquiryComponent implements OnInit {
       });
   }
 
+  //Resets the input form
   resetForm(form?:NgForm){
     if(form!=null)
     {
       form.resetForm();
     }
   }
+
 
   onClickRow(resourceEnquiry:ResourceEnquiry){
     this.selectedResourceEnquiry = resourceEnquiry;
@@ -106,20 +117,21 @@ export class UpdateResourceEnquiryComponent implements OnInit {
     this.resourceEnquiryStatus = resourceEnquiryStatus;
   }
 
+  //When click button is pressed this function is called
   onClickUpdate(dataItem:any){
-    console.log("Before" ,dataItem);
+
     dataItem.status = this.resourceEnquiryStatus;
     this.resourceEnquiryService.updateResourceEnquiry(dataItem).subscribe( res=>{
       console.log(res);
       this.toastrService.success('Success','Resource Enquiry Inserted Successfully');
-      console.log("After" ,dataItem);
-      
       this.refreshResourceEnquiryList();
       this.refreshSelect();
     });
   }
+
+
   changeOption(enquiryStatus:any){
-    console.log(enquiryStatus);
+   
     this.resourceEnquiryStatusList.forEach(element => {
       if(element.statusValue == enquiryStatus)
       {
