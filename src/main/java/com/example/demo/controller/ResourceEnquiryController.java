@@ -1,9 +1,12 @@
 //Controller Layer for Resource Enquiry
 package com.example.demo.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -64,10 +67,19 @@ public class ResourceEnquiryController {
 		
 //This method updates the exisiting Resource Enquiry by using the Resource Enquiry ID and replaces the data with the data given in request body
 		@PutMapping(value="/resource")
-		public ResourceEnquiry updateResourceEnquiryStatus(@RequestBody ResourceEnquiry resourceEnquiry)
+		public ResponseEntity updateResourceEnquiryStatus(@RequestBody ResourceEnquiry resourceEnquiry)
 		{
 			String result = resourceEnquiryServiceImplementation.updateResourceEnquiry(resourceEnquiry);
-			return resourceEnquiry;
+			final Map<String,String> body = new HashMap();
+			body.put("result", result);
+			if(result.equalsIgnoreCase("Updated Successfully."))
+			{body.put("resultValue", "1");
+			}
+			else
+			{
+				body.put("resultValue","0");
+			}
+			return ResponseEntity.ok(body);
 		}
 		
 		
