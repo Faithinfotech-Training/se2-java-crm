@@ -122,12 +122,20 @@ export class UpdateCourseEnquiryComponent implements OnInit {
   onClickUpdate(dataItem:any){
     console.log("Before" ,this.CourseEnquiryStatus);
     dataItem.enquiryStatus = this.CourseEnquiryStatus;
+    console.log(dataItem);
     this.service.updateCourseEnquiry(dataItem).subscribe( res=>{
+      console.log(res);
       
+      let ResponseObj:any = res;
+      if(ResponseObj.resultValue == '1'){
       this.toastrService.success('Success','Course Enquiry Inserted Successfully');
       this.refreshCourseEnquiryList();
       this.refreshCourseEnquiryListByStatus();
       this.refreshSelect();
+      }
+      else{
+        this.toastrService.error('Error', ResponseObj.result);
+      }
     });
   }
 

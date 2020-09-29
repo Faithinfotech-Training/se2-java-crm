@@ -11,7 +11,9 @@ export class CourseService {
 
   formData : Course
   list : Course[];
+  activeList : Course[];
   sortedlist : Course[];
+  sortedActivelist : Course []
   search;
   order: string = 'info.name';
   reverse: boolean = false;
@@ -20,6 +22,10 @@ export class CourseService {
 
   getCourse():Observable<any[]>{
     return this.http.get<any>(environment.API_URL+'/course');
+  }
+
+  getActivePublicCourse():Observable<any[]>{
+    return this.http.get<any>(environment.API_URL+'/course/active/public');
   }
 
   getCourseById(val:any):Observable<any>{

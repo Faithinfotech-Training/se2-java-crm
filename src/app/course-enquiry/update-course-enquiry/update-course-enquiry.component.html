@@ -16,9 +16,11 @@
                     <select  [(ngModel)] = "service.courseEnquiryStatus" (change)="refreshSelect()"
                         class="form-control">
                         <option selected disabled [ngValue]="service.courseEnquiryStatus">{{service.courseEnquiryStatus.statusValue}}</option>
-                        <option *ngFor="let enquiryStatusName of service.courseEnquiryStatusList"
-                         [ngValue]="enquiryStatusName">{{enquiryStatusName.statusValue}}
+                        <ng-container *ngFor="let enquiryStatusName of service.courseEnquiryStatusList">
+                        <option
+                         [ngValue]="enquiryStatusName" *ngIf="enquiryStatusName.statusValue!=service.courseEnquiryStatus.statusValue">{{enquiryStatusName.statusValue}}
                         </option>
+                        </ng-container>
                     </select>
                 </div>
             </div>
@@ -28,7 +30,7 @@
                     <tr>
                         <th [class.active]="order === 'courseId.courseName'"
                         (click)="setOrder('courseId.courseName')">Course Name 
-                        <span [hidden]="reverse">▼</span><span [hidden]="!reverse"> ▲</span></th>
+                        <span [hidden]="reverse">▼</span><span [hidden]="!reverse"> ▲</span></th>   
                         <th scope="col" *ngFor="let heading of tableHeadings">{{heading}}</th> 
                         <th scope="col" class="fit"></th>
                     </tr>
