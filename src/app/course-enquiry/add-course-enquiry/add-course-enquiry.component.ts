@@ -78,7 +78,7 @@ export class AddCourseEnquiryComponent implements OnInit {
   
   // Update the course enquiry using service
   updateCourseEnquiry(form:NgForm){
-    console.log("UpdateCourseEnquiry", form.value);
+    console.log("UpdateCourseEnquiry:::", form.value);
     this.service.updateCourseEnquiry(form.value).subscribe(res=>{
       let ResponseObj:any = res;
       if(ResponseObj.resultValue == '1'){
