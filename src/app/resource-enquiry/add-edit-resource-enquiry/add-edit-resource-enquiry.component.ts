@@ -110,7 +110,7 @@ export class AddEditResourceEnquiryComponent implements OnInit {
   form.value.customerId.customerPercentage='0';
   form.value.customerId.customerQualification='NA';
   
-  form.value.enquiryDate='2020-09-27';
+  form.value.enquiryDate= new Date().toISOString().slice(0, 10).replace('T', ' ');
   form.value.status = this.resourceEnquiryService.formData.status
 
   this.resourceEnquiryService.updateResourceEnquiry(form.value).subscribe(res=>{

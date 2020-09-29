@@ -24,6 +24,8 @@
 
             </div>
         </div>
+       
+       
         <fieldset ngModelGroup="customerId">   
 
 <!--Customer Name Input-->
@@ -31,7 +33,7 @@
     <label class="col-sm-4 col-form-label">Name</label>
     <div class="col-sm-8">
         <input type="text" class="form-control" id="customerName" name="customerName" #customerName="ngModel"
-            [(ngModel)]="resourceEnquiryService.formData.customerId.customerName" class="form-control" required minlength="4">
+            [(ngModel)]="resourceEnquiryService.formData.customerId.customerName" class="form-control" autocomplete="off" required minlength="4" pattern = "[A-Za-z]+">
 
             <div *ngIf="customerName.invalid && (customerName.dirty || customerName.touched)"
             class="alert alert-danger mt-1">
@@ -40,6 +42,9 @@
             </div>
             <div *ngIf="customerName.errors.minlength">
                 Name must be at least 4 characters long.
+            </div>
+            <div *ngIf="customerName.errors.pattern">
+                Name must be not contain special characters and numbers.
             </div>
         </div>
       
@@ -52,7 +57,7 @@
     <label class="col-sm-4 col-form-label">Email</label>
     <div class="col-sm-8">
         <input type="email" class="form-control" id="customerEmailId" name="customerEmailId" #customerEmailId="ngModel"
-            [(ngModel)]="resourceEnquiryService.formData.customerId.customerEmailId" class="form-control" required  minlength="8" maxlength="20">
+            [(ngModel)]="resourceEnquiryService.formData.customerId.customerEmailId" class="form-control" autocomplete="off" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required  minlength="8" maxlength="20">
             
            
           <!-- Validation -->
@@ -60,8 +65,6 @@
           class="alert alert-danger mt-1">
           <div *ngIf="customerEmailId.errors.pattern">
               Customer Email Id should be valid
-              {{log(customerEmailId.errors)}}
-              {{log(service.form.customerId.customerEmailId)}}
           </div>
           
           <div *ngIf="customerEmailId.errors.required">
@@ -80,7 +83,7 @@
     <label class="col-sm-4 col-form-label">Phone Number</label>
     <div class="col-sm-8">
         <input type="number" class="form-control" id="customerPhoneNumber" name="customerPhoneNumber" #customerPhoneNumber="ngModel"
-            [(ngModel)]="resourceEnquiryService.formData.customerId.customerPhoneNumber" class="form-control" required minlength="10">
+            [(ngModel)]="resourceEnquiryService.formData.customerId.customerPhoneNumber" class="form-control" required autocomplete="off" pattern="[0-9]{10}" minlength="10">
        
        <!-- Validation -->
        <div *ngIf="customerPhoneNumber.touched && customerPhoneNumber.invalid" class="alert alert-danger">
@@ -96,7 +99,7 @@
         <label class="col-sm-4 col-form-label">Lead Source</label>
         <div class="col-sm-8">
             <input type="text" class="form-control" id="leadSource" name="leadSource" #leadSource="ngModel"
-                [(ngModel)]="resourceEnquiryService.formData.customerId.leadSource" class="form-control" required>
+                [(ngModel)]="resourceEnquiryService.formData.customerId.leadSource" class="form-control" autocomplete="off" required>
             
                 <!--Validation-->
                 <div *ngIf="leadSource.invalid && (leadSource.dirty || leadSource.touched)"

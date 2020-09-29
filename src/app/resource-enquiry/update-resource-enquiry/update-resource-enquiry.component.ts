@@ -123,9 +123,17 @@ export class UpdateResourceEnquiryComponent implements OnInit {
     dataItem.status = this.resourceEnquiryStatus;
     this.resourceEnquiryService.updateResourceEnquiry(dataItem).subscribe( res=>{
       console.log(res);
-      this.toastrService.success('Success','Resource Enquiry Inserted Successfully');
-      this.refreshResourceEnquiryList();
-      this.refreshSelect();
+      if(res.resultValue=='1'){
+        this.toastrService.success('Success','Resource Enquiry Updated Successfully');
+      
+        this.resourceEnquiryService.getResourceList().subscribe(res=>{
+        this.resourceEnquiryService.list= res;
+      });
+        window.location.reload();
+      }
+      else{
+        this.toastrService.error('Error',res.result);
+      }
     });
   }
 
