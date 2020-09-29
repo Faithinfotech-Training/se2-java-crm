@@ -9,11 +9,14 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { AddEditResourceComponent } from './resource/add-edit-resource/add-edit-resource.component';
 import {  ToastrModule } from "ngx-toastr";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ResourceEnquiryComponent } from './resource-enquiry/resource-enquiry.component';
+import { AddEditResourceEnquiryComponent } from './resource-enquiry/add-edit-resource-enquiry/add-edit-resource-enquiry.component';
+import { ViewResourceEnquiryComponent } from './resource-enquiry/view-resource-enquiry/view-resource-enquiry.component';
 import { CourseComponent } from './course/course.component';
 import { AddEditCourseComponent } from './course/add-edit-course/add-edit-course.component';
 import { ViewCourseComponent } from './course/view-course/view-course.component';
 import { CourseEnquiryComponent } from './course-enquiry/course-enquiry.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UpdateCourseEnquiryComponent } from './course-enquiry/update-course-enquiry/update-course-enquiry.component';
 import { ShowCourseEnquiryComponent } from './course-enquiry/show-course-enquiry/show-course-enquiry.component';
@@ -25,6 +28,8 @@ import { LoginComponent } from './login/login.component';
 import { LoginServiceService } from './services/login-service.service';
 import { AdminComponent } from './admin/admin.component';
 import { ManagerComponent } from './manager/manager.component';
+import { SearchFilterResourceEnquiryPipe } from './search-filter-resource-enquiry.pipe';
+import { UpdateResourceEnquiryComponent } from './resource-enquiry/update-resource-enquiry/update-resource-enquiry.component';
 import { ManagerSalespipelineComponent } from './manager-salespipeline/manager-salespipeline.component';
 import { ResourseSalesComponent } from './manager-salespipeline/resourse-sales/resourse-sales.component';
 import { CourseSalesComponent } from './manager-salespipeline/course-sales/course-sales.component';
@@ -43,6 +48,11 @@ import { CourseleadComponent } from './manager/lead-salespipeline/courselead/cou
 import { ResourceleadComponent } from './manager/lead-salespipeline/resourcelead/resourcelead.component';
 import { WebCourseComponent } from './webportal/web-course/web-course.component';
 import { WebResourceComponent } from './webportal/web-resource/web-resource.component';
+import { ViewTableComponent } from './manager/view-table/view-table.component';
+import { CourseTableComponent } from './manager/view-table/course-table/course-table.component';
+import { ResourceTableComponent } from './manager/view-table/resource-table/resource-table.component';
+import { WebCourseEnquiryFormComponent } from './webportal/web-course/web-course-enquiry-form/web-course-enquiry-form.component';
+import { AddResourceEnquiryComponent } from './webportal/add-resource-enquiry/add-resource-enquiry.component';
 
 
 @NgModule({
@@ -51,6 +61,9 @@ import { WebResourceComponent } from './webportal/web-resource/web-resource.comp
     ResourceComponent,
     ViewResourcesComponent,
     AddEditResourceComponent,
+    ResourceEnquiryComponent,
+    AddEditResourceEnquiryComponent,
+    ViewResourceEnquiryComponent,
     CourseComponent,
     AddEditCourseComponent,
     ViewCourseComponent,
@@ -64,6 +77,8 @@ import { WebResourceComponent } from './webportal/web-resource/web-resource.comp
     LoginComponent,
     AdminComponent,
     ManagerComponent,
+    SearchFilterResourceEnquiryPipe,
+    UpdateResourceEnquiryComponent,
     ManagerSalespipelineComponent,
     ResourseSalesComponent,
     CourseSalesComponent,
@@ -77,8 +92,11 @@ import { WebResourceComponent } from './webportal/web-resource/web-resource.comp
     WebportalComponent,
     WebCourseComponent,
     WebResourceComponent,
-   
-    
+    ViewTableComponent,
+    CourseTableComponent,
+    ResourceTableComponent,
+    WebCourseEnquiryFormComponent,
+    AddResourceEnquiryComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +106,9 @@ import { WebResourceComponent } from './webportal/web-resource/web-resource.comp
     ChartsModule,
     ModalModule.forRoot(),
     FormsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    NgxPaginationModule,
     ToastrModule.forRoot(),
     Ng2SearchPipeModule,
     FormsModule,

@@ -2,9 +2,6 @@
     <div class="card">
         <div class="card-body">
 
-          
-            
-
             <!-- Search Bar -->
 
             <div class="row m-4">
@@ -16,7 +13,6 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                      
                         <th scope="col" (click)="toggleSort()">Resource Name <span [hidden]="!sortButtonToogle" >▼</span
                             ><span [hidden]="sortButtonToogle"> ▲</span></th>
                         <th scope="col">Status</th>
@@ -156,7 +152,6 @@
     </div>
     <div class="modal-body">
         <!-- Resource Name -->
-        <app-add-edit-resource></app-add-edit-resource>
+        <app-add-resource-enquiry></app-add-resource-enquiry>
     </div>
-
 </ng-template>
