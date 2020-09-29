@@ -123,7 +123,8 @@ export class UpdateResourceEnquiryComponent implements OnInit {
     dataItem.status = this.resourceEnquiryStatus;
     this.resourceEnquiryService.updateResourceEnquiry(dataItem).subscribe( res=>{
       console.log(res);
-      if(res.resultValue=='1'){
+      let responseObj:any = res;
+      if(responseObj.resultValue=='1'){
         this.toastrService.success('Success','Resource Enquiry Updated Successfully');
       
         this.resourceEnquiryService.getResourceList().subscribe(res=>{
@@ -132,7 +133,7 @@ export class UpdateResourceEnquiryComponent implements OnInit {
         window.location.reload();
       }
       else{
-        this.toastrService.error('Error',res.result);
+        this.toastrService.error('Error',responseObj.result);
       }
     });
   }

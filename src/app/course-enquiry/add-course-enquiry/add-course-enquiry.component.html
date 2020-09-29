@@ -164,10 +164,11 @@
             <div class="col-sm-8">
                 <select type="text" name="courseId" class="form-control" id="courseId" #courseId="ngModel"
                     [(ngModel)]="service.form.courseId" required>
+                    <option  [ngValue]="service.form.courseId" *ngIf="service.form.courseId" selected disabled>
+                        {{service.form.courseId.courseName}}
+                    </option>
                     <ng-container *ngFor="let course of courseList">
-                        <option  [ngValue]="course" *ngIf="service.form.courseId==course.courseId" selected disabled>
-                            {{course.courseName}}
-                        </option>
+                        
                         <option  [ngValue]="course" *ngIf="course.courseId!=service.form.courseId.courseId">
                             {{course.courseName}}
                         </option>
@@ -194,7 +195,6 @@
                         <option  [ngValue]="enquiryStatus" *ngIf="service.form.enquiryStatus.statusId!=enquiryStatus.statusId">
                             {{enquiryStatus.statusValue}}
                         </option>
-                        
                     </ng-container>
                 </select>
             </div>
