@@ -61,8 +61,8 @@ export class WebResourceComponent implements OnInit {
   GetResourcesList(){
    
     console.log('Get resources list called');
-    this.resourceService.getResources().subscribe(res=>{
-      console.log('GetResourcesList',res);
+    this.resourceService.getResourcesByAccess().subscribe(res=>{
+      console.log('GetResourcesListByAccess',res);
       this.resourceService.list=res;
 
     

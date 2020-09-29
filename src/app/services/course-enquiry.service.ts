@@ -18,7 +18,7 @@ export class CourseEnquiryService {
   CourseEnquiryList:any[];
   courseEnquiryStatusList:any[];
   CourseEnquiryListByStatus:any[];
-  readonly  APIUrl = "http://localhost:8080/api/";
+  readonly  APIUrl = "http://localhost:9090/api/";
   form:CourseEnquiry;
   constructor(private http:HttpClient) { }
 
@@ -46,7 +46,7 @@ export class CourseEnquiryService {
   }
 
   getCourseEnquiryListByStatus(){
-    return this.http.get<any>(`${this.APIUrl}enquiry/course/filter/status/` + this.courseEnquiryStatus.statusId);
+    return this.http.get<any>(environment.API_URL+'/enquiry/course/filter/status/' + this.courseEnquiryStatus.statusId);
   }
 
 }

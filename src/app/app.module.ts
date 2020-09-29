@@ -48,6 +48,9 @@ import { CourseleadComponent } from './manager/lead-salespipeline/courselead/cou
 import { ResourceleadComponent } from './manager/lead-salespipeline/resourcelead/resourcelead.component';
 import { WebCourseComponent } from './webportal/web-course/web-course.component';
 import { WebResourceComponent } from './webportal/web-resource/web-resource.component';
+import { ViewTableComponent } from './manager/view-table/view-table.component';
+import { CourseTableComponent } from './manager/view-table/course-table/course-table.component';
+import { ResourceTableComponent } from './manager/view-table/resource-table/resource-table.component';
 import { WebCourseEnquiryFormComponent } from './webportal/web-course/web-course-enquiry-form/web-course-enquiry-form.component';
 import { AddResourceEnquiryComponent } from './webportal/add-resource-enquiry/add-resource-enquiry.component';
 
@@ -75,7 +78,6 @@ import { AddResourceEnquiryComponent } from './webportal/add-resource-enquiry/ad
     AdminComponent,
     ManagerComponent,
     SearchFilterResourceEnquiryPipe,
-    
     UpdateResourceEnquiryComponent,
     ManagerSalespipelineComponent,
     ResourseSalesComponent,
@@ -90,10 +92,11 @@ import { AddResourceEnquiryComponent } from './webportal/add-resource-enquiry/ad
     WebportalComponent,
     WebCourseComponent,
     WebResourceComponent,
+    ViewTableComponent,
+    CourseTableComponent,
+    ResourceTableComponent,
     WebCourseEnquiryFormComponent,
     AddResourceEnquiryComponent,
-   
-    
   ],
   imports: [
     BrowserModule,

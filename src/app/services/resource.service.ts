@@ -21,7 +21,10 @@ export class ResourceService {
   getResourceById(val:any):Observable<any>{
     return this.http.get<any>(environment.API_URL + '/resources/'+val);
   }
-
+ getResourcesByAccess():Observable<any>
+ {
+  return this.http.get<any>(environment.API_URL+'/resource/active/public')
+}
   
 
   addResource(val:any){
