@@ -72,6 +72,7 @@ public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
 		CourseEnquiry courseEnquiryFromDb = entityManager.find(CourseEnquiry.class,courseEnquiry.getRegistrationId());
 		if(courseEnquiryFromDb.getEnquiryStatus().getStatusValue()
 			.equalsIgnoreCase(courseEnquiry.getEnquiryStatus().getStatusValue())) {
+			entityManager.merge(courseEnquiry);
 			return successString;
 		}
 		// If status is received then it can be updated to Interested or Not Interested
