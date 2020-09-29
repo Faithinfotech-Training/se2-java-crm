@@ -24,7 +24,7 @@ export class ShowCourseEnquiryComponent implements OnInit {
   collection = { count: 60, data: [] };  
   order: string = 'courseId.courseName';
   reverse: boolean = false;
-sortedCollection: any[];
+  sortedCollection: any[];
   modalRef: BsModalRef;  
   ModelTitle:string;
   ActivateViewCourseEnquiry:boolean=false;
@@ -55,9 +55,8 @@ sortedCollection: any[];
     
     GetPagination(){
       this.config = {
-        itemsPerPage: 10,
+        itemsPerPage: 5,
         currentPage: 1,
-       // totalItems: this.courseService.list.count
       };
     }
   
@@ -65,7 +64,6 @@ sortedCollection: any[];
       console.log(this.service.CourseEnquiryList);
       this.sortedCollection = this.orderPipe.transform(this.service.CourseEnquiryList, this.order);
       this.service.CourseEnquiryList = this.sortedCollection;
-      console.log("Sorted,", this.sortedCollection);
     }
     // logging function for debugging
   log(txt:any){
@@ -100,9 +98,8 @@ sortedCollection: any[];
         this.service.CourseEnquiryList=data;
         console.log(data);
         this.config = {
-          itemsPerPage: 10,
-          currentPage: 1,
-          totalItems: this.service.CourseEnquiryList.length
+          itemsPerPage: 5,
+          currentPage: 1
         };
       });
   }
@@ -234,7 +231,7 @@ sortedCollection: any[];
     if(confirm("Are you sure you want to delete")){
       this.service.deleteCourseEnquiry(courseEnquiry.registrationId).subscribe(res=>{
           let responseObj:any=res;
-          console.log(res);
+          console.log("Hello,", responseObj.status);
           if(responseObj.status==500){
           
             this.toastrService.error('error','Error while Deleting');
