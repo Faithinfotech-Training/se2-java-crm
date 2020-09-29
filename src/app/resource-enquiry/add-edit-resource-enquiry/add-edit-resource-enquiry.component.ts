@@ -89,7 +89,6 @@ export class AddEditResourceEnquiryComponent implements OnInit {
   form.value.customerId.customerDOB='2020-10-10';
   form.value.customerId.customerPercentage='0';
   form.value.customerId.customerQualification='NA';
-// form.value.customerId.leadSource='website';
   form.value.enquiryDate=new Date().toISOString().slice(0,10).replace('T','');
  
   this.resourceEnquiryService.addResourceEnquiry(form.value).subscribe(res=>{
@@ -110,19 +109,25 @@ export class AddEditResourceEnquiryComponent implements OnInit {
   form.value.customerId.customerDOB='2020-10-10';
   form.value.customerId.customerPercentage='0';
   form.value.customerId.customerQualification='NA';
-  form.value.customerId.leadSource='website';
+  
   form.value.enquiryDate='2020-09-27';
   form.value.status = this.resourceEnquiryService.formData.status
 
   this.resourceEnquiryService.updateResourceEnquiry(form.value).subscribe(res=>{
-      let ResponceObj:any = res;
-      console.log(ResponceObj);
+      
+      console.log(res);
+      if(res.resultValue=='1'){
       this.toastrService.success('Success','Resource Enquiry Updated Successfully');
       this.resetform(form);
       this.resourceEnquiryService.getResourceList().subscribe(res=>{
       this.resourceEnquiryService.list= res;
-      window.location.reload();
     });
+      window.location.reload();
+    }
+    else{
+      this.toastrService.error('Error',res.result);
+    }
+    
   });
   }
 
