@@ -13,7 +13,7 @@
             <div class="col-sm-8">
                 <input type="text" autocomplete="off" class="form-control" id="customerName" name="customerName" 
                 #customerName="ngModel" [(ngModel)]="service.form.customerId.customerName"
-                class="form-control" required minlength="4">
+                class="form-control" required minlength="4"  pattern = "[A-Za-z]+">
                 <!-- Validation -->
                 <div *ngIf="customerName.invalid && (customerName.dirty || customerName.touched)"
                     class="alert alert-danger mt-1">
@@ -22,6 +22,9 @@
                     </div>
                     <div *ngIf="customerName.errors.minlength">
                         Name must be at least 4 characters long.
+                    </div>
+                    <div *ngIf="customerName.errors.pattern">
+                        Name must be not contain special characters and numbers.
                     </div>
                 </div>
             </div>
