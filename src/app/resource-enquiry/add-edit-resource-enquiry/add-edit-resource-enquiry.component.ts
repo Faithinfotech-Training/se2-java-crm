@@ -116,16 +116,17 @@ export class AddEditResourceEnquiryComponent implements OnInit {
   this.resourceEnquiryService.updateResourceEnquiry(form.value).subscribe(res=>{
       
       console.log(res);
-      if(res.resultValue=='1'){
+      let responseObj:any = res;
+      if(responseObj.resultValue=='1'){
       this.toastrService.success('Success','Resource Enquiry Updated Successfully');
       this.resetform(form);
       this.resourceEnquiryService.getResourceList().subscribe(res=>{
       this.resourceEnquiryService.list= res;
-    });
+      });
       window.location.reload();
     }
     else{
-      this.toastrService.error('Error',res.result);
+      this.toastrService.error('Error',responseObj.result);
     }
     
   });
