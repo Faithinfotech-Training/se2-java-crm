@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -57,9 +59,17 @@ public class CourseEnquiryController {
 	}
 	 // Update the course enquiry
 	 @PutMapping("/course")
-	 public String updateCourseEnquiry(@RequestBody CourseEnquiry courseEnquiry) {
+	 public ResponseEntity updateCourseEnquiry(@RequestBody CourseEnquiry courseEnquiry) {
 		String result = courseEnquiryService.updateCourseEnquiry(courseEnquiry);
-		 return result;
+		final Map<String, String> body = new HashMap<>();
+		body.put("result", result);
+		if(result.equalsIgnoreCase("Updated Successfully.")) {
+			body.put("resultValue", "1");
+		}
+		else {
+			body.put("resultValue", "0");
+		}
+		return ResponseEntity.ok(body);
 	 }
 			
 	// Delete the course enquiry
@@ -90,6 +100,7 @@ public class CourseEnquiryController {
 	@GetMapping("/course/filter/date/{startDate}/{endDate}/{status}")
 	public ResponseEntity findByDateAndStatusCourseEnquiry(@PathVariable("startDate") String startDate,@PathVariable("endDate") String endDate,@PathVariable int status) {
 		List<CourseEnquiry> courseEnquiry = courseEnquiryService.findAllCourseEnquiryByDateAndStatus(startDate, endDate, status);
+		System.out.println(startDate+" "+endDate);
 		if(startDate == null || endDate == null )
 			return ResponseEntity.notFound().build();
 		return ResponseEntity.ok(courseEnquiry);
