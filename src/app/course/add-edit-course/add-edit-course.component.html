@@ -54,7 +54,7 @@
         <div class="form-group row">
             <label class="col-sm-4 col-form-label">Duration</label>
             <div class="col-sm-8">
-                <input min="1" pattern="[1-9][0-9]*" non-negative="^0{10}" type="text" class="form-control" id="Duration" name="duration" #duration="ngModel"
+                <input min="1" pattern="[1-9][0-9]" non-negative="^0{10}" type="text" class="form-control" id="Duration" name="duration" #duration="ngModel"
                     [(ngModel)]="courseService.formData.duration" required>
 
                 <!-- Validation -->
@@ -68,7 +68,7 @@
                         Duration must be greater than 1.
                     </div>
                     <div *ngIf="duration.errors.pattern">
-                        Duration must be positive and non zero number.
+                        Duration must be positive and non zero number upto 100.
                     </div>
                     <div *ngIf="duration.errors.non-negative">
                         Duration must be positive and non zero.
@@ -82,8 +82,9 @@
         <div class="form-group row">
             <label class="col-sm-4 col-form-label">Fees</label>
             <div class="col-sm-8">
-                <input type="number" class="form-control" name="fees" id="Fees" #fees="ngModel"
-                    [(ngModel)]="courseService.formData.fees" required min="1" max="10000" oninput="this.value = Math.abs(this.value)">
+                <input type="number" min="1" max="10000" class="form-control" name="fees" id="Fees" #fees="ngModel"
+                    [(ngModel)]="courseService.formData.fees" required oninput="this.value = Math.abs(this.value); if(this.value > 10000){
+                        this.value = 10000;}">
 
 
                 <!-- Validation -->
@@ -110,7 +111,8 @@
             <label class="col-sm-4 col-form-label">Age Criteria</label>
             <div class="col-sm-8">
                 <input type="number" class="form-control" name="ageCriteria" id="ageCriteria" #ageCriteria="ngModel"
-                    [(ngModel)]="courseService.formData.ageCriteria" required min="18" max="100" oninput="this.value = Math.abs(this.value)">
+                    [(ngModel)]="courseService.formData.ageCriteria" required min="18" max="100" oninput="this.value = Math.abs(this.value); if(this.value > 100 || this.value < 18){
+                    this.value = 18;}">
 
                 <!-- Validation -->
 
@@ -137,18 +139,20 @@
         <div class="form-group row">
             <label class="col-sm-4 col-form-label">Score Criteria</label>
             <div class="col-sm-8">
-                <input type="number" max="100" min="1" class="form-control" name="scoreCriteria" id="scoreCriteria" #scoreCriteria="ngModel"
-                    [(ngModel)]="courseService.formData.scoreCriteria" oninput="this.value = Math.abs(this.value)">
+                <input type="number" [min]="10" max="100" class="form-control" name="scoreCriteria" id="scoreCriteria" #scoreCriteria="ngModel"  
+                    [(ngModel)]="courseService.formData.scoreCriteria" oninput="this.value = Math.abs(this.value); if(this.value > 100){
+                        this.value = 100;}">
 
-
+        
+                    
                 <!-- Validation -->
 
                 <div *ngIf="scoreCriteria.invalid && (scoreCriteria.dirty || scoreCriteria.touched)" class="alert alert-danger mt-1">
-
+                    <div *ngIf="someNumber.errors.range">Must be in range</div>
                     <div *ngIf="scoreCriteria.errors.required">
                         scoreCriteria is number.
                     </div>
-                    <div *ngIf="scoreCriteria.errors.min">
+                    <div *ngIf="scoreCriteria.errors?.min">
                         scoreCriteria is greater than 0.
                     </div>
                     <div *ngIf="scoreCriteria.errors.max">
