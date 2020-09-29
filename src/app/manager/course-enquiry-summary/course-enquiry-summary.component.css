@@ -26,6 +26,9 @@ body {
     margin:10px 0px;
     margin-bottom: 50px;
 }
+.w-75{
+    margin:0 auto;
+}
 .color-green{
  
     background: #764ba2;  /* fallback for old browsers */

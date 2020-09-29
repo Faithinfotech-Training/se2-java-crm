@@ -112,11 +112,13 @@ export class ViewCourseComponent implements OnInit {
           {  
               this.toastrService.success('Success','Course Deleted Successfully');
           } 
-      });
-      this.GetCourseList();
-    }
+
+          this.GetCourseList();
+      },      err=>{this.toastrService.info('Cannot Delete','This Resource Id is used in Resource Enquiry');
+    });
+      
+    }}
   }
-}
 
 
 

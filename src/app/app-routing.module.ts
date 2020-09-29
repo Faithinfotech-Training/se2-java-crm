@@ -31,24 +31,24 @@ const routes: Routes = [
       {path:'resource',component:ResourceComponent},
       {path:'course',component:CourseComponent},
       {path:'course-enquiry', component: CourseEnquiryComponent},
-      {path:'update-course-enquiry', component:UpdateCourseEnquiryComponent}
+      {path:'update-course-enquiry', component:UpdateCourseEnquiryComponent},
+      {path:'resource-enquiry',component:ResourceEnquiryComponent},
+      {path:'update-resource-enquiry',component:UpdateResourceEnquiryComponent},
     ]
   },  
-  {path:'home',component:HomepageComponent},
-  {path:'aboutus',component:AboutUsComponent},
   {path:'admin',component:AdminComponent,canActivate:[AuthGaurdService]},
   {path:'login',component:LoginComponent},
   {path:'manager', component:ManagerComponent,canActivate:[AuthGaurdService]},
   {path:'resource',component:ResourceComponent},
-  {path:'resource-enquiry',component:ResourceEnquiryComponent},
-  {path:'resource-enquiry/update',component:UpdateResourceEnquiryComponent},
  // {path:'managersalespipeline',component:ManagerSalespipelineComponent},
 
   {path:'',component:LoginComponent},
   {path:'webportal',component:WebportalComponent,
     children:[
       {path:'web-course',component:WebCourseComponent},
-      {path:'web-resource',component:WebResourceComponent}
+      {path:'web-resource',component:WebResourceComponent},
+      {path:'home',component:HomepageComponent},
+      {path:'aboutus',component:AboutUsComponent},
     ]},
   {path:'manager', component:ManagerComponent,canActivate:[AuthGaurdService],
     children:[
