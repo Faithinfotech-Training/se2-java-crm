@@ -60,5 +60,8 @@ getStatusList():Observable<any[]>{
 getResourceList():Observable<any[]>{
   return this.http.get<any>(environment.API_URL+'/resources');
 }
-  
+  putClickEnquiry(val:any)
+  {
+    return this.http.post(environment.API_URL+'',val);
+  }
 }
