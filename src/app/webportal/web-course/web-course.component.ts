@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { CourseService } from 'src/app/services/course.service';
 import { Course } from 'src/app/models/course.model';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';  
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Template } from '@angular/compiler/src/render3/r3_ast';
 import { ToastrService } from 'ngx-toastr';
 import { OrderModule, OrderPipe } from 'ngx-order-pipe'
@@ -13,82 +13,70 @@ import { OrderModule, OrderPipe } from 'ngx-order-pipe'
 })
 export class WebCourseComponent implements OnInit {
 
-  modalRef: BsModalRef;  
-  ModelTitle:string;
-  ActivateViewCourse:boolean=false;
-  SelectedCourse:Course;
-  AddEditModelTitle:String;
-  config:any;
+  modalRef: BsModalRef;
+  ModelTitle: string;
+  ActivateViewCourse: boolean = false;
+  SelectedCourse: Course;
+  AddEditModelTitle: String;
+  config: any;
 
-  constructor(public courseService:CourseService,private modalService: BsModalService,private toastrService:ToastrService,
-    private orderPipe:OrderPipe) { }
-
+  constructor(public courseService: CourseService, private modalService: BsModalService, private toastrService: ToastrService,
+    private orderPipe: OrderPipe) { }
+  //calling three functions on loading
   ngOnInit(): void {
+    //get course list
     this.GetCourseList();
+    //get order
     this.GetOrder();
+    //use pagination
     this.GetPagination();
   }
-  
-  GetPagination(){
+  //setting pagination attributes 
+  GetPagination() {
     this.config = {
       itemsPerPage: 10,
       currentPage: 1,
-     // totalItems: this.courseService.list.count
     };
   }
 
-  GetOrder(){
-    this.courseService.sortedlist = this.orderPipe.transform(this.courseService
-      .list, 'info.name');
-      console.log("Sorted List");
-    //console.log(this.courseService.sortedlist);
-  }
-  
-  
-  GetCourseList(){
-    console.log('Get courses list called');
-    this.courseService.getCourse().subscribe(res=>{
-      console.log('GetCourseList',res);
-      this.courseService.list=res;
-    });
+  //getting order of list
+  GetOrder() {
+    this.courseService.sortedActivelist = this.orderPipe.transform(this.courseService
+      .activeList, 'info.name');
+    console.log("Sorted List");
   }
 
-  viewCourseClick(){
-    this.ModelTitle="View Course";
-    this.ActivateViewCourse=true;
+  //getting course list
+  GetCourseList() {
+    console.log('Get courses list called');
+    this.courseService.getActivePublicCourse().subscribe(res => {
+      console.log('GetCourseList', res);
+      this.courseService.activeList = res;
+    });
+  }
+  //function for view all details of course
+  viewCourseClick() {
+    this.ModelTitle = "View Course";
+    this.ActivateViewCourse = true;
 
     console.log('viewCourse clicked!');
   }
 
-  closeClick(){
-    this.ActivateViewCourse=false;
-
+  //close function method
+  closeClick() {
+    this.ActivateViewCourse = false;
   }
 
-  openModelWithClass(template:TemplateRef<any>,course:Course){
-
-    this.SelectedCourse=course;
-    this.modalRef=this.modalService.show(
+  //model function for getting course by id
+  openModelWithClass(template: TemplateRef<any>, course: Course) {
+    this.SelectedCourse = course;
+    this.modalRef = this.modalService.show(
       template,
-      
+
     );
   }
 
-  // openAddEditModel(template:TemplateRef<any>,course:Course){
-
-  //   if(course===null){
-  //     this.AddEditModelTitle="Insert a new Course";
-  //   }else{
-  //     this.AddEditModelTitle="Edit Course";
-  //   }
-  //   this.courseService.formData = Object.assign({},course);
-
-
-  //   this.modalRef=this.modalService.show(
-  //     template,
-  //   );
-  // }
-
+  //set order function of sorting
   setOrder(value: string) {
     if (this.courseService.order === value) {
       this.courseService.reverse = !this.courseService.reverse;
@@ -96,34 +84,19 @@ export class WebCourseComponent implements OnInit {
     this.courseService.order = value;
   }
 
-  pageChanged(event){
+  //pagination page changed function
+  pageChanged(event) {
     this.config.currentPage = event;
   }
 
-  // deleteClick(course:Course){
-  //   if(confirm("Are you sure you want to delete")){
-  //     this.courseService.deleteCourse(course.courseId).subscribe(res=>{
-  //         let responseObj:any=res;
-  //         if(responseObj.status==500){
-          
-  //           this.toastrService.error('error','Error while Deleting');
-  //         }
-  //         else
-  //         {  
-  //             this.toastrService.success('Success','Course Deleted Successfully');
-  //         } 
-  //     });
-  //     this.GetCourseList();
-  //   }
-  // }
 }
 
 
 
 
 
- 
 
- 
 
- 
+
+
+
