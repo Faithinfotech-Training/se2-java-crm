@@ -52,7 +52,7 @@
   </div>
  <br/>
  <div class="card-body">
-   <form  #loginform="ngForm" (ngSubmit)="checkLogin()" novalidate>
+   <form  #loginform="ngForm" (ngSubmit)="checkLogin()" novalidate autocomplete="off">
    
      <div class="form-row">
       <!--div class="form-group col">
@@ -79,7 +79,7 @@
  </div>
 <br/>
  <div class="form-row" class="text-center">
- <button (click)=checkLogin() class="btn btn-success btn-lg" >  Login
+ <button (click)=checkLogin() class="btn btn-success btn-lg" [disabled]="!loginform.valid">  Login
  </button>
  </div>
 <br/>

@@ -60,7 +60,8 @@
         <div class="form-group row">
             <label class="col-sm-4 col-form-label">Capacity</label>
             <div class="col-sm-8">
-                <input min="1" oninput="this.value = Math.abs(this.value)" type="number" class="form-control" id="Capacity" name="capacity" #capacity="ngModel"
+                <input min="1" oninput="this.value = Math.abs(this.value) ; if(this.value > 10000){
+                    this.value = 10000;}" type="number" class="form-control" id="Capacity" name="capacity" #capacity="ngModel"
                     [(ngModel)]="resourceService.formData.capacity" >
 
                 <!-- Validation -->
@@ -85,7 +86,8 @@
             <label class="col-sm-4 col-form-label">Fees</label>
             <div class="col-sm-8">
                 <input type="number" class="form-control" name="fees" id="Fees" #fees="ngModel"
-                    [(ngModel)]="resourceService.formData.fees" required min="1" oninput="this.value = Math.abs(this.value)">
+                    [(ngModel)]="resourceService.formData.fees" required min="1" oninput="this.value = Math.abs(this.value) ; if(this.value > 100000){
+                        this.value = 100000;}">
 
 
                 <!-- Validation -->
