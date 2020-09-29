@@ -68,7 +68,12 @@ public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
 	@Override
 	public String updateCourseEnquiry(CourseEnquiry courseEnquiry) {
 		// Update the course enquiry
+		String successString = "Updated Successfully.";
 		CourseEnquiry courseEnquiryFromDb = entityManager.find(CourseEnquiry.class,courseEnquiry.getRegistrationId());
+		if(courseEnquiryFromDb.getEnquiryStatus().getStatusValue()
+			.equalsIgnoreCase(courseEnquiry.getEnquiryStatus().getStatusValue())) {
+			return successString;
+		}
 		// If status is received then it can be updated to Interested or Not Interested
 			if(courseEnquiryFromDb.getEnquiryStatus().getStatusValue().equalsIgnoreCase("Received") && (courseEnquiry.getEnquiryStatus().getStatusValue().equalsIgnoreCase("Interested") || courseEnquiry.getEnquiryStatus().getStatusValue().equalsIgnoreCase("Not Interested")))
 				{
@@ -127,7 +132,7 @@ public class CourseEnquiryDAOImpl implements CourseEnquiryDAO {
 							+ " Registered -> Test taken -> Qualified -> Admission";
 				}
 				
-		return "Updated Successfully.";
+		return successString;
 	}
 
 	@Override
