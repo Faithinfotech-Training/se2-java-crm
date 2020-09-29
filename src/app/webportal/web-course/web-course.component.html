@@ -42,7 +42,9 @@
                         <td>{{course.ageCriteria}}</td>
                        
                         <td class="fit">
-                            
+                            <a class="btn btn-light" (click)="openEnquiryModal(enquiryTemplate,course)">
+                                Enquire
+                            </a>
                         </td>
                     </tr>
 
@@ -133,9 +135,7 @@
                 </div>
             </div>
         </div>
-        <a class="btn btn-light" (click)="openEnquiryModal(enquiryTemplate,course)">
-            Enquire
-        </a>    
+            
     
     </div>
 </ng-template>
