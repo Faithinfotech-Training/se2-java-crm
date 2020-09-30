@@ -1,6 +1,7 @@
 import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { ResourceEnquirySummaryService, ResourceEnquiry } from 'src/app/services/resource-enquiry-summary.service'
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-resource-enquiry-summary',
@@ -9,7 +10,7 @@ import { NgForm } from '@angular/forms';
 })
 export class ResourceEnquirySummaryComponent implements OnInit {
 
-  constructor(public resourceEnquirySummaryService:ResourceEnquirySummaryService) { }
+  constructor(public resourceEnquirySummaryService:ResourceEnquirySummaryService,private toastrService:ToastrService) { }
 
   enquiryList:ResourceEnquiry[];
   resourceTypeList:any[];
@@ -20,6 +21,8 @@ export class ResourceEnquirySummaryComponent implements OnInit {
   filterList:any;
   date1:any;
   date2:any;
+
+  length:any;
 
   form:DatePicker;
 //  Total count of resource enquiries
@@ -51,8 +54,14 @@ export class ResourceEnquirySummaryComponent implements OnInit {
   onSubmit(form:NgForm){
     let date1:any = new Date(form.value.date1);
     let date2:any = new Date(form.value.date2);
-    let date1Str=date1.toLocaleDateString('en-GB', { day: 'numeric', month: 'numeric', year: '2-digit' }).split(' ').join('-');
-    let date2Str=date2.toLocaleDateString('en-GB', { day: 'numeric', month: 'numeric', year: '2-digit' }).split(' ').join('-');
+
+    if(date1>date2){
+      this.toastrService.info('please try again','From date should be less than to date');
+      return;
+    }
+
+    let date1Str=date1.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: '2-digit' }).split(' ').join('-');
+    let date2Str=date2.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: '2-digit' }).split(' ').join('-');
     console.log(date1Str);
     console.log(date2Str);
     this.date1=date1Str;
@@ -67,7 +76,8 @@ export class ResourceEnquirySummaryComponent implements OnInit {
     this.statusSelected=true;
     this.resourceEnquirySummaryService.getResourceEnquiryFilterByDate(this.date1,this.date2).subscribe(res=>{
       console.log('GetResourcesEnquiryList',res);
-      this.enquiryList=res;   
+      this.enquiryList=res;
+         
     });
   }
 
@@ -93,6 +103,7 @@ export class ResourceEnquirySummaryComponent implements OnInit {
     }
   }
   
+  
 
   // Select Status from specific status id
   selectStatus(id){
@@ -103,6 +114,7 @@ export class ResourceEnquirySummaryComponent implements OnInit {
       // this.filterList=this.enquiryList.filter((e)=>e.status.statusId==id);
    this.resourceEnquirySummaryService.getResourceEnquiryFilterByStatus(this.date1,this.date2,id).subscribe(res=>{
         this.filterList=res;
+        this.length=this.filterList.length;
      
     });
     

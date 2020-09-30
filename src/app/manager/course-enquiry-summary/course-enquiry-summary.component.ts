@@ -58,8 +58,8 @@ export class CourseEnquirySummaryComponent implements OnInit {
     //getting end date from calender
     let date2: any = new Date(form.value.date2);
     //converting dates in required format of api (dd-MM-YY)
-    let date1Str = date1.toLocaleDateString('en-GB', { day: 'numeric', month: 'numeric', year: '2-digit' }).split(' ').join('-');
-    let date2Str = date2.toLocaleDateString('en-GB', { day: 'numeric', month: 'numeric', year: '2-digit' }).split(' ').join('-');
+    let date1Str = date1.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: '2-digit' }).split(' ').join('-');
+    let date2Str = date2.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: '2-digit' }).split(' ').join('-');
     //storing converted dates
     this.date1 = date1Str;
     this.date2 = date2Str;

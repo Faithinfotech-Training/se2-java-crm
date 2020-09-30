@@ -122,6 +122,7 @@
                                 </thead>
                                 <tbody>
                                     <tr name="fieldName" ngDefaultControl *ngFor="let enquiry of filterList">
+                                       
                                         <th scope="row">{{enquiry.customerId.customerName}}</th>
                                         <td>
                                                 {{enquiry.enquiryDate}}
@@ -131,10 +132,15 @@
                         
                                          <td>{{enquiry.status.statusValue}}</td>
                                     </tr>
+                                   
                 
                 
                                 </tbody>
+                                
                             </table>
+                            <div [hidden]="length">
+                                No record found
+                            </div>
                         </div>
                     </div>
                 </div>
