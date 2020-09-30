@@ -20,7 +20,7 @@ export class AddEditResourceEnquiryComponent implements OnInit {
   customer: any;
   resource:any;
   status:any;
-  
+  leadSourceList = ['Website','Newspaper','Social Media'];
 
   constructor(public resourceEnquiryService:ResourceEnquiryService,private toastrService:ToastrService) { }
 
