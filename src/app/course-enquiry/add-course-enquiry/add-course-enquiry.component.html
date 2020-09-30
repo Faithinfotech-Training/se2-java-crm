@@ -13,7 +13,7 @@
             <div class="col-sm-8">
                 <input type="text" autocomplete="off" class="form-control" id="customerName" name="customerName" 
                 #customerName="ngModel" [(ngModel)]="service.form.customerId.customerName"
-                class="form-control" required minlength="4"  pattern = "[A-Za-z]+">
+                class="form-control" required minlength="4"  pattern = "[A-Za-z]+[A-Za-z ]+">
                 <!-- Validation -->
                 <div *ngIf="customerName.invalid && (customerName.dirty || customerName.touched)"
                     class="alert alert-danger mt-1">
@@ -24,7 +24,7 @@
                         Name must be at least 4 characters long.
                     </div>
                     <div *ngIf="customerName.errors.pattern">
-                        Name must be not contain special characters and numbers.
+                        Name must be not contain special characters and numbers or spaces at start.
                     </div>
                 </div>
             </div>
@@ -61,12 +61,12 @@
             <label class="col-sm-4 col-form-label"> Phone Number</label>
             <div class="col-sm-8">
                 <input  type="number" class="form-control" autocomplete="off"
-                 id="customerPhoneNumber" name="customerPhoneNumber" required pattern="[0-9]{10}" #customerPhoneNumber="ngModel" 
+                 id="customerPhoneNumber" name="customerPhoneNumber" required pattern="[7-9]+[0-9]{9}" #customerPhoneNumber="ngModel" 
                   [(ngModel)]="service.form.customerId.customerPhoneNumber" oninput="this.value = Math.abs(this.value)" >
                 <!-- Validation -->
                 <div *ngIf="customerPhoneNumber.touched && customerPhoneNumber.invalid" class="alert alert-danger">
                     <div *ngIf="customerPhoneNumber.errors.required">Mobile Number is required.</div>
-                    <div *ngIf="customerPhoneNumber.errors.pattern">Please, Enter 10 digit Mobile Number.</div>
+                    <div *ngIf="customerPhoneNumber.errors.pattern">Please, Enter a valid 10 digit Mobile Number.</div>
                 </div>    
             </div>
         </div>
@@ -152,8 +152,6 @@
                         Date of Birth errors in pattern
                     </div>
                 </div>
-
-
             </div>
         </div>
 
@@ -164,11 +162,13 @@
             <div class="col-sm-8">
                 <select type="text" name="courseId" class="form-control" id="courseId" #courseId="ngModel"
                     [(ngModel)]="service.form.courseId" required>
+                    <option  [ngValue]="service.form.courseId" *ngIf="service.form.courseId" selected>
+                        {{service.form.courseId.courseName}}
+                        {{log(service.form.courseId)}}
+                    </option>
                     <ng-container *ngFor="let course of courseList">
-                        <option  [ngValue]="course" *ngIf="service.form.courseId==course.courseId" selected disabled>
-                            {{course.courseName}}
-                        </option>
-                        <option  [ngValue]="course" *ngIf="course.courseId!=service.form.courseId.courseId">
+                        
+                        <option  [ngValue]="course" *ngIf="service.form.courseId && course.courseId!=service.form.courseId.courseId">
                             {{course.courseName}}
                         </option>
                     </ng-container>
@@ -187,14 +187,13 @@
             <div class="col-sm-8">
                 <select type="text"  name="enquiryStatus" class="form-control" id="enquiryStatus"
                      #enquiryStatus="ngModel" [(ngModel)]="service.form.enquiryStatus" required>
+                     <option [ngValue]="service.form.enquiryStatus" *ngIf="service.form.enquiryStatus" selected>
+                        {{service.form.enquiryStatus.statusValue}}
+                    </option>
                      <ng-container *ngFor="let enquiryStatus of enquiryStatusList">
-                        <option selected  [ngValue]="enquiryStatus" *ngIf="service.form.enquiryStatus.statusValue==enquiryStatus.statusValue" disabled>
+                        <option  [ngValue]="enquiryStatus" *ngIf="service.form.enquiryStatus.statusValue!=enquiryStatus.statusValue">
                             {{enquiryStatus.statusValue}}
                         </option>
-                        <option  [ngValue]="enquiryStatus" *ngIf="service.form.enquiryStatus.statusId!=enquiryStatus.statusId">
-                            {{enquiryStatus.statusValue}}
-                        </option>
-                        
                     </ng-container>
                 </select>
             </div>
