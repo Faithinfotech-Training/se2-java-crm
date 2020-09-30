@@ -34,7 +34,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th >Resource Id</th>
+                       
                         <th scope="col" (click)="toggleSort()">Resource Name <span [hidden]="!sortButtonToogle" >▼</span
                             ><span [hidden]="sortButtonToogle"> ▲</span></th>
                         <th scope="col">Status</th>
@@ -46,7 +46,6 @@
                 </thead>
                 <tbody>
                     <tr name="fieldName" ngDefaultControl *ngFor="let resource of resourceService.list | filter:term | orderBy: orderString : reverseToggle | paginate: { itemsPerPage: 10, currentPage: p}" [(ngModel)]="resourceService.list">
-                        <th scope="row" name="resourceId">{{resource.resourceId}}</th>
                         <td>
                             <a href="javascript:void(0)" (click)="openModelWithClass(template,resource)">
                                 {{resource.resourceName}}

@@ -4,10 +4,10 @@
 
         <!-- Resource Name -->
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Resource Name</label>
+            <label class="col-sm-4 col-form-label">Name</label>
             <div class="col-sm-8">
                 <input type="text" class="form-control" id="resourceName" name="resourceName" #resourceName="ngModel"
-                    [(ngModel)]="resourceService.formData.resourceName" class="form-control" required minlength="4">
+                    [(ngModel)]="resourceService.formData.resourceName" class="form-control" required minlength="4" pattern = "[A-Za-z]+[A-Za-z ]+">
 
 
                 <!-- Validation -->
@@ -21,6 +21,9 @@
                     <div *ngIf="resourceName.errors.minlength">
                         Resource Name must be at least 4 characters long.
                     </div>
+                    <div *ngIf="resourceName.errors.pattern">
+                        Name must be not contain special characters and numbers or spaces at start.
+                    </div>
 
 
                 </div>
@@ -29,7 +32,7 @@
 
         <!-- Resource Description -->
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Resource Description</label>
+            <label class="col-sm-4 col-form-label"> Description</label>
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="resourceDescription" id="resourceDescription"
                     #resourceDescription="ngModel" [(ngModel)]="resourceService.formData.resourceDescription" required

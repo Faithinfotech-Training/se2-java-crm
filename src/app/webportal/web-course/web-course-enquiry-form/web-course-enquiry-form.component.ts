@@ -18,7 +18,7 @@ export class WebCourseEnquiryFormComponent implements OnInit {
  enquiryStatus:any;
  enquiryStatusList:any;
  course:any;
-
+ leadSourceList = ['Website','Newspaper','Social Media'];
  
   constructor(public service:CourseEnquiryService,
     private toastrService:ToastrService,
@@ -49,8 +49,8 @@ onSubmit(form:NgForm){
     console.log(form.value);
     this.insertCourseEnquiry(form);
   
-} // Update the course enquiry using service
-
+} 
+  // Update the course enquiry using service
   insertCourseEnquiry(form:NgForm){
     console.log(this.service.form);
     this.service.addCourseEnquiry(this.service.form).subscribe(res=>{
@@ -65,5 +65,7 @@ onSubmit(form:NgForm){
       });
     });
   }
+
+ 
 
 }

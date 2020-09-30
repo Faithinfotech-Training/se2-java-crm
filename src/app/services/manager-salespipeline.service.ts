@@ -15,10 +15,14 @@ export class ManagerSalespipelineService {
   courseStatusList:CoursestatusresponseModule[];
   constructor(private http:HttpClient) { }
 
+
+  // getting the data from backend for resource enquiry list
   getResourceStatusTable():Observable<any>
   {
     return this.http.get<any>(environment.API_URL+'/stats/resource/table');
   }
+
+   // getting the data from backend for course enquiry list
   getCourseStatusTable():Observable<any>
   {
     return this.http.get<any>(environment.API_URL+'/stats/course/table');

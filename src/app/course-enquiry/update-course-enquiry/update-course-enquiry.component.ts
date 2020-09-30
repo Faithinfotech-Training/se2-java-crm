@@ -13,9 +13,10 @@ import { CourseEnquiryService } from 'src/app/services/course-enquiry.service';
   styleUrls: ['./update-course-enquiry.component.css']
 })
 export class UpdateCourseEnquiryComponent implements OnInit {
-  // table headings to make it configurable
+  // Variable declarations
+  // Table headings to make it configurable
   tableHeadings:any = ['Name', 'Email Id', 'Enquiry Date', 'Enquiry Status'];
-  // pagination configurations variable
+  // Pagination configurations variable
   config: any;
   term:any;
   order: string = 'courseId.courseName';
@@ -32,6 +33,7 @@ export class UpdateCourseEnquiryComponent implements OnInit {
   CourseEnquiryStatus:any;
   selectedCourseEnquiry:CourseEnquiry;
   selectEnquiryStatus:any;
+  enquiryStatus:any;
   
   constructor(public service:CourseEnquiryService,
               private toastrService:ToastrService,
@@ -41,30 +43,34 @@ export class UpdateCourseEnquiryComponent implements OnInit {
               }
 
   ngOnInit(): void {
+      this.enquiryStatus = {
+        statusId:1,
+        statusValue:'Received'
+        };
       this.refreshCourseEnquiryList()
       this.refreshCourseEnquiryStatusList()
       this.refreshCourseEnquiryListByStatus()
       this.refreshSelect()
       this.order="courseId.courseName";
       this.term="";
-      this.sortedCollection = this.orderPipe.transform(this.service.CourseEnquiryList, this.order);
     }
   
   refreshCourseEnquiryListByStatus(){
       this.service.getCourseEnquiryListByStatus().subscribe(res=>{
         this.service.CourseEnquiryListByStatus = res;
+        this.sortedCollection = this.orderPipe.transform(this.service.CourseEnquiryListByStatus, this.order);
+        console.log('Course Enquiry Status in Service', this.service.courseEnquiryStatus);
+        console.log('Course Enquiry Status List', this.service.CourseEnquiryListByStatus);
+      
         this.config = {
           itemsPerPage: 5,
-          currentPage: 1,
-          totalItems: this.service.CourseEnquiryListByStatus.length
+          currentPage: 1
         };
       });  
     }
   
   refreshSelect(){
       this.refreshCourseEnquiryStatusList();
-      console.log('Course Enquiry Status in Service', this.service.courseEnquiryStatus);
-      console.log('Course Enquiry Status List', this.service.CourseEnquiryListByStatus);
       this.refreshCourseEnquiryListByStatus();
   }
     // Log function for debugging purposes
@@ -98,8 +104,8 @@ export class UpdateCourseEnquiryComponent implements OnInit {
         console.log(data);
         this.service.CourseEnquiryList=data;
         console.log(data);
-
-      });
+      }
+    );
   }
   // reset form function
   resetForm(form?:NgForm){
@@ -107,6 +113,7 @@ export class UpdateCourseEnquiryComponent implements OnInit {
     {
       form.resetForm();
     }
+    this.service.form.enquiryStatus = this.enquiryStatus;
   }
 
   // store the current course enquiry selected which is to be updated
@@ -128,30 +135,31 @@ export class UpdateCourseEnquiryComponent implements OnInit {
       
       let ResponseObj:any = res;
       if(ResponseObj.resultValue == '1'){
-      this.toastrService.success('Success','Course Enquiry Inserted Successfully');
-      this.refreshCourseEnquiryList();
-      this.refreshCourseEnquiryListByStatus();
-      this.refreshSelect();
+        this.toastrService.success('Success','Course Enquiry Inserted Successfully');
+        this.refreshCourseEnquiryList();
+        this.refreshCourseEnquiryListByStatus();
+        this.refreshSelect();
       }
       else{
         this.toastrService.error('Error', ResponseObj.result);
+        }
       }
-    });
+    );
   }
 
   changeOption(enquiryStatus:any){
     console.log(enquiryStatus);
     this.CourseEnquiryStatusList.forEach(element => {
-      if(element.statusValue == enquiryStatus)
-      {
-        this.CourseEnquiryStatus = element;
-      }  
-    });
+        if(element.statusValue == enquiryStatus)
+        {
+          this.CourseEnquiryStatus = element;
+        }  
+      }
+    );
     console.log(this.CourseEnquiryStatus);
   }
 
   onChangeEnquiryStatus(enquiryStatus:any){
-      this.selectEnquiryStatus = enquiryStatus;
+    this.selectEnquiryStatus = enquiryStatus;
   }
-
 }

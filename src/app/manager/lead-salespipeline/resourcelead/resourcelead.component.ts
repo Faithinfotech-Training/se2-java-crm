@@ -50,7 +50,7 @@ export class ResourceleadComponent implements OnInit {
     {
       this.service.getResourceStatusTable().subscribe(res=>{
         this.service.statusList=res;
-        this.resource_enquiry_count=this.service.statusList.length;
+        this.resource_enquiry_count=this.service.statusList[0].totalCount;
       
         console.log(this.resource_enquiry_count);
    

@@ -11,7 +11,7 @@ export class CourseSalesComponent implements OnInit {
    course_enquiry_count:number;
 
 
-   
+   // Pie chart data initialization
    
    public pieChartLabels:string[] = [];
    public pieChartData:number[] = [];

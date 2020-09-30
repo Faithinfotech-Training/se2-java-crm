@@ -95,24 +95,21 @@
         </div>
     </div>
     <!--Customer Lead source-->
-    <div class="form-group row">
-        <label class="col-sm-4 col-form-label">Lead Source</label>
-        <div class="col-sm-8">
-            <input type="text" class="form-control" id="leadSource" name="leadSource" #leadSource="ngModel"
-                [(ngModel)]="resourceEnquiryService.formData.customerId.leadSource" class="form-control" autocomplete="off" required>
-            
-                <!--Validation-->
-                <div *ngIf="leadSource.invalid && (leadSource.dirty || leadSource.touched)"
-                class="alert alert-danger mt-1">
-                <div *ngIf="leadSource.errors.required">
-                    LeadSource is required.
-                </div>
-                
-            </div>
-          
-    
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Lead Source</label>
+            <div class="col-sm-8">
+                <select type="text" name="leadSource" class="form-control" id="leadSource" #leadSource="ngModel"
+                    [(ngModel)]="resourceEnquiryService.formData.customerId.leadSource" required>
+
+                        <option *ngIf="resourceEnquiryService.formData.customerId.leadSource" selected disabled [ngValue]="resourceEnquiryService.formData.leadSource">
+                            {{resourceEnquiryService.formData.customerId.leadSource}}</option>
+                    <option *ngFor="let lead of leadSourceList" [ngValue]="lead">
+                        {{lead}}
+                    </option>
+                </select>
             </div>
         </div>
+       
 
 </fieldset>
 
