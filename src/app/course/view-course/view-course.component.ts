@@ -99,24 +99,26 @@ export class ViewCourseComponent implements OnInit {
   pageChanged(event) {
     this.config.currentPage = event;
   }
-  //delete course 
-  deleteClick(course: Course) {
-    if (confirm("Are you sure you want to delete")) {
-      this.courseService.deleteCourse(course.courseId).subscribe(res => {
-        let responseObj: any = res;
-        if (responseObj.status == 500) {
 
-          this.toastrService.error('error', 'Error while Deleting');
-        }
-        else {
-          this.toastrService.success('Success', 'Course Deleted Successfully');
-        }
-      });
+  deleteClick(course:Course){
+    if(confirm("Are you sure you want to delete")){
+      this.courseService.deleteCourse(course.courseId).subscribe(res=>{
+          let responseObj:any=res;
+          if(responseObj.status==500){
+          
+            this.toastrService.error('error','Error while Deleting');
+          }
+          else
+          {  
+              this.toastrService.success('Success','Course Deleted Successfully');
+          } 
 
-    }
-    this.GetCourseList();
+          this.GetCourseList();
+      },      err=>{this.toastrService.info('Cannot Delete','This Course is used in Course Enquiry');
+    });
+      
+    }}
   }
-}
 
 
 

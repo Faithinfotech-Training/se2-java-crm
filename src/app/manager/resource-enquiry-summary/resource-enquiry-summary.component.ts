@@ -33,9 +33,12 @@ export class ResourceEnquirySummaryComponent implements OnInit {
     this.getTotalResourceEnquiriesCount();
   }
 
+    // For debuggin purpose
+
   log(str){
     console.log(str);
   }
+  // Get list of all resource enquiries
   GetResourcesEnquiryList(){
    
     
@@ -44,7 +47,7 @@ export class ResourceEnquirySummaryComponent implements OnInit {
       this.enquiryList=res;   
     });
   }
-
+  //  Submit Form
   onSubmit(form:NgForm){
     let date1:any = new Date(form.value.date1);
     let date2:any = new Date(form.value.date2);
@@ -59,7 +62,7 @@ export class ResourceEnquirySummaryComponent implements OnInit {
     this.searched=true;
   }
 
-
+  // Get Resource Enquiry List By Date 
   GetResourcesEnquiryListByDate(){
     this.statusSelected=true;
     this.resourceEnquirySummaryService.getResourceEnquiryFilterByDate(this.date1,this.date2).subscribe(res=>{
@@ -90,6 +93,8 @@ export class ResourceEnquirySummaryComponent implements OnInit {
     }
   }
   
+
+  // Select Status from specific status id
   selectStatus(id){
     this.statusSelected=false;
     this.statusSelectedId=id;
@@ -103,6 +108,7 @@ export class ResourceEnquirySummaryComponent implements OnInit {
     
   }
 
+  // Get count by resource type
   getResourceTypeCount(id){
     if(this.filterList!=null){
       return this.filterList.filter((e)=>e.resourcesId.resourceType.resourceTypeId==id).length;
@@ -110,6 +116,7 @@ export class ResourceEnquirySummaryComponent implements OnInit {
       }
   }
 
+  // Get total 
   getTotalResourceEnquiriesCount(){
     this.resourceEnquirySummaryService.getResourceEnquiryCount().subscribe(res=>{
       this.totalCount=res;

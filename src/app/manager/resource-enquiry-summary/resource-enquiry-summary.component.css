@@ -9,6 +9,9 @@ body {
     font-size:1.3em;
     font-weight: bold;
 }
+.w-75{
+    margin:0 auto;
+}
 .stats-card{
     width: fit-content;
     padding:15px;

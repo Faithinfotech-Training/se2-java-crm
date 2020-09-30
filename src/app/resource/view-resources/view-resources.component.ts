@@ -34,12 +34,12 @@ export class ViewResourcesComponent implements OnInit {
     this.reverseToggle=false;
     // this.GetOrder();
   }
-
+// Change sort direction
   toggleSort(){
     this.reverseToggle=!this.reverseToggle;
     this.sortButtonToogle=!this.sortButtonToogle;
   }
-
+// 
   GetOrder(){
     this.resourceService.list = this.orderPipe.transform(this.resourceService
       .list, 'info.Name');
@@ -47,7 +47,7 @@ export class ViewResourcesComponent implements OnInit {
   }
 
 
-
+// Get list of resources
   GetResourcesList(){
    
     console.log('Get resources list called');
@@ -59,14 +59,14 @@ export class ViewResourcesComponent implements OnInit {
     });
   }
 
-  
+  // View resource on clicking resource name 
   viewResourceClick(){
     this.ModelTitle="View Resource";
     this.ActivateViewResources=true;
 
     console.log('viewResources clicked!');
   }
-
+// Close the model 
   closeClick(){
     this.ActivateViewResources=false;
 
@@ -80,7 +80,7 @@ export class ViewResourcesComponent implements OnInit {
       
     );
   }
-
+// Open modal for add and delete
   openAddEditModel(template:TemplateRef<any>,resource:Resource){
 
     if(resource===null){
@@ -95,26 +95,32 @@ export class ViewResourcesComponent implements OnInit {
       template,
     );
   }
-
+// Delete resource by resource Id
   deleteClick(resource:Resource){
+    console.log('In dlete click');
+    let flag:Boolean=false;
     if(confirm("Are you sure you want to delete")){
+      console.log('selected yes');
       this.resourceService.deleteResource(resource.resourceId).subscribe(res=>{
           let responseObj:any=res;
-          console.log(res);
-          
+          console.log('Console log',res);
+          console.log('Response Status',responseObj.status);
           if(responseObj.status==500){
           
-            this.toastrService.error('error','Error while Deleting');
+            this.toastrService.info('Cannot Delete','This Resource Id is used in Resource Enquiry');
           }
           else
           {
-             
+              flag=true;
               this.toastrService.success('Success','Resource Deleted Successfully');
           }
 
 
           this.GetResourcesList();
+      },err=>{this.toastrService.info('Cannot Delete','This Resource Id is used in Resource Enquiry');
       });
+
+      
       
   
       

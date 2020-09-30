@@ -52,7 +52,20 @@ export class AddCourseEnquiryComponent implements OnInit {
       console.log("Form reset");
       form.resetForm();
     }
+    // reset enquiry status
+    this.service.form.enquiryStatus = this.enquiryStatus;
   }
+  //test if function
+  test(val:any){
+    if(val){
+      console.log("True");
+    }
+    else{
+      console.log("false");
+    }
+
+  }
+
   // log function for debugging purposes
   log(txt:any)
   {
@@ -105,6 +118,8 @@ export class AddCourseEnquiryComponent implements OnInit {
       this.service.getCourseEnquiryList().subscribe(res=>{
         this.service.CourseEnquiryList = res;
       });
+      
+
     });
   }
 }

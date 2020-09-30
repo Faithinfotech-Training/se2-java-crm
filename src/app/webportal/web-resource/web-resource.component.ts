@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { OrderPipe } from 'ngx-order-pipe';
 import { ToastrService } from 'ngx-toastr';
+import { ClickEnquiryModule } from 'src/app/models/click-enquiry/click-enquiry.module';
 import { Resource } from 'src/app/models/resource.model';
 import { ResourceEnquiryService } from 'src/app/services/resource-enquiry.service';
 import { ResourceService } from 'src/app/services/resource.service';
@@ -20,6 +21,8 @@ export class WebResourceComponent implements OnInit {
   AddEditModalTitle:String;
   p:any;
   term:any;
+  eDate:string;
+  clickEnquiry:ClickEnquiryModule=new ClickEnquiryModule();
   orderString:any;
   sortButtonToogle:boolean=false;
   order:any;
@@ -91,6 +94,7 @@ export class WebResourceComponent implements OnInit {
 
   openAddEditModel(template:TemplateRef<any>,resource:Resource){
 
+  
     console.log("Resource,", resource);
     this.AddEditModalTitle="Insert a Resource Enquiry";
     this.resourceEnquiryService.formData={
@@ -119,11 +123,21 @@ export class WebResourceComponent implements OnInit {
       enquiryDate: new Date().toISOString().slice(0, 10).replace('T', ' '),
       status:this.status
 
+   
     };
     this.resourceService.formData = Object.assign({},resource);
     this.modalRef=this.modalService.show(
       template,
     );
+ this.eDate=new Date().toISOString().slice(0, 10).replace('T', ' ');
+ var dArr = this.eDate.split("-");
+ this.eDate=dArr[2]+ "-" +dArr[1]+ "-" +dArr[0].substring(2);
+   console.log(this.eDate);
+   this.clickEnquiry.date=this.eDate;
+   this.clickEnquiry.page='Resource';
+   this.clickEnquiry.count=1;
+   console.log(this.clickEnquiry);
+this.resourceEnquiryService.putClickEnquiry(this.clickEnquiry);
   }
 
   deleteClick(resource:Resource){

@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-body">
             <div class="action-buttons">
-                <div class="btn-group-custom" role="group" aria-label="Basic example">
+                <div class="btn-group-custom m-3" role="group" aria-label="Basic example">
 
                     <button type="button" class="btn btn-success" (click)="openAddEditModel(AddEditTemplate,null)">
 
@@ -23,7 +23,7 @@
 
             <div class="container">
                  <!-- Search filter    -->
-                <div class="search-course">
+                <div class="search-course m-3">
                     <input class="form-control" type="text"
                     name="term" [(ngModel)]="term" autocomplete="off"
                     placeholder="Search for Course Enquiry">
@@ -36,7 +36,7 @@
                     <tr>
                         <th [class.active]="order === 'courseId.courseName'"
                         (click)="setOrder('courseId.courseName')">Course Name 
-                        <span [hidden]="reverse">▼</span><span [hidden]="!reverse"> ▲</span></th>
+                        <span [hidden]="reverse">▼</span><span [hidden]="!reverse">▲</span></th>
                         <th scope="col">Customer Name</th>
                         <th scope="col">Customer Email Id</th>
                         <th scope="col">Enquiry Date</th>
