@@ -4,9 +4,9 @@
 
         <!-- Course Name -->
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Course Name</label>
+            <label class="col-sm-4 col-form-label">Name</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" id="courseName" name="courseName" #courseName="ngModel"
+                <input type="text" pattern="^[^-\s][a-zA-Z0-9_\s-]+$" class="form-control" id="courseName" name="courseName" #courseName="ngModel"
                     [(ngModel)]="courseService.formData.courseName" class="form-control" minlength="4">
 
 
@@ -18,8 +18,11 @@
                     <div *ngIf="courseName.errors.required">
                         Course Name is required.
                     </div>
-                    <div *ngIf="description.errors.minlength">
+                    <div *ngIf="courseName.errors.minlength">
                         Course Name must be at least 4 characters long.
+                    </div>
+                    <div *ngIf="courseName.errors.pattern">
+                        Course Name does not start with white spaces and contain special characters.
                     </div>
                 </div>
             </div>
@@ -27,9 +30,9 @@
 
         <!-- Course Description -->
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Course Description</label>
+            <label class="col-sm-4 col-form-label">Description</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" name="description" id="description"
+                <input type="text" pattern="^[^-\s][a-zA-Z0-9_\s-]+$" class="form-control" name="description" id="description"
                     #description="ngModel" [(ngModel)]="courseService.formData.description" required
                     minlength="10">
 
@@ -45,6 +48,9 @@
                     </div>
                     <div *ngIf="description.errors.minlength">
                         Course Description must be at least 10 characters long.
+                    </div>
+                    <div *ngIf="description.errors.pattern">
+                        Course Description does not start with white spaces and contain special characters.
                     </div>
                 </div>
             </div>

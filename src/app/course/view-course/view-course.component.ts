@@ -40,7 +40,7 @@ export class ViewCourseComponent implements OnInit {
   //getting order and reverse order
   GetOrder() {
     this.courseService.sortedlist = this.orderPipe.transform(this.courseService
-      .list, 'info.name');
+      .list, this.courseService.order);
     console.log("Sorted List");
   }
 

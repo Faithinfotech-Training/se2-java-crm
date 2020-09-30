@@ -82,7 +82,6 @@ export class CourseEnquirySummaryComponent implements OnInit {
   loadCourseEnquiryStatusList() {
     //calling function of api to get list of status
     this.resourceEnquirySummaryService.getCoursesEnquiryStatusList(status).subscribe(res => {
-      console.log('status list', res);
       this.enquiryStatusList = res;
     })
   }
@@ -126,3 +125,4 @@ export class DatePicker {
   date2: any;
 }
 
+ 
