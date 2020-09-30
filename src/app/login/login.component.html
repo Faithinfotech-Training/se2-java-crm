@@ -1,12 +1,5 @@
-<!-- <div class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
 
-
-  <div class="navbar-brand mr-0 mr-md-2">GeoInfoTech
-    </div>
-  
-  </nav-->
-<!-- </div> --> 
-
+<!--Navigation bar for Geo infotech-->
 
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
     
@@ -45,6 +38,8 @@
 </nav>
 
 
+<!--User login form with password and username validations-->
+
 
 <div class="container-sm p-5 my-3 border logincontainer" style="height:500px"  >
   <div class="form-row userlogin" >
@@ -55,9 +50,7 @@
    <form  #loginform="ngForm" (ngSubmit)="checkLogin()" novalidate autocomplete="off">
    
      <div class="form-row">
-      <!--div class="form-group col">
-     <label class="control-label col-sm-6" >Username:</label>
-    </div-->
+   
      <div class="form-group col" [class.has-error]="nameControl.invalid" [class.has-success]="nameControl.valid">
       <input class="control-label " type="text"  placeholder="Please enter your user name" name="username" class="form-control" [(ngModel)]="username" #nameControl="ngModel" required>
       <br/><span class="alert alert-danger alert-dismissible fade show" *ngIf="nameControl.invalid && nameControl.touched">
@@ -79,7 +72,7 @@
  </div>
 <br/>
  <div class="form-row" class="text-center">
- <button (click)=checkLogin() class="btn btn-success btn-lg" [disabled]="!loginform.valid">  Login
+ <button  class="btn btn-success btn-lg" [disabled]="!loginform.valid">  Login
  </button>
  </div>
 <br/>

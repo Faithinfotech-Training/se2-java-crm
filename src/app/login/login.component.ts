@@ -59,9 +59,7 @@ showErrorMessage:boolean;
        }
 
     // Checking if manager or admin
-       else 
-       {
-           if(this.role=="manager")
+       else if(this.role=="manager")
            {
              console.log("Manager");
 
@@ -106,7 +104,7 @@ showErrorMessage:boolean;
    
          
            }
-       }
+       
     })
   
   }
